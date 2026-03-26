@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>८औं शिक्षण शिविर २०२६ — दर्ता</title>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Nepali:ital@0;1&family=Noto+Sans+Devanagari:wght@400;500;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pink: #D4537E;
+    --pink-light: #FBEAF0;
+    --pink-dark: #993556;
+    --green: #3B6D11;
+    --green-light: #EAF3DE;
+    --gold: #BA7517;
+    --gold-light: #FAEEDA;
+    --bg: #FDF6F9;
+    --white: #ffffff;
+    --text: #1a1a1a;
+    --text-muted: #6b6b6b;
+    --border: rgba(212, 83, 126, 0.2);
+    --radius: 12px;
+    --shadow: 0 2px 20px rgba(212, 83, 126, 0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, var(--pink) 0%, var(--pink-dark) 100%);
+    color: white;
+    padding: 2rem 1.5rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: -30px;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+  }
+  .header-org {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    opacity: 0.85;
+    margin-bottom: 8px;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .header h1 {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: clamp(22px, 5vw, 32px);
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .header-sub {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-bottom: 1rem;
+  }
+  .header-badges {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 0.75rem;
+  }
+  .header-badge {
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 12px;
+  }
+
+  /* Wave */
+  .wave {
+    background: var(--pink-dark);
+    height: 40px;
+    position: relative;
+    margin-bottom: -1px;
+  }
+  .wave svg {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 40px;
+  }
+
+  /* Form container */
+  .container {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 3rem;
+  }
+
+  /* Section */
+  .section {
+    background: var(--white);
+    border-radius: var(--radius);
+    border: 0.5px solid var(--border);
+    box-shadow: var(--shadow);
+    padding: 1.5rem;
+    margin-bottom: 1.25rem;
+    animation: fadeUp 0.4s ease both;
+  }
+  .section:nth-child(2) { animation-delay: 0.05s; }
+  .section:nth-child(3) { animation-delay: 0.1s; }
+  .section:nth-child(4) { animation-delay: 0.15s; }
+  .section:nth-child(5) { animation-delay: 0.2s; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-title {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--pink-dark);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 1.25rem;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--pink-light);
+  }
+  .section-title .icon {
+    width: 28px; height: 28px;
+    background: var(--pink-light);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+  }
+
+  /* Fields */
+  .field { margin-bottom: 1.1rem; }
+  .field:last-child { margin-bottom: 0; }
+
+  label {
+    display: block;
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  label .req { color: var(--pink); margin-left: 2px; }
+  label .sub {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 400;
+    margin-left: 4px;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  input[type="text"],
+  input[type="tel"],
+  input[type="number"],
+  textarea,
+  select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    appearance: none;
+  }
+  input:focus, textarea:focus, select:focus {
+    border-color: var(--pink);
+    box-shadow: 0 0 0 3px rgba(212, 83, 126, 0.1);
+  }
+  textarea { resize: vertical; min-height: 80px; }
+
+  /* Participant type */
+  .type-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+  }
+  .type-option {
+    position: relative;
+  }
+  .type-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0; height: 0;
+  }
+  .type-option label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 8px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s;
+    background: var(--white);
+    min-height: 80px;
+    gap: 4px;
+  }
+  .type-option label .ne {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .type-option label .other-lang {
+    font-size: 10px;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+  .type-option input:checked + label {
+    border-color: var(--pink);
+    background: var(--pink-light);
+    box-shadow: 0 0 0 3px rgba(212, 83, 126, 0.1);
+  }
+  .type-option input:checked + label .ne { color: var(--pink-dark); }
+
+  /* File upload */
+  .file-upload {
+    border: 1.5px dashed var(--border);
+    border-radius: 10px;
+    padding: 1.25rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: #fdfafe;
+    position: relative;
+  }
+  .file-upload:hover {
+    border-color: var(--pink);
+    background: var(--pink-light);
+  }
+  .file-upload input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+  }
+  .file-upload .upload-icon { font-size: 24px; margin-bottom: 6px; }
+  .file-upload .upload-text {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+  .file-upload .upload-hint {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 3px;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .file-upload.has-file {
+    border-color: var(--green);
+    background: var(--green-light);
+  }
+  .file-upload.has-file .upload-text { color: var(--green); }
+
+  /* Notice box */
+  .notice {
+    background: var(--gold-light);
+    border: 1px solid rgba(186, 117, 23, 0.25);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 1.25rem;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .notice .notice-icon { font-size: 16px; margin-top: 1px; }
+  .notice p {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 12px;
+    color: var(--gold);
+    line-height: 1.6;
+  }
+
+  /* Submit */
+  .submit-btn {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, var(--pink) 0%, var(--pink-dark) 100%);
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 16px;
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.02em;
+    box-shadow: 0 4px 16px rgba(212, 83, 126, 0.3);
+  }
+  .submit-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 24px rgba(212, 83, 126, 0.4);
+  }
+  .submit-btn:active { transform: translateY(0); }
+  .submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  /* Success */
+  .success-screen {
+    display: none;
+    text-align: center;
+    padding: 3rem 1.5rem;
+    background: var(--white);
+    border-radius: var(--radius);
+    border: 0.5px solid var(--border);
+    box-shadow: var(--shadow);
+  }
+  .success-screen .success-icon {
+    font-size: 56px;
+    margin-bottom: 1rem;
+  }
+  .success-screen h2 {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 22px;
+    color: var(--green);
+    margin-bottom: 8px;
+  }
+  .success-screen p {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  /* Loading overlay */
+  .loading-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(255,255,255,0.85);
+    z-index: 999;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+  .loading-overlay.active { display: flex; }
+  .spinner {
+    width: 44px; height: 44px;
+    border: 3px solid var(--pink-light);
+    border-top-color: var(--pink);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-text {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 14px;
+    color: var(--pink-dark);
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 400px) {
+    .type-grid { grid-template-columns: 1fr; }
+    .type-option label { flex-direction: row; min-height: auto; padding: 10px 12px; text-align: left; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Loading -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="spinner"></div>
+  <div class="loading-text">दर्ता हुँदैछ... कृपया प्रतीक्षा गर्नुहोस्</div>
+</div>
+
+<!-- Header -->
+<div class="header">
+  <div class="header-org">THAI NEPALI ASSOCIATION · थाई नेपाली संघ</div>
+  <h1>आठौं शिक्षण शिविर २०२६</h1>
+  <div class="header-sub">8th Educational Camp (Sivir) 2026</div>
+  <div class="header-badges">
+    <span class="header-badge">📅 ९–१५ अप्रिल २०२६</span>
+    <span class="header-badge">📍 Banse Camp, Ratchaburi</span>
+  </div>
+</div>
+<div class="wave">
+  <svg viewBox="0 0 1440 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,40 C360,0 1080,0 1440,40 L1440,40 L0,40 Z" fill="#FDF6F9"/>
+  </svg>
+</div>
+
+<div class="container">
+
+  <div class="notice">
+    <span class="notice-icon">ℹ️</span>
+    <p>सबै (*) चिह्न भएका fields अनिवार्य छन्। File upload गर्दा JPG, PNG वा PDF format मा गर्नुहोस्।</p>
+  </div>
+
+  <form id="registrationForm">
+
+    <!-- Personal Info -->
+    <div class="section">
+      <div class="section-title">
+        <span class="icon">👤</span>
+        व्यक्तिगत जानकारी
+      </div>
+
+      <div class="field">
+        <label>पूरा नाम <span class="req">*</span> <span class="sub">Full Name</span></label>
+        <input type="text" name="fullName" placeholder="आफ्नो पूरा नाम लेख्नुहोस्" required>
+      </div>
+
+      <div class="field">
+        <label>उमेर <span class="req">*</span> <span class="sub">Age</span></label>
+        <input type="number" name="age" placeholder="उमेर" min="1" max="99" required>
+      </div>
+
+      <div class="field">
+        <label>सम्पर्क नम्बर <span class="req">*</span> <span class="sub">Phone Number</span></label>
+        <input type="tel" name="phone" placeholder="उदाहरण: 0812345678" required>
+      </div>
+
+      <div class="field">
+        <label>छोटो ठेगाना <span class="req">*</span> <span class="sub">Short Address</span></label>
+        <input type="text" name="address" placeholder="उदाहरण: Sukhumvit, Bangkok" required>
+      </div>
+    </div>
+
+    <!-- Participant Type -->
+    <div class="section">
+      <div class="section-title">
+        <span class="icon">👥</span>
+        सहभागी प्रकार
+      </div>
+
+      <div class="field">
+        <label>सहभागी को प्रकार छान्नुहोस् <span class="req">*</span></label>
+        <div class="type-grid">
+
+          <div class="type-option">
+            <input type="radio" name="participantType" id="type-child" value="बालबालिका" required>
+            <label for="type-child">
+              <span class="ne">बालबालिका</span>
+              <span class="other-lang">ကလေး<br>เด็ก</span>
+            </label>
+          </div>
+
+          <div class="type-option">
+            <input type="radio" name="participantType" id="type-parent" value="अभिभावक">
+            <label for="type-parent">
+              <span class="ne">अभिभावक</span>
+              <span class="other-lang">မိဘ<br>ผู้ปกครอง</span>
+            </label>
+          </div>
+
+          <div class="type-option">
+            <input type="radio" name="participantType" id="type-both" value="दुवै">
+            <label for="type-both">
+              <span class="ne">दुवै</span>
+              <span class="other-lang">နှစ်ဦးစလုံး<br>ทั้งคู่</span>
+            </label>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- File Uploads -->
+    <div class="section">
+      <div class="section-title">
+        <span class="icon">📎</span>
+        कागजात अपलोड
+      </div>
+
+      <div class="field">
+        <label>Document / ID Photo <span class="req">*</span></label>
+        <div class="file-upload" id="docUploadArea">
+          <input type="file" name="docFile" id="docFile" accept=".jpg,.jpeg,.png,.pdf" required onchange="handleFileChange(this, 'docUploadArea', 'docUploadText')">
+          <div class="upload-icon">🪪</div>
+          <div class="upload-text" id="docUploadText">यहाँ click गरेर file छान्नुहोस्</div>
+          <div class="upload-hint">JPG, PNG, PDF · Max 10MB</div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Photo ID <span class="req">*</span> <span class="sub">Passport / National ID</span></label>
+        <div class="file-upload" id="photoIdArea">
+          <input type="file" name="photoId" id="photoId" accept=".jpg,.jpeg,.png,.pdf" required onchange="handleFileChange(this, 'photoIdArea', 'photoIdText')">
+          <div class="upload-icon">📷</div>
+          <div class="upload-text" id="photoIdText">यहाँ click गरेर file छान्नुहोस्</div>
+          <div class="upload-hint">JPG, PNG, PDF · Max 5MB</div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Payment Slip <span class="req">*</span></label>
+        <div class="file-upload" id="paymentArea">
+          <input type="file" name="paymentSlip" id="paymentSlip" accept=".jpg,.jpeg,.png,.pdf" required onchange="handleFileChange(this, 'paymentArea', 'paymentText')">
+          <div class="upload-icon">🧾</div>
+          <div class="upload-text" id="paymentText">यहाँ click गरेर file छान्नुहोस्</div>
+          <div class="upload-hint">JPG, PNG, PDF · Max 5MB</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Message -->
+    <div class="section">
+      <div class="section-title">
+        <span class="icon">💬</span>
+        थप जानकारी
+      </div>
+      <div class="field">
+        <label>कुनै सन्देश वा थप जानकारी <span class="sub">Optional message</span></label>
+        <textarea name="message" placeholder="यहाँ लेख्नुहोस्..."></textarea>
+      </div>
+    </div>
+
+    <button type="submit" class="submit-btn" id="submitBtn">
+      दर्ता गर्नुहोस् — Register Now
+    </button>
+
+  </form>
+
+  <!-- Success -->
+  <div class="success-screen" id="successScreen">
+    <div class="success-icon">🎉</div>
+    <h2>दर्ता सफल भयो!</h2>
+    <p>तपाईंको दर्ता प्राप्त भएको छ।<br>हामी चाँडै सम्पर्क गर्नेछौं।<br><br>धन्यवाद — थाई नेपाली संघ 🙏</p>
+  </div>
+
+</div>
+
+<div class="footer">
+  थाई नेपाली संघ · शिक्षण शिविर विभाग<br>
+  Thai Nepali Association · Sivir Department · 2026
+</div>
+
+<script>
+  // File change handler
+  function handleFileChange(input, areaId, textId) {
+    const area = document.getElementById(areaId);
+    const textEl = document.getElementById(textId);
+    if (input.files && input.files[0]) {
+      const fileName = input.files[0].name;
+      const shortName = fileName.length > 28 ? fileName.substring(0, 25) + '...' : fileName;
+      textEl.textContent = '✓ ' + shortName;
+      area.classList.add('has-file');
+    }
+  }
+
+  // Convert file to Base64
+  function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result.split(',')[1]);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  // Submit form
+  document.getElementById('registrationForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const btn = document.getElementById('submitBtn');
+    const overlay = document.getElementById('loadingOverlay');
+    btn.disabled = true;
+    overlay.classList.add('active');
+
+    try {
+      const formData = new FormData(this);
+
+      // Convert files to base64
+      const docFile = document.getElementById('docFile').files[0];
+      const photoId = document.getElementById('photoId').files[0];
+      const paymentSlip = document.getElementById('paymentSlip').files[0];
+
+      const [docBase64, photoBase64, paymentBase64] = await Promise.all([
+        fileToBase64(docFile),
+        fileToBase64(photoId),
+        fileToBase64(paymentSlip)
+      ]);
+
+      const payload = {
+        fullName: formData.get('fullName'),
+        age: formData.get('age'),
+        phone: formData.get('phone'),
+        address: formData.get('address'),
+        participantType: formData.get('participantType'),
+        message: formData.get('message') || '',
+        docFileName: docFile.name,
+        docFileData: docBase64,
+        photoIdFileName: photoId.name,
+        photoIdData: photoBase64,
+        paymentFileName: paymentSlip.name,
+        paymentData: paymentBase64,
+        submittedAt: new Date().toLocaleString('th-TH')
+      };
+
+      // POST to Google Apps Script Web App
+      const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbytVEhFZGja4xNwDJEgX4vOwnSBDcv7vix5ffkjaPA_8OY6zr1FdQdthPrwnnYSOcUj/exec';
+
+      const response = await fetch(SCRIPT_URL, {
+        method: 'POST',
+        body: JSON.stringify(payload)
+      });
+
+      const result = await response.json();
+
+      if (result.status === 'success') {
+        document.getElementById('registrationForm').style.display = 'none';
+        document.getElementById('successScreen').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        throw new Error(result.message || 'Unknown error');
+      }
+
+    } catch (err) {
+      alert('❌ दर्ता हुन सकेन। कृपया फेरि प्रयास गर्नुहोस्।\nError: ' + err.message);
+      btn.disabled = false;
+    } finally {
+      overlay.classList.remove('active');
+    }
+  });
+</script>
+
+</body>
+</html>
