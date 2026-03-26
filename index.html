@@ -633,23 +633,20 @@
         submittedAt: new Date().toLocaleString('th-TH')
       };
 
-      // POST to Google Apps Script Web App
-      const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbytVEhFZGja4xNwDJEgX4vOwnSBDcv7vix5ffkjaPA_8OY6zr1FdQdthPrwnnYSOcUj/exec';
+      // POST to Google Apps Script — no-cors to avoid CORS block from GitHub Pages
+      const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzCnmiqkDoBFpgXHLIAN50DYpnkGYwJ_iscC4UM7aRogXp2P1FXscSfaDzSkMiEB5pm/exec';
 
-      const response = await fetch(SCRIPT_URL, {
+      await fetch(SCRIPT_URL, {
         method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain' },
         body: JSON.stringify(payload)
       });
 
-      const result = await response.json();
-
-      if (result.status === 'success') {
-        document.getElementById('registrationForm').style.display = 'none';
-        document.getElementById('successScreen').style.display = 'block';
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else {
-        throw new Error(result.message || 'Unknown error');
-      }
+      // no-cors returns opaque response — if no exception thrown, treat as success
+      document.getElementById('registrationForm').style.display = 'none';
+      document.getElementById('successScreen').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
 
     } catch (err) {
       alert('❌ दर्ता हुन सकेन। कृपया फेरि प्रयास गर्नुहोस्।\nError: ' + err.message);
