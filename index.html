@@ -3,1221 +3,951 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>८औं शिक्षण शिविर २०२६ — दर्ता</title>
+<title>8th Sivir 2026 — Registration</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root {
-  --pink:#E05C8A; --pink-light:#FCE8F1; --pink-dark:#B03567;
-  --green:#3A8C4A; --green-light:#E6F5EA;
-  --gold:#D4900A; --gold-light:#FDF3DC;
-  --blue:#2B7BB9; --blue-light:#E5F2FC;
-  --orange:#E07020; --orange-light:#FDF0E3;
-  --bg:#FEF6FA; --white:#fff; --text:#1C1C2E; --text-muted:#7B7B9A;
-  --border:rgba(224,92,138,0.22); --radius:18px; --radius-sm:10px;
-  --shadow:0 4px 28px rgba(224,92,138,0.10); --shadow-lg:0 8px 40px rgba(176,53,103,0.18);
+:root{
+  --pink:#E05C8A;--pink-light:#FCE8F1;--pink-dark:#B03567;
+  --green:#3A8C4A;--green-light:#E6F5EA;
+  --gold:#D4900A;--gold-light:#FDF3DC;
+  --blue:#2B7BB9;--blue-light:#E5F2FC;
+  --bg:#FEF6FA;--white:#fff;--text:#1C1C2E;--muted:#7B7B9A;
+  --border:rgba(224,92,138,0.22);--radius:18px;--radius-sm:10px;
+  --shadow:0 4px 28px rgba(224,92,138,0.10);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+body{font-family:"Nunito",sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
 
 /* LOADING */
-.loading-overlay{position:fixed;inset:0;background:rgba(254,246,250,0.94);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;opacity:0;pointer-events:none;transition:opacity .3s}
-.loading-overlay.active{opacity:1;pointer-events:all}
-.spinner{width:52px;height:52px;border:4px solid var(--pink-light);border-top-color:var(--pink);border-radius:50%;animation:spin .8s linear infinite;margin-bottom:16px}
+.overlay{position:fixed;inset:0;background:rgba(254,246,250,.95);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;transition:opacity .3s;opacity:0;pointer-events:none}
+.overlay.on{opacity:1;pointer-events:all}
+.spinner{width:48px;height:48px;border:4px solid var(--pink-light);border-top-color:var(--pink);border-radius:50%;animation:spin .8s linear infinite;margin-bottom:14px}
 @keyframes spin{to{transform:rotate(360deg)}}
-.loading-text{font-family:'Noto Sans Devanagari',sans-serif;color:var(--pink-dark);font-size:15px;font-weight:600;text-align:center;padding:0 20px}
+.overlay p{font-family:"Noto Sans Devanagari",sans-serif;color:var(--pink-dark);font-size:14px;font-weight:600;text-align:center}
 
 /* HEADER */
-.header{background:linear-gradient(150deg,#E05C8A 0%,#B03567 55%,#7A1E47 100%);color:white;padding:2.5rem 1.5rem 4.5rem;text-align:center;position:relative;overflow:hidden}
-.header::before{content:'';position:absolute;top:-60px;right:-60px;width:250px;height:250px;border-radius:50%;background:rgba(255,255,255,.07)}
-.header::after{content:'';position:absolute;bottom:-80px;left:-40px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.05)}
-.header-flags{font-size:22px;letter-spacing:6px;margin-bottom:10px}
-.header-org{font-size:11px;letter-spacing:.15em;opacity:.85;margin-bottom:10px;text-transform:uppercase}
-.header h1{font-family:'Noto Sans Devanagari',sans-serif;font-size:clamp(24px,6vw,38px);font-weight:700;line-height:1.2;margin-bottom:6px}
-.header-sub{font-size:15px;opacity:.88;margin-bottom:14px;font-weight:600}
-.header-multilang{font-size:11px;opacity:.72;margin-bottom:16px;line-height:2}
-.header-badges{display:flex;justify-content:center;flex-wrap:wrap;gap:8px}
-.header-badge{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);border-radius:20px;padding:5px 16px;font-size:12px;font-weight:600}
-
-/* MUSIC BAR */
-.music-bar{background:linear-gradient(90deg,#7A1E47,#B03567);color:white;display:flex;align-items:center;gap:12px;padding:10px 16px;position:relative;overflow:hidden}
-.music-bar::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 4px,rgba(255,255,255,.04) 4px,rgba(255,255,255,.04) 5px)}
-.music-icon{font-size:18px;animation:mbounce 1s infinite alternate}
-@keyframes mbounce{from{transform:scale(1)}to{transform:scale(1.2)}}
-.music-info{flex:1}
-.music-info .music-name{font-size:13px;font-weight:700}
-.music-info .music-title{font-size:11px;opacity:.8}
-.music-btn{background:rgba(255,255,255,.2);border:none;border-radius:50%;width:34px;height:34px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;color:white;transition:background .2s;flex-shrink:0}
-.music-btn:hover{background:rgba(255,255,255,.35)}
-.music-wave{display:flex;align-items:center;gap:2px;flex-shrink:0}
-.music-wave span{display:block;width:3px;background:rgba(255,255,255,.7);border-radius:2px;animation:mwave .8s ease-in-out infinite alternate}
-.music-wave span:nth-child(1){height:6px;animation-delay:0s}
-.music-wave span:nth-child(2){height:12px;animation-delay:.1s}
-.music-wave span:nth-child(3){height:8px;animation-delay:.2s}
-.music-wave span:nth-child(4){height:16px;animation-delay:.15s}
-.music-wave span:nth-child(5){height:10px;animation-delay:.3s}
-.music-wave.paused span{animation:none;height:3px!important}
-@keyframes mwave{from{transform:scaleY(.5)}to{transform:scaleY(1)}}
-
-/* WAVE */
-.wave-divider{background:#7A1E47;position:relative;height:50px}
-.wave-divider svg{position:absolute;bottom:0;left:0;width:100%;height:100%}
+.hdr{background:linear-gradient(150deg,#E05C8A,#B03567 55%,#7A1E47);color:#fff;padding:2rem 1.5rem 4rem;text-align:center;position:relative;overflow:hidden}
+.hdr::before{content:"";position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.06)}
+.hdr-flags{font-size:20px;letter-spacing:6px;margin-bottom:8px}
+.hdr-org{font-size:11px;letter-spacing:.14em;opacity:.85;margin-bottom:8px;text-transform:uppercase}
+.hdr h1{font-family:"Noto Sans Devanagari",sans-serif;font-size:clamp(22px,5.5vw,36px);font-weight:700;line-height:1.25;margin-bottom:4px}
+.hdr-sub{font-size:14px;opacity:.9;margin-bottom:14px;font-weight:600}
+.hdr-badges{display:flex;justify-content:center;flex-wrap:wrap;gap:8px}
+.badge{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);border-radius:20px;padding:4px 14px;font-size:12px;font-weight:600}
+.wave{background:#7A1E47;position:relative;height:44px}
+.wave svg{position:absolute;bottom:0;left:0;width:100%;height:100%}
 
 /* CONTAINER */
-.container{max-width:660px;margin:0 auto;padding:1.5rem 1rem 5rem}
-
-/* NOTICE */
-.notice{background:var(--gold-light);border:1px solid rgba(212,144,10,.3);border-radius:var(--radius-sm);padding:12px 16px;display:flex;gap:10px;margin-bottom:1.25rem;font-size:12px;color:#6B4700;font-family:'Noto Sans Devanagari',sans-serif;line-height:1.7}
-
-/* VIDEO CARD */
-.video-card{background:var(--text);border-radius:var(--radius);overflow:hidden;margin-bottom:1.25rem;box-shadow:var(--shadow-lg)}
-.video-card-header{padding:14px 18px;display:flex;align-items:center;gap:10px;color:white}
-.video-card-header.pink{background:linear-gradient(90deg,var(--pink-dark),var(--pink))}
-.video-card-header.orange{background:linear-gradient(90deg,#7A3500,var(--orange))}
-.video-card-header h3{font-size:15px;font-weight:700}
-.video-card-header .sub{font-size:11px;opacity:.8;margin-top:2px}
-.video-embed{position:relative;padding-bottom:56.25%;height:0;overflow:hidden}
-.video-embed iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
-.video-note{padding:12px 18px;font-size:12px;color:#aaa;text-align:center;font-family:'Noto Sans Devanagari',sans-serif;line-height:1.8}
-
-/* SECTIONS */
-.section{background:var(--white);border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);padding:1.5rem;margin-bottom:1.25rem;animation:fadeUp .4s ease both}
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.section-title{font-family:'Noto Sans Devanagari',sans-serif;font-size:15px;font-weight:700;color:var(--pink-dark);display:flex;align-items:center;gap:10px;margin-bottom:1.25rem;padding-bottom:12px;border-bottom:2px solid var(--pink-light)}
-.section-title .icon{width:34px;height:34px;background:var(--pink-light);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
-.section-title .t-sub{font-size:11px;color:var(--text-muted);font-weight:400;font-family:'Nunito',sans-serif;margin-top:2px}
-
-/* FIELDS */
-.field{margin-bottom:1.1rem}
-.field:last-child{margin-bottom:0}
-.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-label{display:block;font-family:'Noto Sans Devanagari',sans-serif;font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px}
-label .req{color:var(--pink);margin-left:2px}
-label .sub{font-size:10px;color:var(--text-muted);font-weight:400;margin-left:4px;font-family:'Nunito',sans-serif}
-.lang-row{display:flex;gap:4px;flex-wrap:wrap;margin-top:3px}
-.lang-badge{font-size:9px;padding:1px 6px;border-radius:5px;background:var(--blue-light);color:var(--blue);font-weight:700;font-family:'Nunito',sans-serif}
-
-input[type=text],input[type=tel],input[type=number],textarea,select{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;font-family:'Nunito',sans-serif;color:var(--text);background:var(--white);transition:border-color .2s,box-shadow .2s;outline:none;appearance:none}
-input:focus,textarea:focus,select:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgba(224,92,138,.12)}
-input.error,select.error{border-color:#e74c3c!important;box-shadow:0 0 0 3px rgba(231,76,60,.12)!important}
-textarea{resize:vertical;min-height:80px}
-
-/* TYPE CARDS */
-.type-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.type-option{position:relative}
-.type-option input[type=radio]{position:absolute;opacity:0;width:0;height:0}
-.type-option label{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px 10px;border:2px solid var(--border);border-radius:var(--radius);cursor:pointer;text-align:center;transition:all .2s;background:var(--white);gap:6px;min-height:100px}
-.type-option label .emoji{font-size:28px;transition:transform .2s}
-.type-option label .ne{font-family:'Noto Sans Devanagari',sans-serif;font-size:13px;font-weight:700;color:var(--text);line-height:1.3}
-.type-option label .en{font-size:11px;color:var(--text-muted);font-weight:600}
-.type-option label .ml{font-size:10px;color:var(--text-muted);line-height:1.6}
-.type-option input:checked+label{border-color:var(--pink);background:var(--pink-light);box-shadow:0 0 0 3px rgba(224,92,138,.15)}
-.type-option input:checked+label .ne{color:var(--pink-dark)}
-.type-option input:checked+label .emoji{transform:scale(1.15)}
-
-/* AGE WARNING */
-.age-warn{background:#FFF3CD;border:1px solid #FFCA2C;border-radius:8px;padding:10px 14px;font-size:12px;color:#664D00;margin-top:8px;display:none;font-family:'Noto Sans Devanagari',sans-serif;line-height:1.7}
-.age-warn.show{display:block}
-
-/* FILE UPLOAD */
-.file-upload{border:2px dashed var(--border);border-radius:var(--radius);padding:1.2rem;text-align:center;cursor:pointer;transition:all .2s;background:#FDFAFE;position:relative}
-.file-upload:hover{border-color:var(--pink);background:var(--pink-light)}
-.file-upload.has-file{border-color:var(--green);background:var(--green-light);border-style:solid}
-.file-upload.required-error{border-color:#e74c3c!important;background:#FFF5F5!important}
-.file-upload input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
-.file-upload .u-icon{font-size:28px;margin-bottom:6px;display:block}
-.file-upload .u-text{font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px}
-.file-upload .u-ne{font-family:'Noto Sans Devanagari',sans-serif;font-size:11px;color:var(--text-muted);line-height:1.6}
-.file-upload .u-hint{font-size:10px;color:var(--text-muted);margin-top:4px}
-
-.upload-options{display:flex;gap:8px;margin-top:8px;position:relative;z-index:2}
-.upload-opt-btn{flex:1;padding:8px 6px;border:1.5px solid var(--border);border-radius:8px;background:white;cursor:pointer;font-size:11px;font-weight:700;color:var(--pink-dark);transition:all .2s;display:flex;align-items:center;justify-content:center;gap:4px;font-family:'Nunito',sans-serif}
-.upload-opt-btn:hover{background:var(--pink-light);border-color:var(--pink)}
-
-.photo-preview{width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid var(--pink);margin:8px auto;display:none}
-
-/* PARTICIPANT CARDS */
-.participant-card{background:var(--pink-light);border:1.5px solid var(--border);border-radius:12px;padding:12px 14px;display:flex;align-items:center;gap:10px;margin-bottom:8px;animation:fadeUp .3s ease both}
-.participant-thumb{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--pink);flex-shrink:0}
-.participant-card-info{flex:1}
-.participant-card-name{font-weight:700;font-size:14px;color:var(--pink-dark);font-family:'Noto Sans Devanagari',sans-serif}
-.participant-card-meta{font-size:11px;color:var(--text-muted);margin-top:2px}
-.participant-card-remove{background:none;border:none;cursor:pointer;color:var(--pink);font-size:18px;padding:4px;border-radius:50%;transition:background .2s;flex-shrink:0}
-.participant-card-remove:hover{background:rgba(224,92,138,.1)}
-
-.add-participant-btn{width:100%;padding:13px;background:white;border:2px dashed var(--pink);border-radius:12px;color:var(--pink-dark);font-weight:700;font-size:13px;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px;font-family:'Noto Sans Devanagari',sans-serif}
-.add-participant-btn:hover{background:var(--pink-light)}
-
-/* MODAL */
-.modal-overlay{position:fixed;inset:0;background:rgba(28,28,46,.65);z-index:1000;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
-.modal-overlay.active{opacity:1;pointer-events:all}
-.modal-sheet{background:var(--white);border-radius:24px 24px 0 0;padding:20px;width:100%;max-width:660px;max-height:92vh;overflow-y:auto;transform:translateY(50px);transition:transform .3s}
-.modal-overlay.active .modal-sheet{transform:translateY(0)}
-.modal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;padding-bottom:12px;border-bottom:2px solid var(--pink-light)}
-.modal-header h3{font-family:'Noto Sans Devanagari',sans-serif;font-size:16px;font-weight:700;color:var(--pink-dark)}
-.modal-close{background:var(--pink-light);border:none;border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:18px;color:var(--pink-dark);display:flex;align-items:center;justify-content:center}
+.wrap{max-width:640px;margin:0 auto;padding:1.25rem 1rem 5rem}
 
 /* STEPS */
-.steps-bar{display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;overflow-x:auto;padding:4px}
-.step-item{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:50px}
-.step-circle{width:32px;height:32px;border-radius:50%;border:2px solid var(--border);background:white;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--text-muted);transition:all .3s}
-.step-item.active .step-circle{border-color:var(--pink);background:var(--pink);color:white}
-.step-item.done .step-circle{border-color:var(--green);background:var(--green);color:white}
-.step-label{font-size:9px;color:var(--text-muted);font-weight:600;text-align:center;max-width:52px;line-height:1.2}
-.step-item.active .step-label{color:var(--pink-dark)}
-.step-connector{width:22px;height:2px;background:var(--border);margin-bottom:16px;flex-shrink:0}
-.step-connector.done{background:var(--green)}
+.steps{display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;overflow-x:auto;padding:4px;gap:0}
+.sitem{display:flex;flex-direction:column;align-items:center;gap:3px;min-width:44px}
+.scirc{width:30px;height:30px;border-radius:50%;border:2px solid var(--border);background:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--muted);transition:all .3s}
+.sitem.active .scirc{border-color:var(--pink);background:var(--pink);color:#fff}
+.sitem.done .scirc{border-color:var(--green);background:var(--green);color:#fff}
+.slbl{font-size:9px;color:var(--muted);font-weight:600;text-align:center;line-height:1.2;max-width:44px}
+.sitem.active .slbl{color:var(--pink-dark)}
+.sconn{width:18px;height:2px;background:var(--border);margin-bottom:14px;flex-shrink:0}
+.sconn.done{background:var(--green)}
+
+/* CARD */
+.card{background:#fff;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);padding:1.4rem;margin-bottom:1.1rem;animation:fup .35s ease both}
+@keyframes fup{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.ctitle{font-family:"Noto Sans Devanagari",sans-serif;font-size:14px;font-weight:700;color:var(--pink-dark);display:flex;align-items:center;gap:10px;margin-bottom:1.1rem;padding-bottom:10px;border-bottom:2px solid var(--pink-light)}
+.cicon{width:32px;height:32px;background:var(--pink-light);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.csub{font-size:10px;color:var(--muted);font-weight:400;margin-top:2px}
+
+/* NOTICE */
+.notice{background:var(--gold-light);border:1px solid rgba(212,144,10,.28);border-radius:var(--radius-sm);padding:10px 14px;display:flex;gap:8px;margin-bottom:1.1rem;font-size:12px;color:#6B4700;font-family:"Noto Sans Devanagari",sans-serif;line-height:1.7}
+
+/* FIELDS */
+.field{margin-bottom:1rem}
+.field:last-child{margin-bottom:0}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+label{display:block;font-family:"Noto Sans Devanagari",sans-serif;font-size:13px;font-weight:600;color:var(--text);margin-bottom:5px}
+.req{color:var(--pink);margin-left:2px}
+.lbsub{font-size:10px;color:var(--muted);font-weight:400;margin-left:4px;font-family:"Nunito",sans-serif}
+.lbadge{display:inline-block;font-size:9px;padding:1px 6px;border-radius:5px;background:var(--blue-light);color:var(--blue);font-weight:700;font-family:"Nunito",sans-serif;margin:2px 2px 0 0}
+input[type=text],input[type=tel],input[type=number],textarea,select{width:100%;padding:10px 13px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;font-family:"Nunito",sans-serif;color:var(--text);background:#fff;outline:none;transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+input:focus,textarea:focus,select:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgba(224,92,138,.1)}
+.err-field{border-color:#e74c3c!important}
+textarea{resize:vertical;min-height:72px}
+.err-msg{font-size:12px;color:#c0392b;margin-top:4px;font-family:"Noto Sans Devanagari",sans-serif;display:none}
+.err-msg.on{display:block}
+
+/* RADIO TYPE CARDS */
+.tgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.topt{position:relative}
+.topt input{position:absolute;opacity:0;width:0;height:0}
+.topt label{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:14px 8px;border:2px solid var(--border);border-radius:var(--radius);cursor:pointer;text-align:center;transition:all .2s;background:#fff;gap:5px;min-height:90px}
+.topt label .em{font-size:26px;transition:transform .2s}
+.topt label .ne{font-family:"Noto Sans Devanagari",sans-serif;font-size:12px;font-weight:700;color:var(--text)}
+.topt label .en{font-size:11px;color:var(--muted);font-weight:600}
+.topt label .th{font-size:10px;color:var(--muted)}
+.topt input:checked+label{border-color:var(--pink);background:var(--pink-light);box-shadow:0 0 0 3px rgba(224,92,138,.12)}
+.topt input:checked+label .ne{color:var(--pink-dark)}
+.topt input:checked+label .em{transform:scale(1.12)}
+
+/* PRICING */
+.pricing{background:linear-gradient(135deg,var(--gold-light),#FFF8E1);border:1.5px solid var(--gold);border-radius:var(--radius-sm);padding:11px 14px;margin-bottom:10px}
+.pricing h4{font-size:12px;font-weight:700;color:var(--gold);margin-bottom:6px;font-family:"Noto Sans Devanagari",sans-serif}
+.prow{display:flex;justify-content:space-between;font-size:12px;padding:3px 0;border-bottom:1px dashed rgba(212,144,10,.2);color:var(--text)}
+.prow:last-child{border-bottom:none;font-weight:700;color:var(--gold)}
+
+/* PARTICIPANT CARD */
+.pcard{background:var(--pink-light);border:1.5px solid var(--border);border-radius:11px;padding:11px 13px;display:flex;align-items:center;gap:10px;margin-bottom:8px;animation:fup .3s ease both}
+.pthumb{width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid var(--pink);flex-shrink:0;background:var(--pink-light);display:flex;align-items:center;justify-content:center;font-size:18px}
+.pinfo{flex:1}
+.pname{font-weight:700;font-size:13px;color:var(--pink-dark);font-family:"Noto Sans Devanagari",sans-serif}
+.pmeta{font-size:11px;color:var(--muted);margin-top:2px}
+.pbtn{background:none;border:none;cursor:pointer;font-size:16px;padding:4px;border-radius:50%;transition:background .2s;flex-shrink:0}
+.pbtn:hover{background:rgba(224,92,138,.1)}
+.add-btn{width:100%;padding:12px;background:#fff;border:2px dashed var(--pink);border-radius:11px;color:var(--pink-dark);font-weight:700;font-size:13px;cursor:pointer;transition:all .2s;font-family:"Noto Sans Devanagari",sans-serif;margin-top:8px}
+.add-btn:hover{background:var(--pink-light)}
+
+/* MODAL */
+.modal-bg{position:fixed;inset:0;background:rgba(28,28,46,.6);z-index:1000;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+.modal-bg.on{opacity:1;pointer-events:all}
+.modal{background:#fff;border-radius:22px 22px 0 0;padding:18px;width:100%;max-width:640px;max-height:90vh;overflow-y:auto;transform:translateY(40px);transition:transform .3s}
+.modal-bg.on .modal{transform:translateY(0)}
+.modal-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.1rem;padding-bottom:10px;border-bottom:2px solid var(--pink-light)}
+.modal-hdr h3{font-family:"Noto Sans Devanagari",sans-serif;font-size:15px;font-weight:700;color:var(--pink-dark)}
+.mcls{background:var(--pink-light);border:none;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:16px;color:var(--pink-dark);display:flex;align-items:center;justify-content:center}
+.req-note{font-size:11px;color:var(--pink-dark);background:var(--pink-light);border-radius:6px;padding:5px 10px;margin-bottom:10px;font-family:"Noto Sans Devanagari",sans-serif}
+
+/* FILE / PHOTO UPLOAD */
+.photo-circle{width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid var(--pink);display:none;margin:0 auto 8px}
+.photo-rect{max-width:180px;height:110px;border-radius:10px;object-fit:cover;border:2px solid var(--pink);display:none;margin:0 auto 8px}
+.upbtn-row{display:flex;gap:8px;margin-top:6px}
+.upbtn{flex:1;padding:9px 6px;border:1.5px solid var(--border);border-radius:8px;background:#fff;cursor:pointer;font-size:12px;font-weight:700;color:var(--pink-dark);display:flex;align-items:center;justify-content:center;gap:5px;font-family:"Nunito",sans-serif;transition:all .2s}
+.upbtn:hover{background:var(--pink-light);border-color:var(--pink)}
+.cam-box{display:none;margin-top:10px;text-align:center}
+.cam-box video{width:100%;max-width:280px;border-radius:10px}
+.cam-actions{display:flex;gap:8px;justify-content:center;margin-top:8px}
 
 /* REVIEW */
-.review-card{background:var(--white);border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);padding:1.25rem;margin-bottom:1rem}
-.review-card h3{font-family:'Noto Sans Devanagari',sans-serif;font-size:14px;font-weight:700;color:var(--pink-dark);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--pink-light);display:flex;gap:8px;align-items:center}
-.review-row{display:flex;gap:8px;margin-bottom:8px;font-size:13px}
-.review-row .lbl{font-family:'Noto Sans Devanagari',sans-serif;color:var(--text-muted);min-width:110px;font-size:12px}
-.review-row .val{font-weight:600;flex:1}
+.rcard{background:#fff;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);padding:1.1rem;margin-bottom:.9rem}
+.rcard h3{font-family:"Noto Sans Devanagari",sans-serif;font-size:13px;font-weight:700;color:var(--pink-dark);margin-bottom:10px;padding-bottom:7px;border-bottom:1px solid var(--pink-light);display:flex;gap:7px;align-items:center}
+.rrow{display:flex;gap:8px;margin-bottom:6px;font-size:12px}
+.rlbl{font-family:"Noto Sans Devanagari",sans-serif;color:var(--muted);min-width:100px;font-size:11px}
+.rval{font-weight:600;flex:1}
 
-/* QR / PAYMENT */
-.qr-section{background:var(--white);border-radius:var(--radius);border:2px solid var(--gold);box-shadow:var(--shadow);padding:1.5rem;margin-bottom:1.25rem;text-align:center}
-.qr-title{font-family:'Noto Sans Devanagari',sans-serif;font-size:16px;font-weight:700;color:var(--gold);margin-bottom:6px}
-.qr-sub{font-size:12px;color:var(--text-muted);margin-bottom:1rem}
-.qr-placeholder{width:180px;height:180px;margin:0 auto 1rem;background:linear-gradient(135deg,#f0f0f0,#e0e0e0);border-radius:12px;border:2px dashed #ccc;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:40px;gap:6px}
-.qr-amount{font-size:26px;font-weight:800;color:var(--gold);margin:8px 0}
-.qr-breakdown{font-size:12px;color:var(--text-muted);margin-bottom:12px}
-.qr-note{font-family:'Noto Sans Devanagari',sans-serif;font-size:12px;color:var(--text);line-height:1.8;background:var(--gold-light);border-radius:8px;padding:10px 14px;text-align:left}
+/* QR */
+.qr-card{background:#fff;border-radius:var(--radius);border:2px solid var(--gold);box-shadow:var(--shadow);padding:1.4rem;margin-bottom:1.1rem;text-align:center}
+.qr-title{font-family:"Noto Sans Devanagari",sans-serif;font-size:15px;font-weight:700;color:var(--gold);margin-bottom:4px}
+.qr-sub{font-size:12px;color:var(--muted);margin-bottom:12px}
+.qr-img{width:100%;max-width:280px;border-radius:12px;margin:0 auto 10px;display:block;border:1px solid #eee}
+.qr-amount{font-size:24px;font-weight:800;color:var(--gold);margin:6px 0}
+.qr-breakdown{font-size:12px;color:var(--muted);margin-bottom:10px}
+.qr-note{font-family:"Noto Sans Devanagari",sans-serif;font-size:12px;color:var(--text);line-height:1.8;background:var(--gold-light);border-radius:8px;padding:10px 13px;text-align:left}
 
-/* SLIP REQUIRED NOTICE */
-.slip-required{background:#FFF0F0;border:1.5px solid #FFAAAA;border-radius:10px;padding:10px 14px;font-size:12px;color:#8B0000;margin-bottom:10px;font-family:'Noto Sans Devanagari',sans-serif;line-height:1.7;display:none}
-.slip-required.show{display:block}
+/* SLIP */
+.slip-err{background:#FFF0F0;border:1.5px solid #FFAAAA;border-radius:9px;padding:9px 13px;font-size:12px;color:#8B0000;margin-bottom:8px;font-family:"Noto Sans Devanagari",sans-serif;line-height:1.7;display:none}
+.slip-err.on{display:block}
+.slip-preview{max-width:100%;max-height:180px;border-radius:10px;border:2px solid var(--green);display:none;margin:0 auto 8px}
 
 /* BUTTONS */
-.btn-primary{width:100%;padding:15px;background:linear-gradient(135deg,var(--pink),var(--pink-dark));color:white;border:none;border-radius:var(--radius);font-size:16px;font-weight:800;cursor:pointer;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 20px rgba(224,92,138,.4);font-family:'Noto Sans Devanagari',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(224,92,138,.5)}
-.btn-primary:disabled{opacity:.6;transform:none;cursor:not-allowed}
-.btn-secondary{width:100%;padding:13px;background:white;color:var(--pink-dark);border:2px solid var(--pink);border-radius:var(--radius);font-size:14px;font-weight:700;cursor:pointer;transition:background .2s;font-family:'Noto Sans Devanagari',sans-serif;margin-top:10px}
-.btn-secondary:hover{background:var(--pink-light)}
-.btn-green{width:100%;padding:15px;background:linear-gradient(135deg,#25D366,#1EB859);color:white;border:none;border-radius:var(--radius);font-size:15px;font-weight:800;cursor:pointer;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 20px rgba(37,211,102,.35);font-family:'Nunito',sans-serif;display:flex;align-items:center;justify-content:center;gap:10px;margin-top:10px;text-decoration:none}
-.btn-green:hover{transform:translateY(-2px)}
+.btn{width:100%;padding:14px;background:linear-gradient(135deg,var(--pink),var(--pink-dark));color:#fff;border:none;border-radius:var(--radius);font-size:15px;font-weight:800;cursor:pointer;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 18px rgba(224,92,138,.35);font-family:"Noto Sans Devanagari",sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:8px}
+.btn:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(224,92,138,.45)}
+.btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.btn-out{background:#fff;color:var(--pink-dark);border:2px solid var(--pink);box-shadow:none}
+.btn-out:hover{background:var(--pink-light)}
+.btn-green{background:linear-gradient(135deg,#25D366,#1EB859);box-shadow:0 4px 18px rgba(37,211,102,.32)}
+.btn-green:hover{box-shadow:0 6px 24px rgba(37,211,102,.45)}
 
 /* SUCCESS */
-.success-screen{display:none;text-align:center;padding:3rem 1.5rem;background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-lg)}
-.success-icon{font-size:72px;margin-bottom:16px;animation:pop .5s ease}
-@keyframes pop{0%{transform:scale(0)}80%{transform:scale(1.15)}100%{transform:scale(1)}}
-.success-screen h2{font-family:'Noto Sans Devanagari',sans-serif;font-size:24px;font-weight:700;color:var(--green);margin-bottom:12px}
-.success-screen p{font-family:'Noto Sans Devanagari',sans-serif;font-size:14px;color:var(--text-muted);line-height:1.8;margin-bottom:16px}
+.success{display:none;text-align:center;padding:2.5rem 1.5rem;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow)}
+.success-icon{font-size:68px;margin-bottom:14px;animation:pop .5s ease}
+@keyframes pop{0%{transform:scale(0)}80%{transform:scale(1.12)}100%{transform:scale(1)}}
+.success h2{font-family:"Noto Sans Devanagari",sans-serif;font-size:22px;font-weight:700;color:var(--green);margin-bottom:10px}
+.success p{font-family:"Noto Sans Devanagari",sans-serif;font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:14px}
 
-/* WA FLOATING */
-.wa-fab{position:fixed;bottom:80px;right:18px;z-index:900}
-.wa-fab-btn{width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#25D366,#128C7E);border:none;cursor:pointer;box-shadow:0 4px 20px rgba(37,211,102,.45);display:flex;align-items:center;justify-content:center;font-size:28px;animation:pulse-wa 2s infinite;transition:transform .2s}
-.wa-fab-btn:hover{transform:scale(1.1)}
-@keyframes pulse-wa{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.45)}50%{box-shadow:0 4px 30px rgba(37,211,102,.7)}}
-.wa-tooltip{position:absolute;bottom:68px;right:0;background:var(--text);color:white;border-radius:10px;padding:8px 12px;font-size:12px;font-weight:600;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;transform:translateY(6px)}
-.wa-fab:hover .wa-tooltip{opacity:1;transform:translateY(0)}
-.wa-popup{position:fixed;bottom:148px;right:18px;z-index:950;background:white;border-radius:18px 18px 4px 18px;box-shadow:0 8px 40px rgba(0,0,0,.18);width:290px;padding:16px;display:none;animation:slideUp .3s ease}
-.wa-popup.active{display:block}
-@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.wa-popup-header{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.wa-popup-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#25D366,#128C7E);display:flex;align-items:center;justify-content:center;font-size:22px}
-.wa-popup-name{font-weight:800;font-size:14px}
-.wa-popup-status{font-size:11px;color:var(--green);font-weight:600}
-.wa-popup-msg{background:#DCF8C6;border-radius:12px 12px 12px 4px;padding:10px 12px;font-size:12px;line-height:1.6;margin-bottom:10px;font-family:'Noto Sans Devanagari',sans-serif}
-.wa-popup-close{position:absolute;top:10px;right:12px;background:none;border:none;cursor:pointer;font-size:18px;color:var(--text-muted)}
-.wa-popup-btn{width:100%;padding:9px;background:#25D366;color:white;border:none;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif}
-.wa-popup-btn:hover{background:#1EB859}
-
-/* PRICING BANNER */
-.pricing-banner{background:linear-gradient(135deg,var(--gold-light),#FFF8E1);border:1.5px solid var(--gold);border-radius:var(--radius-sm);padding:12px 16px;margin-bottom:12px}
-.pricing-banner h4{font-size:13px;font-weight:700;color:var(--gold);margin-bottom:6px;font-family:'Noto Sans Devanagari',sans-serif}
-.pricing-row{display:flex;justify-content:space-between;font-size:12px;padding:3px 0;border-bottom:1px dashed rgba(212,144,10,.2);color:var(--text)}
-.pricing-row:last-child{border-bottom:none;font-weight:700;color:var(--gold)}
+/* WA POPUP */
+.wa-fab{position:fixed;bottom:22px;right:16px;z-index:900}
+.wa-btn{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#25D366,#128C7E);border:none;cursor:pointer;box-shadow:0 4px 18px rgba(37,211,102,.42);display:flex;align-items:center;justify-content:center;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 4px 18px rgba(37,211,102,.42)}50%{box-shadow:0 4px 28px rgba(37,211,102,.65)}}
+.wa-popup{position:fixed;bottom:86px;right:16px;z-index:950;background:#fff;border-radius:16px 16px 4px 16px;box-shadow:0 8px 36px rgba(0,0,0,.16);width:276px;padding:14px;display:none}
+.wa-popup.on{display:block;animation:fup .3s ease}
+.wa-pop-hdr{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.wa-ava{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#25D366,#128C7E);display:flex;align-items:center;justify-content:center;font-size:20px}
+.wa-name{font-weight:800;font-size:13px}
+.wa-status{font-size:11px;color:var(--green);font-weight:600}
+.wa-msg{background:#DCF8C6;border-radius:10px 10px 10px 3px;padding:9px 11px;font-size:12px;line-height:1.6;margin-bottom:9px;font-family:"Noto Sans Devanagari",sans-serif}
+.wa-cls{position:absolute;top:9px;right:11px;background:none;border:none;cursor:pointer;font-size:17px;color:var(--muted)}
 
 /* FOOTER */
-.footer{background:var(--text);color:rgba(255,255,255,.6);text-align:center;padding:20px;font-size:12px;line-height:2;font-family:'Noto Sans Devanagari',sans-serif}
+footer{background:var(--text);color:rgba(255,255,255,.55);text-align:center;padding:18px;font-size:12px;line-height:2;font-family:"Noto Sans Devanagari",sans-serif}
 
-/* CAMERA */
-#cameraContainer video{width:100%;max-width:300px;border-radius:12px}
-#cameraContainer{display:none;margin-top:10px;text-align:center}
-#cameraActions{display:flex;gap:8px;justify-content:center;margin-top:8px}
-
-@media(max-width:480px){.field-row{grid-template-columns:1fr}}
-@media(max-width:380px){.type-grid{grid-template-columns:1fr}}
+@media(max-width:460px){.frow{grid-template-columns:1fr}.tgrid{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
 
-<!-- Loading -->
-<div class="loading-overlay" id="loadingOverlay">
+<!-- Loading overlay -->
+<div class="overlay" id="overlay">
   <div class="spinner"></div>
-  <div class="loading-text">दर्ता हुँदैछ... कृपया प्रतीक्षा गर्नुहोस्<br>Submitting registration...</div>
+  <p>दर्ता हुँदैछ...<br>Submitting... กำลังส่ง...</p>
 </div>
 
 <!-- Header -->
-<div class="header">
-  <div class="header-flags">🇳🇵 🙏 🇹🇭</div>
-  <div class="header-org">THAI NEPALI ASSOCIATION · थाई नेपाली संघ</div>
+<div class="hdr">
+  <div class="hdr-flags">🇳🇵 🙏 🇹🇭</div>
+  <div class="hdr-org">THAI NEPALI ASSOCIATION · थाई नेपाली संघ · สมาคมไทย-เนปาล</div>
   <h1>आठौं शिक्षण शिविर २०२६</h1>
-  <div class="header-sub">8th Educational Camp (Sivir) 2026</div>
-  <div class="header-multilang">
-    ၈ ကြိမ်မြောက် ပညာရေးစခန်း ၂၀၂၆ &nbsp;|&nbsp; ค่ายการศึกษาครั้งที่ ๘ ปี ๒๕๖๙
-  </div>
-  <div class="header-badges">
-    <span class="header-badge">📅 ९–१५ अप्रिल २०२६</span>
-    <span class="header-badge">📍 Banse Camp, Ratchaburi</span>
-    <span class="header-badge">👧 Ages 5–18</span>
+  <div class="hdr-sub">8th Educational Camp (Sivir) 2026 · ค่ายการศึกษาครั้งที่ ๘</div>
+  <div class="hdr-badges">
+    <span class="badge">📅 9–15 April 2026</span>
+    <span class="badge">📍 Banse Camp, Ratchaburi</span>
+    <span class="badge">👧 Age 12+</span>
+    <span class="badge">💰 ฿1,500/person</span>
   </div>
 </div>
-
-<!-- Music Bar -->
-<div class="music-bar">
-  <span class="music-icon">🎵</span>
-  <div class="music-info">
-    <div class="music-name">शिविर गीत · Sivir Song 2026</div>
-    <div class="music-title">Thai Nepali Association</div>
-  </div>
-  <div class="music-wave" id="musicWave"><span></span><span></span><span></span><span></span><span></span></div>
-  <button class="music-btn" id="musicToggle" onclick="toggleMusic()">⏸</button>
-</div>
-
-<div class="wave-divider">
-  <svg viewBox="0 0 1440 50" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M0,50 C360,0 1080,0 1440,50 L1440,50 L0,50 Z" fill="#FEF6FA"/>
+<div class="wave">
+  <svg viewBox="0 0 1440 44" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,44 C360,0 1080,0 1440,44 L1440,44 L0,44 Z" fill="#FEF6FA"/>
   </svg>
 </div>
 
-<!-- Main container -->
-<div class="container">
+<div class="wrap">
 
-  <!-- Steps -->
-  <div class="steps-bar">
-    <div class="step-item active" id="s1"><div class="step-circle">1</div><div class="step-label">प्रकार</div></div>
-    <div class="step-connector" id="c1"></div>
-    <div class="step-item" id="s2"><div class="step-circle">2</div><div class="step-label">सहभागी</div></div>
-    <div class="step-connector" id="c2"></div>
-    <div class="step-item" id="s3"><div class="step-circle">3</div><div class="step-label">सम्पर्क</div></div>
-    <div class="step-connector" id="c3"></div>
-    <div class="step-item" id="s4"><div class="step-circle">4</div><div class="step-label">समीक्षा</div></div>
-    <div class="step-connector" id="c4"></div>
-    <div class="step-item" id="s5"><div class="step-circle">5</div><div class="step-label">भुक्तानी</div></div>
-    <div class="step-connector" id="c5"></div>
-    <div class="step-item" id="s6"><div class="step-circle">✓</div><div class="step-label">सम्पन्न</div></div>
-  </div>
-
-  <!-- Notice -->
-  <div class="notice">
-    <span>ℹ️</span>
-    <div>(*) अनिवार्य · Required · (*) ဖြည့်ရမည် · ต้องกรอก<br>
-    🔞 उमेर १२ वा माथि — ID/Passport अनिवार्य · Age 12+ must provide ID/Passport</div>
-  </div>
-
-  <!-- ======= SCREEN 0: HOW TO REGISTER VIDEO ======= -->
-  <div id="screenVideo">
-    <div class="video-card">
-      <div class="video-card-header pink">
-        <span style="font-size:24px">🎬</span>
-        <div>
-          <h3>दर्ता कसरी गर्ने? · How to Register?</h3>
-          <div class="sub">မည်သို့မှတ်ပုံတင်မည်? · วิธีการสมัคร</div>
-        </div>
-      </div>
-      <div class="video-embed">
-        <iframe src="https://www.youtube.com/embed/0TPa2KvAdPc?rel=0" title="How to Register" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
-      <div class="video-note">
-        📌 दर्ता गर्नु अघि यो भिडियो हेर्नुहोस् 🙏 · Watch this before registering<br>
-        မှတ်ပုံတင်မတိုင်မီ ဤဗီဒီယိုကြည့်ပါ · กรุณาดูวิดีโอก่อนสมัคร
-      </div>
-    </div>
-    <button class="btn-primary" onclick="goScreen('screenType')">
-      ✅ भिडियो हेरिसकें — दर्ता सुरु गरौं! · I watched — Start Registration!
-    </button>
-  </div>
-
-  <!-- ======= SCREEN 1: WHO TYPE ======= -->
-  <div id="screenType" style="display:none">
-    <div class="section">
-      <div class="section-title">
-        <span class="icon">👥</span>
-        <div>
-          <div>सहभागी प्रकार छान्नुहोस्</div>
-          <div class="t-sub">Who is registering? · မည်သူမှတ်ပုံတင်မည်? · ใครที่จะสมัคร?</div>
-        </div>
-      </div>
-      <div class="type-grid">
-        <div class="type-option">
-          <input type="radio" name="whoType" id="who-self" value="self">
-          <label for="who-self">
-            <span class="emoji">🧒</span>
-            <span class="ne">म आफैं</span>
-            <span class="en">Myself</span>
-            <span class="ml">ကိုယ်တိုင် · ตัวเอง</span>
-          </label>
-        </div>
-        <div class="type-option">
-          <input type="radio" name="whoType" id="who-sakha" value="sakha">
-          <label for="who-sakha">
-            <span class="emoji">🏫</span>
-            <span class="ne">शाखा/उपशाखा</span>
-            <span class="en">Sakha/Upasakha</span>
-            <span class="ml">သာခ/ဥပသာခ · สาขา/อุปสาขา</span>
-          </label>
-        </div>
-      </div>
-
-      <!-- Sakha selector (hidden until sakha chosen) -->
-      <div id="sakhaSelectBox" style="display:none;margin-top:16px">
-        <div class="field">
-          <label>शाखा छान्नुहोस् <span class="req">*</span>
-            <div class="lang-row"><span class="lang-badge">Select Sakha</span><span class="lang-badge">သာခရွေးပါ</span><span class="lang-badge">เลือกสาขา</span></div>
-          </label>
-          <select id="sakhaName">
-            <option value="">— छान्नुहोस् / Select —</option>
-            <option value="Bangkok Central">Bangkok Central</option>
-            <option value="Sukhumvit">Sukhumvit</option>
-            <option value="Silom">Silom</option>
-            <option value="Lat Krabang">Lat Krabang</option>
-            <option value="Nonthaburi">Nonthaburi</option>
-            <option value="Chiang Mai">Chiang Mai</option>
-            <option value="Phuket">Phuket</option>
-            <option value="Pattaya">Pattaya</option>
-            <option value="Hat Yai">Hat Yai</option>
-            <option value="Other">Other / अन्य</option>
-          </select>
-        </div>
-      </div>
-
-      <button class="btn-primary" style="margin-top:20px" onclick="proceedFromType()">
-        ➡️ अगाडि बढ्नुहोस् · Continue
-      </button>
-    </div>
-  </div>
-
-  <!-- ======= SCREEN 2: ADD PARTICIPANTS ======= -->
-  <div id="screenParticipants" style="display:none">
-    <div class="section">
-      <div class="section-title">
-        <span class="icon">📋</span>
-        <div>
-          <div>सहभागीहरू थप्नुहोस्</div>
-          <div class="t-sub">Add Participants · ပါ၀င်သူများထည့်ပါ · เพิ่มผู้เข้าร่วม</div>
-        </div>
-      </div>
-
-      <div class="pricing-banner">
-        <h4>💰 दर्ता शुल्क · Registration Fee</h4>
-        <div class="pricing-row"><span>1 सहभागी / 1 Participant</span><span>฿500</span></div>
-        <div class="pricing-row"><span>2 सहभागी / 2 Participants</span><span>฿1,500 (2×฿750)</span></div>
-        <div class="pricing-row"><span>3+ सहभागी / 3+ Participants</span><span>฿1,500 + (n-2)×฿750</span></div>
-        <div class="pricing-row" id="currentFeeRow"><span>हालको जम्मा · Current Total</span><span id="currentFee">฿0</span></div>
-      </div>
-
-      <div id="participantsList"></div>
-
-      <button type="button" class="add-participant-btn" onclick="openParticipantModal(-1)">
-        ➕ सहभागी थप्नुहोस् · Add Participant · ထပ်ထည့်မည် · เพิ่มผู้เข้าร่วม
-      </button>
-    </div>
-
-    <button class="btn-primary" onclick="proceedFromParticipants()">
-      ➡️ अगाडि · Continue
-    </button>
-    <button class="btn-secondary" onclick="goScreen('screenType')">← पछाडि · Back</button>
-  </div>
-
-  <!-- ======= SCREEN 3: CONTACT INFO ======= -->
-  <div id="screenContact" style="display:none">
-    <div class="section">
-      <div class="section-title">
-        <span class="icon">📞</span>
-        <div>
-          <div>सम्पर्क जानकारी</div>
-          <div class="t-sub">Contact Info · ဆက်သွယ်ရေး · ข้อมูลติดต่อ</div>
-        </div>
-      </div>
-
-      <div class="field-row">
-        <div class="field">
-          <label>अभिभावकको नाम <span class="req">*</span>
-            <div class="lang-row"><span class="lang-badge">Parent's Name</span><span class="lang-badge">မိဘနာမည်</span><span class="lang-badge">ชื่อผู้ปกครอง</span></div>
-          </label>
-          <input type="text" id="parentName" placeholder="पूरा नाम">
-        </div>
-        <div class="field">
-          <label>फोन <span class="req">*</span>
-            <div class="lang-row"><span class="lang-badge">Phone</span><span class="lang-badge">ဖုန်းနံပါတ်</span><span class="lang-badge">เบอร์โทร</span></div>
-          </label>
-          <input type="tel" id="phone" placeholder="0812345678">
-        </div>
-      </div>
-
-      <div class="field">
-        <label>ठेगाना <span class="req">*</span>
-          <div class="lang-row"><span class="lang-badge">Address</span><span class="lang-badge">လိပ်စာ</span><span class="lang-badge">ที่อยู่</span></div>
-        </label>
-        <input type="text" id="address" placeholder="e.g. Sukhumvit, Bangkok">
-      </div>
-
-      <div class="field">
-        <label>विशेष नोट <span class="sub">(स्वास्थ्य / Health / ကျန်းမာရေး / สุขภาพ)</span></label>
-        <textarea id="note" placeholder="Health condition, medicine, allergy etc... / स्वास्थ्य, औषधि, एलर्जी आदि"></textarea>
-      </div>
-    </div>
-
-    <button class="btn-primary" onclick="proceedFromContact()">
-      👁️ समीक्षा गर्नुहोस् · Review
-    </button>
-    <button class="btn-secondary" onclick="goScreen('screenParticipants')">← पछाडि · Back</button>
-  </div>
-
-  <!-- ======= SCREEN 4: REVIEW ======= -->
-  <div id="screenReview" style="display:none">
-    <div id="reviewContent"></div>
-    <button class="btn-primary" onclick="goScreen('screenPayment');buildPayment()">
-      💳 भुक्तानी गर्नुहोस् · Proceed to Payment
-    </button>
-    <button class="btn-secondary" onclick="goScreen('screenContact')">← सम्पादन · Edit</button>
-  </div>
-
-  <!-- ======= SCREEN 5: PAYMENT ======= -->
-  <div id="screenPayment" style="display:none">
-    <div class="qr-section">
-      <div class="qr-title">💳 भुक्तानी QR Code · Payment</div>
-      <div class="qr-sub">PromptPay / Bank Transfer · PromptPay · PromptPay/โอนเงิน</div>
-      <div class="qr-placeholder">📱<div style="font-size:11px;color:#888;margin-top:4px;text-align:center">QR Code<br>here</div></div>
-      <div class="qr-amount" id="payAmount">฿ —</div>
-      <div class="qr-breakdown" id="payBreakdown"></div>
-      <div class="qr-note">
-        🏦 Account Name: Thai Nepali Association<br>
-        📌 PromptPay: 0XX-XXX-XXXX<br>
-        🏛 Bank: KBANK / SCB<br><br>
-        भुक्तानी गरेपछि slip अपलोड गर्नुहोस् 🙏<br>
-        After payment upload your slip below · ငွေပေးပြီးနောက် ပြေစာတင်ပါ · หลังโอนอัปโหลดสลิปด้านล่าง
-      </div>
-    </div>
-
-    <!-- Payment Slip Upload — REQUIRED -->
-    <div class="section">
-      <div class="section-title">
-        <span class="icon">🧾</span>
-        <div>
-          <div>भुक्तानी स्लिप अपलोड <span style="color:var(--pink)">*</span></div>
-          <div class="t-sub">Upload Payment Slip (Required) · ငွေပေးချေမှုပြေစာ (လိုအပ်သည်) · อัปโหลดสลิป (จำเป็น)</div>
-        </div>
-      </div>
-      <div class="slip-required" id="slipRequired">
-        ⚠️ भुक्तानी स्लिप अपलोड गर्नु अनिवार्य छ! Payment slip is required before submitting!<br>
-        ငွေပေးချေမှုပြေစာ တင်ရန်လိုသည်! · ต้องอัปโหลดสลิปก่อนส่ง!
-      </div>
-      <div class="file-upload" id="paymentArea">
-        <input type="file" id="paymentSlip" accept=".jpg,.jpeg,.png,.pdf" onchange="handleFileChange(this,'paymentArea','paymentText')">
-        <span class="u-icon">📲</span>
-        <div class="u-text" id="paymentText">Click to upload Payment Slip</div>
-        <div class="u-ne">भुक्तानी प्रमाण अपलोड गर्नुहोस् · ငွေပေးချေမှုဓာတ်ပုံ · อัปโหลดสลิปโอนเงิน</div>
-        <div class="u-hint">JPG, PNG, PDF · Max 10MB</div>
-      </div>
-    </div>
-
-    <button class="btn-primary" onclick="submitForm()" id="submitBtn">
-      🚀 दर्ता पेश गर्नुहोस् · Submit Registration · မှတ်ပုံတင်မည် · ส่งใบสมัคร
-    </button>
-    <button class="btn-secondary" onclick="goScreen('screenReview')">← पछाडि · Back</button>
-  </div>
-
-  <!-- ======= SUCCESS ======= -->
-  <div class="success-screen" id="successScreen">
-    <div class="success-icon">🎉</div>
-    <h2>दर्ता सफल भयो! · Registration Successful!</h2>
-    <p>
-      तपाईंको दर्ता प्राप्त भएको छ।<br>
-      हामी चाँडै WhatsApp मा सम्पर्क गर्नेछौं।<br>
-      ——<br>
-      မှတ်ပုံတင်မှုအောင်မြင်သည် · ลงทะเบียนสำเร็จแล้ว ขอบคุณ 🙏
-    </p>
-
-    <!-- What to bring video -->
-    <div class="video-card" style="margin-top:1.5rem;text-align:left">
-      <div class="video-card-header orange">
-        <span style="font-size:24px">🎒</span>
-        <div>
-          <h3>शिविरमा के ल्याउने? · What to Bring?</h3>
-          <div class="sub">Rules & Packing Guide · ဘာတွေယူလာရမလဲ? · สิ่งที่ต้องนำมา</div>
-        </div>
-      </div>
-      <div class="video-embed">
-        <iframe src="https://www.youtube.com/embed/6XmtFY-8Q7M?rel=0" title="What to Bring" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
-      <div class="video-note">
-        🎒 शिविरको नियम र आवश्यक सामान · Camp rules, packing list & what to bring<br>
-         စခန်းစည်းကမ်းများနှင့် ယူလာရမည့်ပစ္စည်းများ · กฎระเบียบและของที่ต้องนำมา
-      </div>
-    </div>
-
-    <a href="https://wa.me/66943438424?text=Sivir+2026+Registration+Done+✓" target="_blank" style="text-decoration:none;display:block">
-      <button class="btn-green" style="width:100%">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        WhatsApp Group Join गर्नुहोस् · Join Our WhatsApp Group
-      </button>
-    </a>
-  </div>
-
+<!-- Steps -->
+<div class="steps" id="stepsBar">
+  <div class="sitem active" id="si1"><div class="scirc">1</div><div class="slbl">शाखा</div></div>
+  <div class="sconn" id="sc1"></div>
+  <div class="sitem" id="si2"><div class="scirc">2</div><div class="slbl">सहभागी</div></div>
+  <div class="sconn" id="sc2"></div>
+  <div class="sitem" id="si3"><div class="scirc">3</div><div class="slbl">सम्पर्क</div></div>
+  <div class="sconn" id="sc3"></div>
+  <div class="sitem" id="si4"><div class="scirc">4</div><div class="slbl">समीक्षा</div></div>
+  <div class="sconn" id="sc4"></div>
+  <div class="sitem" id="si5"><div class="scirc">5</div><div class="slbl">भुक्तानी</div></div>
+  <div class="sconn" id="sc5"></div>
+  <div class="sitem" id="si6"><div class="scirc">✓</div><div class="slbl">सम्पन्न</div></div>
 </div>
 
-<!-- Footer -->
-<div class="footer">
-  थाई नेपाली संघ · Thai Nepali Association<br>
-  Sivir (शिविर) Department · 8th Educational Camp 2026<br>
-  📍 Banse Camp, Ratchaburi, Thailand
+<div class="notice">
+  <span>ℹ️</span>
+  <div>(*) अनिवार्य · Required · ต้องกรอก &nbsp;|&nbsp; उमेर १२+ मात्र · Age 12+ only · อายุ 12 ปีขึ้นไป</div>
 </div>
 
-<!-- ======= PARTICIPANT MODAL ======= -->
-<div class="modal-overlay" id="participantModal">
-  <div class="modal-sheet">
-    <div class="modal-header">
-      <h3 id="modalTitle">👤 सहभागी थप्नुहोस् · Add Participant</h3>
-      <button class="modal-close" onclick="closeParticipantModal()">✕</button>
+<!-- ===== SCREEN 1: SAKHA ===== -->
+<div id="s1">
+  <div class="card">
+    <div class="ctitle">
+      <span class="cicon">🏫</span>
+      <div>शाखा / उपशाखा छान्नुहोस्<div class="csub">Select your Sakha · เลือกสาขา</div></div>
     </div>
-
     <div class="field">
-      <label>पूरा नाम <span class="req">*</span>
-        <div class="lang-row"><span class="lang-badge">Full Name</span><span class="lang-badge">နာမည်အပြည့်</span><span class="lang-badge">ชื่อ-นามสกุล</span></div>
-      </label>
-      <input type="text" id="pName" placeholder="पूरा नाम">
+      <label>शाखा <span class="req">*</span> <span class="lbsub">Sakha / Branch · สาขา</span></label>
+      <select id="sakha" onchange="onSakhaChange()">
+        <option value="">— छान्नुहोस् / Select —</option>
+        <option value="Bangkok">Bangkok</option>
+        <option value="Pattaya">Pattaya</option>
+        <option value="Hua Hin">Hua Hin</option>
+        <option value="Phuket">Phuket</option>
+        <option value="Khaolak">Khaolak</option>
+        <option value="Krabi">Krabi</option>
+        <option value="Koh Samui">Koh Samui</option>
+        <option value="Chiang Mai">Chiang Mai</option>
+        <option value="Mae Sai">Mae Sai</option>
+        <option value="Mae Sot">Mae Sot</option>
+      </select>
+      <div class="err-msg" id="e-sakha">कृपया शाखा छान्नुहोस् · Please select Sakha</div>
     </div>
 
-    <div class="field-row">
-      <div class="field">
-        <label>उमेर <span class="req">*</span> <span class="sub">Age · အသက် · อายุ</span></label>
-        <input type="number" id="pAge" placeholder="Age" min="1" max="99" oninput="checkAgeWarning()">
-        <div class="age-warn" id="ageWarn">
-          🔞 उमेर १२ वा माथि भएकाले ID/Passport अनिवार्य छ!<br>
-          Age 12+ must provide ID/Passport document<br>
-          အသက် ၁၂ နှင့်အထက် ID/Passport လိုအပ်သည် · อายุ 12 ขึ้นไปต้องมี ID/Passport
-        </div>
-      </div>
-      <div class="field">
-        <label>Sakha/Upasakha
-          <div class="lang-row"><span class="lang-badge">Branch</span><span class="lang-badge">သာခ</span></div>
-        </label>
-        <select id="pSakha">
-          <option value="">— Select —</option>
-          <option value="Bangkok Central">Bangkok Central</option>
-          <option value="Sukhumvit">Sukhumvit</option>
-          <option value="Silom">Silom</option>
-          <option value="Lat Krabang">Lat Krabang</option>
-          <option value="Nonthaburi">Nonthaburi</option>
-          <option value="Chiang Mai">Chiang Mai</option>
-          <option value="Phuket">Phuket</option>
-          <option value="Pattaya">Pattaya</option>
-          <option value="Hat Yai">Hat Yai</option>
-          <option value="Other">Other / अन्य</option>
-        </select>
-      </div>
+    <div class="field" id="upaBox" style="display:none">
+      <label>उपशाखा <span class="req">*</span> <span class="lbsub">Upasakha (Bangkok) · อุปสาขา</span></label>
+      <select id="upa">
+        <option value="">— उपशाखा छान्नुहोस् / Select Upasakha —</option>
+        <option value="Phrakhanong">Phrakhanong (फ्राखण्नौं)</option>
+        <option value="Silom">Silom</option>
+        <option value="Pratunam">Pratunam</option>
+        <option value="Thapra">Thapra</option>
+        <option value="Siyekbankhek">Siyekbankhek</option>
+        <option value="Siripot">Siripot</option>
+        <option value="Khaosan">Khaosan</option>
+        <option value="Phaorat">Phaorat</option>
+      </select>
+      <div class="err-msg" id="e-upa">कृपया उपशाखा छान्नुहोस् · Please select Upasakha</div>
     </div>
 
-    <!-- ID REQUIRED for 12+ -->
-    <div id="idSection">
-      <div class="field">
-        <label>ID / Passport Number <span id="idReq" class="req" style="display:none">*</span>
-          <div class="lang-row"><span class="lang-badge">ID/Passport No</span><span class="lang-badge">ID/ပတ်စပိုနံပါတ်</span><span class="lang-badge">หมายเลขพาสปอร์ต</span></div>
-        </label>
-        <input type="text" id="pIdNo" placeholder="Passport / ID Number">
-      </div>
-
-      <div class="field">
-        <label>ID / Passport Photo <span id="idPhotoReq" class="req" style="display:none">*</span>
-          <div class="lang-row"><span class="lang-badge">ID Photo</span><span class="lang-badge">ID ဓာတ်ပုံ</span><span class="lang-badge">ภาพถ่าย ID</span></div>
-        </label>
-        <div class="file-upload" id="pIdPhotoArea">
-          <input type="file" id="pIdPhotoFile" accept=".jpg,.jpeg,.png,.pdf" onchange="handleIdPhotoChange(this)">
-          <span class="u-icon">🪪</span>
-          <div class="u-text" id="pIdPhotoText">Click to upload / Take photo</div>
-          <div class="u-ne">ID/Passport ফোটো अपलोड गर्नुहोस् · ဓာတ်ပုံတင်ပါ · อัปโหลดภาพ ID</div>
-          <div class="u-hint">JPG, PNG, PDF · Max 10MB</div>
-        </div>
-        <div class="upload-options" style="margin-top:8px">
-          <label class="upload-opt-btn" for="pIdPhotoFile">📁 Upload</label>
-          <button type="button" class="upload-opt-btn" onclick="openIdCamera()">📷 Take Photo</button>
-        </div>
-        <div id="idCameraContainer">
-          <video id="idCameraVideo" autoplay playsinline></video>
-          <canvas id="idCameraCanvas" style="display:none"></canvas>
-          <div id="cameraActions">
-            <button type="button" onclick="captureIdPhoto()" class="upload-opt-btn" style="padding:10px 20px">📸 Capture</button>
-            <button type="button" onclick="closeIdCamera()" class="upload-opt-btn" style="padding:10px 20px">✕ Cancel</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- PASSPORT PHOTO -->
-    <div class="field">
-      <label>Passport Size Photo <span class="req">*</span>
-        <div class="lang-row"><span class="lang-badge">Face Photo</span><span class="lang-badge">မျက်နှာဓာတ်ပုံ</span><span class="lang-badge">รูปหน้าตรง</span></div>
-      </label>
-      <div style="text-align:center;margin-bottom:8px">
-        <img id="pPhotoPreview" class="photo-preview" alt="preview">
-      </div>
-      <div class="upload-options">
-        <label class="upload-opt-btn" for="pPhotoUpload">📁 Upload Photo</label>
-        <input type="file" id="pPhotoUpload" accept="image/*" style="display:none" onchange="handlePassportPhotoUpload(this)">
-        <button type="button" class="upload-opt-btn" onclick="openPassportCamera()">📷 Take Photo</button>
-      </div>
-      <div id="passportCameraContainer">
-        <video id="passportCameraVideo" autoplay playsinline></video>
-        <canvas id="passportCameraCanvas" style="display:none"></canvas>
-        <div style="display:flex;gap:8px;justify-content:center;margin-top:8px">
-          <button type="button" onclick="capturePassportPhoto()" class="upload-opt-btn" style="padding:10px 20px">📸 Capture</button>
-          <button type="button" onclick="closePassportCamera()" class="upload-opt-btn" style="padding:10px 20px">✕ Cancel</button>
-        </div>
-      </div>
-    </div>
-
-    <button type="button" class="btn-primary" onclick="saveParticipant()" style="margin-top:12px">
-      ✅ थप्नुहोस् · Save Participant
-    </button>
+    <button class="btn" onclick="goStep2()">➡️ अगाडि · Continue · ดำเนินการต่อ</button>
   </div>
 </div>
 
-<!-- WA Floating -->
-<div class="wa-fab">
-  <div class="wa-tooltip">Help: +66 94 343 8424</div>
-  <button class="wa-fab-btn" onclick="toggleWaPopup()">
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+<!-- ===== SCREEN 2: PARTICIPANTS ===== -->
+<div id="s2" style="display:none">
+  <div class="card">
+    <div class="ctitle">
+      <span class="cicon">📋</span>
+      <div>सहभागीहरू थप्नुहोस्<div class="csub">Add Participants · เพิ่มผู้เข้าร่วม</div></div>
+    </div>
+
+    <div class="pricing">
+      <h4>💰 दर्ता शुल्क · Registration Fee · ค่าลงทะเบียน</h4>
+      <div class="prow"><span>प्रति सहभागी / Per Person</span><span>฿1,500</span></div>
+      <div class="prow"><span>2 सहभागी / 2 Persons</span><span>฿3,000</span></div>
+      <div class="prow"><span>3 सहभागी / 3 Persons</span><span>฿4,500</span></div>
+      <div class="prow"><span>जम्मा · Total</span><span id="totalFee">฿0</span></div>
+    </div>
+
+    <div id="pList"></div>
+
+    <button type="button" class="add-btn" onclick="openModal()">
+      ➕ सहभागी थप्नुहोस् · Add Participant · เพิ่มผู้เข้าร่วม
+    </button>
+
+    <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border)">
+      <div id="pCountNote" style="text-align:center;font-size:12px;color:var(--muted);font-family:'Noto Sans Devanagari',sans-serif;margin-bottom:8px">
+        कम्तिमा १ सहभागी थप्नुहोस् · Add at least 1 participant
+      </div>
+      <button class="btn" onclick="goStep3()">➡️ अगाडि · Continue</button>
+      <button class="btn btn-out" onclick="showScreen(1)">← पछाडि · Back</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 3: CONTACT ===== -->
+<div id="s3" style="display:none">
+  <div class="card">
+    <div class="ctitle">
+      <span class="cicon">📞</span>
+      <div>सम्पर्क जानकारी<div class="csub">Contact Information · ข้อมูลติดต่อ</div></div>
+    </div>
+    <div class="frow">
+      <div class="field">
+        <label>अभिभावकको नाम <span class="req">*</span><br><span class="lbadge">Parent Name</span><span class="lbadge">ชื่อผู้ปกครอง</span></label>
+        <input type="text" id="parentName" placeholder="पूरा नाम / Full name">
+        <div class="err-msg" id="e-parent">नाम अनिवार्य छ · Name required</div>
+      </div>
+      <div class="field">
+        <label>फोन नम्बर <span class="req">*</span><br><span class="lbadge">Phone</span><span class="lbadge">เบอร์โทร</span></label>
+        <input type="tel" id="phone" placeholder="0812345678">
+        <div class="err-msg" id="e-phone">फोन अनिवार्य छ · Phone required</div>
+      </div>
+    </div>
+    <div class="field">
+      <label>ठेगाना <span class="req">*</span><br><span class="lbadge">Address</span><span class="lbadge">ที่อยู่</span></label>
+      <input type="text" id="address" placeholder="e.g. Sukhumvit, Bangkok">
+      <div class="err-msg" id="e-addr">ठेगाना अनिवार्य छ · Address required</div>
+    </div>
+    <button class="btn" onclick="goStep4()">👁️ समीक्षा · Review · ตรวจสอบ</button>
+    <button class="btn btn-out" onclick="showScreen(2)">← पछाडि · Back</button>
+  </div>
+</div>
+
+<!-- ===== SCREEN 4: REVIEW ===== -->
+<div id="s4" style="display:none">
+  <div id="reviewContent"></div>
+  <button class="btn" onclick="showScreen(5);buildPayment()">💳 भुक्तानी · Payment</button>
+  <button class="btn btn-out" onclick="showScreen(3)">← सम्पादन · Edit</button>
+</div>
+
+<!-- ===== SCREEN 5: PAYMENT ===== -->
+<div id="s5" style="display:none">
+  <div class="qr-card">
+    <div class="qr-title">💳 Thai QR Payment · PromptPay</div>
+    <div class="qr-sub">Scan QR to transfer · สแกน QR เพื่อโอนเงิน</div>
+    <img class="qr-img" src="data:image/jpeg;base64,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C4Rtp5Wl1WC1hadrHiq5aTY6PTVE17S1wZxBGCOKlpjHP5KxOeSp6foG0tkulfe2y09JVBo2W5a5wzngPpWrce5H6cd3s09IymZg93T7Ifz5+nPxq93+1i8WmWj3m7c7DmOxwBHaq4NMahqLULbWXSmFNG3EbIwTnHIE4HBSLxPOVmsxyho3WjdVdH1vqhkvpQOPY08PcvOhRLc9RT3GpO06KPGfSeA+5WGSilteiJqOqDZ3xxFoEYJ2sngsPR9QPpLNJNLG5kk8hOHDBwOCbv1k2/tCyP8A06L5J/3tWZYX/p0XyT/vasy4uoiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgLBR/6l3ysntuWdaYopWl27uFUxrnOdshsZAySeGWZ61RuItTuOfznV/3YvwJ3HP5zq/7sX4EwjbRancc/nOr/ALsX4E7jn851f92L8CYG2i1O45/OdX/di/Ancc/nOr/uxfgTA20Wp3HP5zq/7sX4E7jn851f92L8CYG2i1O45/OdX/di/Ancc/nOr/uxfgTA20Wp3HP5zq/7sX4E7jn851f92L8CYG2i1O45/OdX/di/Ancc/nOr/uxfgTAyv/Tovkn/AHtWZa0NK+OcSyVc8xDS0B4YAMkH+S0di2VFEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQFS710jW+z3aot01DUyPgdslzS3B4A9vpV0XA9e+Wt0+VHshBevCxa/NtZ62+9PCxa/NtZ62+9VCydH93vdpguVJUULIZtrZbK94cMOLTnDSOY7Vv+Cq/f0u2/WSfgQWDwsWvzbWetvvTwsWvzbWetvvVf8FV+/pdt+sk/Angqv39Ltv1kn4EFg8LFr821nrb708LFr821nrb71X/AAVX7+l236yT8CidSaKuem7fHW109JJG+URAQvcTkgnraOHilB0rTuvqG/3Zlup6Ooie9rnBzy3HAZ6ip6/XaKx2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05DgXnBB6wvVbabma2ci3VZBkdgiB3b8Sw96Lp5trPqHe5B3DQXkVa/kj7RVgUDoeKSHR1tjmjdG9sZy1wwR4x6lPINOsu1soJRFXXGjppC3aDJp2sJHbgnlwK5f0j089+v1PVWOGS5U7KVsbpaNhmY1wc47JLcgHBBx6Qv3pWoKyq1PTyU1JPMwUbQXRxlwztv4cFZOiemqKXTdSypglheaxxDZGFpI2GceKDS6JbbX2/vt3fQ1NLvNzsb6JzNrG3nGRx5j1q91twobe1rq+sp6YPOGmaVrNr4slbK570uUlTVUVtFLTyzFsj8iNhdjgOxB66R6mnv1ggpLHPFcqhlU2R0VG8TPawMeC4huTjJAz6Qq90c2a60WroJ6y2VtPEI5AXywPY0eL2kLP0UUNZS6mqX1NJPCw0bgHSRloJ22cOK60gxVNTT0kDp6ueKCFmNqSV4a0ZOBknhzKr+pL/ZZtNXSKG8W+SR9JK1jGVLCXEsOABniV+9IcMs+ibhFBG+SR27wxjSSfzjeoLifei6ebaz6h3uQZNPSRw6jtksr2xxsq4nOe44DQHjJJ6gu8/lHYfPdt/a4/euBd6Lp5trPqHe5O9F0821n1Dvcg+kF8+Vmnb66tnc2y3EgyOIIpX8ePxL6DRBHadjkh03a4pmOjkZRxNexwwWkMGQR1Feqi+WelndBU3ahhlYcOZJUMa5vxglb64bri23CbWNykhoamRjpBhzYnEHxR14Qdtpqmnq4Gz0k8U8L87MkTw5pwcHBHDmFlVb6PIZYNE2+KeN8cjd5lj2kEfnHdRVkQadZdrZQSiKuuNJTSObtBk07WEjtwTy4FeqK5UFw2+4K6mqt3jb3MrX7OeWcHhyPqXMOlihrKrUlM+mpJ5mCjaC6OMuAO2/hwUj0Q0dVS99+6qaaHa3OzvGFucbecZQdIREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQFqXKrNHSGRjQ57iGsB5ZK21rV9I2tpjC5xac5a4dRVjqxqbts7erV7muobvBXMdJzMZjGz8WVIQGR0LDM0NkI8YNOQCow1F0om5qIWVMTeb2HDsf9ehZa24DvQaqmJy/g09YJ/6KsxMuNL0rmefL+S3jLGH7BkYHfzS4ZXtR0VnpBAGzR7yQjxnknJKyTUtO2gbDVTPMUeCXOfjPoKnJ0i18ZmPLaZNE92yyRjiOoOBXouaCASATyyearle+gEG8t8MjXxuBErGkNHxkrcu7TPLb27RaXvwSOYzhXa58ecT/AHGOndLCWNzyxsjS4cwDxXpQ10oKekoTUUrN1LCWkOBOeeP8VLxu2o2uPWAVJh1peZtNbRzY6upZSUz5pOTertPYtGKO6VbBM6qbTB3FsbWB2B6cpfeLKVrv9WZ27SkZZY4YzJK4NYOZPUnSGJ/e8xM8oaNLWVEdX3FXhu8IzHI3gHj3rzcJqrvhT01NOIt60kktDuXxrzdyDPb5GEFxmGyR1g4/+F4ucrobxRyNjdIQ12Gt5lWHO1pis1mekx/6lklju0EbpRVxzbAyWGMDI+hb1HUCrpI52jG2OXYetRtRcqiQ9yR0b45pgQ0yOwPjUjQ03clHHBnJaOJ7TzKT0b0pzf8AWZx3+f8At6qphBTSS5blrSQCeZAXiiqhU00cjiwPeMloPJeLpBFNQymVgcY2Oc30HC1rXS00VDDV7oCUMJLutTlhqbXjUx/MJJ8kcYBke1uf5xwvQIcAQQQesKIt1JHXRGtrW718pOyCeDQDjAXqBncF3bSxE9zztLmsJzsuHZ6kwkatuVpjlKVWlFXh9wnp3GMMjaC12eeQtwgOaQRkHgVCU9BSOvFXC6EGNjWlrcnhkBIwura0TXb8pvaaMZcPG5ceaBzS4tDgXDmM8Qoi9Ncx1Aynw1wfss9HIBblNboKaOQAvL5G4fIXHJ9PoTHIjUtN5rEdGyZog/YMrA7sLhleiQ0ZcQAOsqDkZaBG6GGJ88mOcYLnZ7c8kbI+XSzy8kkDGT2Byu1jj9YnHTPLsmnSxtIDpGAnkC4cV7UXT2mlloWGVpfK9gJkJOQcJbnz1FiIY4mXZc1pzx9CmG41LZxaOsZSIliL9gSM2/5u0MrDcKnuWjklaW7YHig9qiaOO2SQtp6mPdVI4O28tdntBW7e6eJ1te9zMviaAxxJyOIVxzY4trac2jHR7trZyBJNW74vZkx4HikrcMsYfsGRgd/NzxUTMyK32kVNNGGTSRtbtj04ysexZ2Q7o5qJSOLmAucT25TGUjUmkbeX/cpwkNGXEADrK/C9gLQXNG1y481DE1H5OztqWvDm8G7YwS3IxlZ7bQNdHDV1JL5tkFnHgwY4AD4lMNxqzaYiI/mUotKKvD7hPTuMYZG0Frs88hbhAc0gjIPAqEp6CkdeKuF0IMbGtLW5PDICRhdW1omu35TgIIyDwXhssT3FrJGOI5gOBUdccvnpbdE4xxyZ28fzQOX7l+1dqpm0zn0zN1LGNpj2k5yEwTqWzO2OiTRa1uqDVUEUzvhOHH4xw/wSvip5afFU/ZiBBPjbOfQUb3ZruhmZNE92yyRjiOoOBXtVuvfQCDeW+GRr43AiVjSGj4yVIXF76mekomuLGzjakI54Azj71drlGv1/66d0iyWN7i1kjHEcwHAr2SAMk4AWg60UeG7phhe0gh7HHKw1bTW3VtE9xEEbN49oONo9n3KYam9qxzjmk2SRyZ3b2uxz2TlfrnNa0ucQAOslaYtdKyaOWBphcw/yD8IdhWtuxcrrOyfJgpsAMzgFx6z+9MLN7RymOcpRkjJBmN7XDtacr92m7WzkbXZnioivp47Y6OtpBuwHBsjAeDmlZZfKOH5A/eUwzxZicTHPMeUkXNbjaIGeAyULmh2yXDPZlRt6/wD0/nDViuEAqL5TxOJDDEdrBxkceCRC21ZiZiI+PKWZLHISGSNcRzwc4WpV124q6aEbBEriHkn4OMLTr6WGglpamlZu3b0McAeBB/8ApLnSU5ulGTGPzz3bz/i5KxEMX1L4mP7Ex5TDXNcMtcCO0FfqxwU8VNHsQMDG5zgdqyLL0RnHMRERRERAREQEREBERAREQEREBERAREQEREBa9a6qZEHUjWPc05c138odgWwiJaMxhFvukroyxlvqd8RgAs8UfSkdscbJ3G8gSnxvQHZypRFc/Dlws/7nP8RcdynjiEc9DUGoaMeK3LXHtyvNwjqZqalmlp9oxv2pYW8cj/H/AOVLImSdKZjE2QtyqJq2gdFS0c4bw2i5mOvkB1rPWxSOqLcWxvIY/wAYgfB5c1JomTg5zMz1x4aV5Y+S1zMjY57js4a0ZJ8YLahBELARghoXtFHTb+25rXCkFbSOhJwebT2FaPdszIDTXCine7GyXRt2g9S6KxLNtPM5icSr1pie+vjjqy9vc7C6GN4wcE81IVUcjr3RyNY4sa1204DgOB5lbzoYnStlcxpkZ8F2OIXtWZc6aG2u3P8ActG60rqinD4eE8J24yOeexbFJK6emZJJG6N5HjNcCMFZkUy6xTFt0MdTGZaWWNvN7C0fSFH2yocII6Kalna9oLXEs8XHxqURMpambRaJRFNLNamuppqeWWEEmOSNueB6islLHNVXDu6eJ0TGN2YmO5/GVJomWY0sYjPKBRMj5KK8TVDoJZIpmAAxtzgjClkSJbvTdjn0Rlc2Sea3SMhkwJA5wLeLeXPsW3cIpJ6CaKI+O5uB6fQthEynDjnn+omlqnspG00FDM2cN2TlmGg9pKxRQTDTUkRikEhz4myc/C7FNorljg/M/wAwxUwLaWEOBBDGgg9XBaFqbUQWchsJ3wJIY/xc8VKIpluac4nPRDVtT3ZTOgdbp9+Rhu0zg09uVsVsMosRgw6SURtaQ0ZJIwpFEyzws5zPWMNGekNVaG058V+7bjPUQFggrn00Ihlt87ZWjGI48tce0FSqJlZ0+eaziUbVd1VFnn3sGzK74MbeJxnh9K3aQFtJC1wIIjaCD1cFlRMtRTFs5/gomR8lFeJqh0EskUzAAY25wRhSyJEl6bsc+iOroppe5q6mjO9i47t3AkHmPjWOevnqoXQU1HO2V42SZG7IZ28VKomWZ0pzOJxnqw0dOKWkjgBzsDGe09a07zDJI2nkZEZmRSbT4xx2h8X/AFzUkiZ55atpxNNiFuVRNW0DoqWjnDeG0XMx18gOtbFdTzYpqumbtTQDizltAjiFJImWODnMzPX/AOI7vlNKWsp6GfeE8d43Za3t4r8rYp4K5lfTxmXxdiVjeZHaFJImVnTmY/aWhHXzVEzGQUcoZnx3yjZAHo9KxTNmoLhJVRQumgnA3jWDLmkdeFKImSdOZjnPNETOluskcTYJIqZrg57pBgux1ALJcGywXCCujidKxrSx7WDJA7f3qTRMpwcxOZ5/P/hCVktRXS0roqSZsLJmklzeJPbjs9K25o5DfaeQMcWCIguxwB49akETJGjzzM/HhH3mOSSGnEbHPInaTsjOBx4rzdmStmpKmOJ0jYHkua0ZODj3KSRMrbSi2efXHhhpagVMZeIpYwDgCRuCfSsyIo6RnHMRERRERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQFCamvFRZ4aaSniZKZZdhzXAkkY6sHmptV/VP6XZPn8f3oJqkqYqykiqad21HK3aaVo2q5TVtyudNK2MMpJQxhaDkg558fQtOj/7DvZoHcKGtcX0x6o5Otn09Sae/wBuX75dv3FBYEVYrrdaqbafeL1UunOSC6fZLf7LR7l+WCvmqtOXEPqHzdzmRkUzshzm7OQT15QWhFUrJZXXSyQVNfX1Zkc07sMlIEYycH0nryV5stJVXuOdl1rp3R0bzTtbG8t23Dm5x6zyQW9FX7C+eku9faJZ5J4YA2SF0hy4AjkT9K1WujvVTWVNxr3U9BTzGGKJsu7DiObnHr5oLUiqtnrY6fULbfb66StoZmE+MS/cuHH4XYcKdoaKemq6yaatknZO/ajjdyiHHgP+upBuqB09fpLpW11JUNjZJTvOxsAjabkjjknjy9anlQbZ/oM/fYcGMuUtPOf+Bwbgn0AoL3NKyCF80h2WRtLnHsA4lQ+l7zPeqWonnjjZsS7LQwHljPHJ5pqiR8lJBbIXYlr5RFkcwwcXH1fesGkI2ROu0UY2WMrntaB1AIMNFdNRXE1L6KG27qGd0X5wPB4fEfSFtU94uFLcYKK90sMfdJxFNA4lhd2EHiorT16pLc24QTtnc81kj/zcRcMHA6viK2X1R1NdKE0MMgo6KbeyTvGAXDBDR/11oLUiIggam/SU2q4bVI2MU8rBh+DtBxzjrxjhjl1qeVLvtI6s1NWiLO/hoBNERzDmvaeH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M9jiW+k+PaWRRPe+8+ffsjPene+8+ffsjPemexxLfSfHtLIonvfefPv2RnvTvfefPv2RnvTPY4lvpPj2lkUT3vvPn37Iz3p3vvPn37Iz3pnscS30nx7SyKJ733nz79kZ70733nz79kZ70z2OJb6T49pZFE977z59+yM96d77z59+yM96Z7HEt9J8e0siie9958+/ZGe9O9958+/ZGe9M9jiW+k+PaWRRPe+8+ffsjPene+8+ffsjPemexxLfSfHtLIonvfefPv2RnvTvfefPv2RnvTPY4lvpPj2lkUT3vvPn37Iz3p3vvPn37Iz3pnscS30nx7SyKJ733nz79kZ70733nz79kZ70z2OJb6T49pZFE977z59+yM96d77z59+yM96Z7HEt9J8e0siie9958+/ZGe9O9958+/ZGe9M9jiW+k+PaWRRPe+8+ffsjPene+8+ffsjPemexxLfSfHtLIonvfefPv2RnvTvfefPv2RnvTPY4lvpPj2lkUT3vvPn37Iz3p3vvPn37Iz3pnscS30nx7SyKJ733nz79kZ70733nz79kZ70z2OJb6T49pZFE977z59+yM96d77z59+yM96Z7HEt9J8e0siie9958+/ZGe9O9958+/ZGe9M9jiW+k+PaWRRPe+8+ffsjPene+8+ffsjPemexxLfSfHtLIonvfefPv2RnvTvfefPv2RnvTPY4lvpPj2lkRFXYREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBUnWmprlZrvFTUTohG6ASHaZk5LnD/AK7LmPSZ5Q0/zRvtvQXbStxqLpYoaurLTK9zgS0YHAqUqJ46aB88zg1jBklQGguGlKf8AtP8AvKg9R6hjuVW+ipJMwwHxv+M9vxKTOIy46+pwtObxGWxUasuE1Ts0kcbGE4a0t2iVbrcKvuNhrnNM7hlwaMAehVzSVmxi4VLeP/hNP3q2LNc9ZcPw66sxxNSev8EXieZlPA+aU4YwZccZ4LBQXCmuMTpaV5c1pwSWkcfpW3r3Rnbnm2kREaEWKpqI6aLeSZxnHDmsjXBzQ5pyCMhB+oiICIiAiIgIvJkYJRGXeORkD0L0gIiICIsbJmvmkiGdqPG19IQZEWOCZtRC2Vmdl3LKSzNiMYdn847ZGO1BkREQEREBFjfM1k0cRztSZx9CyICIiAixSTbE8UWzneZ455YCyoCLTre6Q9roQ8tA/kY556x1jCzQumfI98jdiPgGMOM/GUGZERARak8lSZ3NY17YxjDmNBLvWVkpXzODhOwjZPiuIxtD4kGdEWCsifLCBHjeNcHNzyyCgzotK2NLI52lxcWzOGT18lsVIc6neGFwOOGzzQZUWnRiqJbvQY4258UnJOTwHxBbiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgLmPSZ5Q0/zRvtvXTlzHpM8oaf5o323oLJpGm7s0O2m3j4t7tt22HBHErnVbS1VkuroZm4lhdkZGQ4f4grpugvJWn/tP9oprHTzbzQb2BoFZCMsP84fzUJjLd05eILza2TQ4a9gDZIx/JPuUnLI2KJ0j/gtGSuN6fvFRYLqJcO2M7E0Z6x7wuvwTU9womyxOEkEzcg9oKJPTkgbjqW21FvnhjdLtvYWjLOtR+mr1RW2ikiqnPDnPyNluVL3OxWuG21EsVI1r2RktO0eB9ajtK2uhrqGWSqp2yOD8AkkcMehc/wBsvmWj8jj1zMZwstuuFPcqcz0xcWB2ydoY48PetpYKOjp6GIxUsQjYXbRAJPH6fiWddIfSpu2xu6tKXZnuDYnY2IWEuB6yeH3L1bX/AJl0Djl0Liz4x1LxBQskD5auIGV7iSCc4HUF6jpjT1odBHiF7MPAPIjkUaeYt9WB0ondFHtEMDQOOOsr1NJPHHDCHtM8rsbeOAHbheY21FJtRxwb6MuJYQ4AjPUcr3NFUSxxS4YJ43bQaDwPoQe4oJ45Gnul0jP5QePuWr3Rvg6WSs3DckMa3GcDrPatqKWpkkaHU4jYPhFzgT9GFrxQyUb3hlM2VpcS1zSAR6DlB5fVTG2PkyRI1+yHAY2uI4rJLHVxQmcVBdI0bTmYGyR2LzXmZ1teZg1ri4YDTnAyF7ldWSxGDcBrnDZdJtDGO3HNBgLXT18L2zvaJIi4Yx4voWarkfHJDG+Z0cRHjSAcSfj6l+yQyQTQSQx7xsbNgtyAfjWWV84DSKYPY5vjN2hkH7ig907XCPjNvgT4rsDl9HNfs4cYjsSCM/ziM4WGhhfFvXOYI2vdlsYOdlftfC+aBojaHbLw4sJxtAdSDVbUbuqiZHVuna92y4EZx6QVsU3+0a3/ANH3LG9lRNLTkU+7jjeCRtDKzwRPZW1Mjm4a/Y2TnngcUHi1f7Oi+n7yvFz2/wDR93jb3wxnllZrfE+GijjkbsuGcjOesrxXwzSiHcAbTJA7J5BBjnFRSME+/dK0EbxrgOI9HYslVwcHPrNzHjgBgEn414mFTVsED4N0wkbbi4Hh6F+vjlirnzCDfNcAGkEAsx8aDHDUyOpKrEheYgdh+MEjC/HiqZRiqNSS8NDtjA2cdi9NgqDFW7xgD5h4oBHYs0sUjraYWty/dhuM9eEGKqlY2qo5XnZbsvJJ6vFWWkkkqSaguxEeDGD7yvMtM6Saj2mBzIwdvJ5HAx+9eoYpIKp4Y3MEnjc/guQa8T5JpXh9W6GYOIEeBjHVw61JKPqW1E8TopKRpeeDZA4YHp7VvMBbG1rjkgAE9qDXqP06k/8AX9y2lq1H6dSf+v7ltIIySORr5JKqKZw2iWvjk+C34spWNkZStmjldIxrMhxeQQSeB4c1tVzJpGNbEHFpyHBpAJ4cOa8TU8htXc7RtSBgGM9fBB+3BzhRhwJBLm8R8a/apzhWUgBIBc7Izz4LDUd1TwNi7kLeIJO23qWWuhkkdE+MOOwT8BwB4j0oPc0rjKaZviPfGSx+eta1O2ZzKqBp2HNwG+OTg448VmnimdDBIAHTxEEgHGe0L1SRyiSeWVmwZHAhuc4wEHi3ucRM1wI2JCA3a2scB1r1bHF1E0uJJy7iT6SsBpanFSWPezaeXNa0gbQ+NbNDG+KDYc0taHHYaSMgenH0oPFv/wD2fnD/APBa0j2yyyun3jg17mNYx2AA0ZJ5rNTwzxVjz4wjc9zneMMEHlgc8ryyjkkllbO0CHemQDmXdnxBB7pHu/0iEyuLWAFjzzAIz+5YWxxyRPfDJUNmY3bDnuOXDqPxLbhic2sqXubhj9nZ9OBxWtNSyxzu7kjGxJFsEl3Bpzz9SDKyJtZDHNK+TxmDxQ4gA9q/KaSZ1tcWuBlbtNDneg9a2oYxFCyMcmgBa0EErKCWJzcPdt4GR18kGBkIfQmpZJO2UNLtpzuZHo7F+1jpn0kdUDw3YOA4jZcccfStpkTxbREW+PutnGevCxywSOtIgDfzm7aMZHPgg16l8kkD6sPc0McBGAcA8cE/Ss9eX76Fhc4QvOCGHDifcvVXA428QRN4jZAGcciF7nie+rpntblrC7aOeWQgwhnctbCyN7zHKHAtcc4IGcheJWSSVUu8jfK1uNlrJcbI+LK2Z4nvq6Z7RlrC7aOeWQsWKiGtnkZTmRkmzgh4HIelB5jaZqZzYJJTh4DmSOwRjm3K/aaRzrU9xJyGvxxzjn1rJQxytM75Y9gySbQGQeH0LVbR1ApA1zpMbZ2omkDLc9qDYhgFRSU5kfJgMGQHYzw61+0BcDPEXFwjkw0k5OFmpGvZTRsk+EBjHYOr9y8UsT45qhz24D35bx5hBpRvhnbvamWXbeSQGk4jGcDlyWzS7dRSviklftRyFhe04JwvFHQMbTt30ZEmSXAO58eGcc+pZ6OJ8Qn2xjamc4ceYKDFGzue4Nijc7dvjJLXOJwQeawyRyNfJJVRTOG0S18cnwW/Flbb4nm4RyhviNYQTnrX5XMmkY1sQcWnIcGkAnhw5oMtOBuGYkdICMhzuZCyLHTMMVNHG7m1oBWRAREQEREBERAREQFoV1mttxmE1bRxTSNbshzhxAyTj95W+iDDSUlPQ07aekibFE3OGt5BZkRBHVVhtNZMZqm3075Hc3bOCfjwtqioqagg3FHC2KLOdlvJZ0QeZY2SxujkaHMcMEHrCxUtJT0bCylibE0nJDe1Z0RNsZyIiIoiIgIiICIiDxLEyZhZI3aaepe0RAREQEREBERAREQEREBERAREQEREHl0bHPa9wy5mdk9mV6REBERAREQEREBERAREQEREBERAREQadwp3zR7cWC9owGkekcR2FbiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiIP/2Q==" alt="QR Payment">
+    <div class="qr-amount" id="payAmt">฿ —</div>
+    <div class="qr-breakdown" id="payBreak"></div>
+    <div class="qr-note">
+      🏦 Account: MR. MO HAN · KBANK<br>
+      🔢 Acc No: xxx-x-x7418-x<br>
+      🆔 Ref: 004999197537714<br><br>
+      भुक्तानी गरेपछि Bank Slip तल अपलोड गर्नुहोस् 🙏<br>
+      After transfer, upload bank slip below<br>
+      หลังโอน กรุณาอัปโหลดสลิปด้านล่าง
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ctitle">
+      <span class="cicon">🧾</span>
+      <div>Bank Slip अपलोड <span class="req">*</span><div class="csub">Upload Bank Transfer Slip · อัปโหลดสลิป (จำเป็น)</div></div>
+    </div>
+    <div class="slip-err" id="slipErr">⚠️ Bank slip अनिवार्य! · Bank slip is required! · ต้องอัปโหลดสลิป!</div>
+    <img class="slip-preview" id="slipPreview" alt="Slip preview">
+    <div class="upbtn-row">
+      <label class="upbtn" for="slipFile">📁 Upload Slip</label>
+      <button type="button" class="upbtn" onclick="openSlipCam()">📷 Take Photo</button>
+    </div>
+    <input type="file" id="slipFile" accept="image/*,.pdf" style="display:none" onchange="onSlipFile(this)">
+    <div class="cam-box" id="slipCam">
+      <video id="slipVid" autoplay playsinline style="width:100%;max-width:320px;border-radius:10px"></video>
+      <canvas id="slipCanvas" style="display:none"></canvas>
+      <div class="cam-actions">
+        <button class="upbtn" style="padding:10px 18px" onclick="captureSlip()">📸 Capture</button>
+        <button class="upbtn" style="padding:10px 18px" onclick="closeSlipCam()">✕ Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn" onclick="submitForm()" id="submitBtn">🚀 दर्ता पेश गर्नुहोस् · Submit · ส่งใบสมัคร</button>
+  <button class="btn btn-out" onclick="showScreen(4)">← पछाडि · Back</button>
+</div>
+
+<!-- ===== SUCCESS ===== -->
+<div class="success" id="s6" style="display:none">
+  <div class="success-icon">🎉</div>
+  <h2>दर्ता सफल भयो! · Registered!</h2>
+  <p>तपाईंको दर्ता प्राप्त भयो। हामी WhatsApp मा सम्पर्क गर्नेछौं। 🙏<br>
+  Your registration has been received.<br>
+  ลงทะเบียนสำเร็จแล้ว ขอบคุณมาก 🙏</p>
+  <button class="btn btn-green" onclick="sendWA()">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    📲 WhatsApp मा Data पठाउनुहोस्
   </button>
 </div>
 
-<div class="wa-popup" id="waPopup">
-  <button class="wa-popup-close" onclick="toggleWaPopup()">✕</button>
-  <div class="wa-popup-header">
-    <div class="wa-popup-avatar">🙏</div>
-    <div>
-      <div class="wa-popup-name">Sivir Help · सहायता</div>
-      <div class="wa-popup-status">● Online · उपलब्ध</div>
+</div><!-- end wrap -->
+
+<footer>
+  थाई नेपाली संघ · Thai Nepali Association · สมาคมไทย-เนปาล<br>
+  8th Educational Camp (Sivir) 2026 · Banse Camp, Ratchaburi
+</footer>
+
+<!-- ===== PARTICIPANT MODAL ===== -->
+<div class="modal-bg" id="modalBg">
+  <div class="modal">
+    <div class="modal-hdr">
+      <h3 id="modalTitle">👤 सहभागी थप्नुहोस्</h3>
+      <button class="mcls" onclick="closeModal()">✕</button>
     </div>
+    <div class="req-note">⚠️ Age 12 and above only · उमेर १२+ मात्र · อายุ 12 ปีขึ้นไป</div>
+
+    <!-- Name -->
+    <div class="field">
+      <label>पूरा नाम <span class="req">*</span><br><span class="lbadge">Full Name</span><span class="lbadge">ชื่อ-นามสกุล</span></label>
+      <input type="text" id="mName" placeholder="Full name">
+      <div class="err-msg" id="e-mName">नाम आवश्यक छ · Name required</div>
+    </div>
+
+    <!-- Age -->
+    <div class="field">
+      <label>उमेर <span class="req">*</span><br><span class="lbadge">Age (12+)</span><span class="lbadge">อายุ (12+)</span></label>
+      <input type="number" id="mAge" min="12" max="99" placeholder="Age" oninput="onAgeInput()">
+      <div class="err-msg" id="e-mAge">उमेर १२ वा माथि हुनुपर्छ · Age must be 12 or above</div>
+    </div>
+
+    <!-- ID Number -->
+    <div class="field">
+      <label>ID / Passport Number <span class="req">*</span><br><span class="lbadge">Passport/ID No.</span><span class="lbadge">หมายเลข ID</span></label>
+      <input type="text" id="mIdNo" placeholder="Passport / National ID number">
+      <div class="err-msg" id="e-mIdNo">ID/Passport नम्बर आवश्यक छ · ID required</div>
+    </div>
+
+    <!-- ID Photo -->
+    <div class="field">
+      <label>ID / Passport Photo <span class="req">*</span><br><span class="lbadge">Upload ID</span><span class="lbadge">อัปโหลด ID</span></label>
+      <img id="mIdPrev" class="photo-rect" alt="ID preview">
+      <div class="upbtn-row">
+        <label class="upbtn" for="mIdFile">📁 Upload</label>
+        <button type="button" class="upbtn" onclick="openIdCam()">📷 Take Photo</button>
+      </div>
+      <input type="file" id="mIdFile" accept="image/*,.pdf" style="display:none" onchange="onIdFile(this)">
+      <div class="cam-box" id="idCam">
+        <video id="idVid" autoplay playsinline style="width:100%;max-width:280px;border-radius:10px"></video>
+        <canvas id="idCanvas" style="display:none"></canvas>
+        <div class="cam-actions">
+          <button class="upbtn" style="padding:9px 16px" onclick="captureId()">📸 Capture</button>
+          <button class="upbtn" style="padding:9px 16px" onclick="closeIdCam()">✕ Cancel</button>
+        </div>
+      </div>
+      <div class="err-msg" id="e-mId">ID photo आवश्यक छ · ID photo required</div>
+    </div>
+
+    <!-- Passport Photo -->
+    <div class="field">
+      <label>Passport Size Photo <span class="req">*</span><br><span class="lbadge">Face Photo</span><span class="lbadge">รูปถ่ายหน้าตรง</span></label>
+      <img id="mPpPrev" class="photo-circle" alt="passport photo">
+      <div class="upbtn-row">
+        <label class="upbtn" for="mPpFile">📁 Upload</label>
+        <button type="button" class="upbtn" onclick="openPpCam()">📷 Take Photo</button>
+      </div>
+      <input type="file" id="mPpFile" accept="image/*" style="display:none" onchange="onPpFile(this)">
+      <div class="cam-box" id="ppCam">
+        <video id="ppVid" autoplay playsinline style="width:100%;max-width:280px;border-radius:10px"></video>
+        <canvas id="ppCanvas" style="display:none"></canvas>
+        <div class="cam-actions">
+          <button class="upbtn" style="padding:9px 16px" onclick="capturePp()">📸 Capture</button>
+          <button class="upbtn" style="padding:9px 16px" onclick="closePpCam()">✕ Cancel</button>
+        </div>
+      </div>
+      <div class="err-msg" id="e-mPp">Passport photo आवश्यक छ · Photo required</div>
+    </div>
+
+    <!-- Health Note -->
+    <div class="field">
+      <label>स्वास्थ्य / Health Note <span class="lbsub">Allergy, medicine (Optional)</span></label>
+      <textarea id="mNote" placeholder="Health conditions, allergies, medicines..."></textarea>
+    </div>
+
+    <button type="button" class="btn" onclick="saveP()" style="margin-top:4px">
+      ✅ सुरक्षित गर्नुहोस् · Save · บันทึก
+    </button>
   </div>
-  <div class="wa-popup-msg">
-    नमस्ते! 🙏 दर्तामा कुनै सहायता चाहिन्छ?<br>
-    Hello! Need help with registration?<br>
-    မင်္ဂလာပါ! ကူညီပါမည်<br>
-    สวัสดี! ต้องการความช่วยเหลือไหม?
+</div>
+
+<!-- WhatsApp -->
+<div class="wa-fab">
+  <button class="wa-btn" onclick="toggleWA()" title="Help">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </button>
+</div>
+<div class="wa-popup" id="waPopup">
+  <button class="wa-cls" onclick="toggleWA()">✕</button>
+  <div class="wa-pop-hdr">
+    <div class="wa-ava">🙏</div>
+    <div><div class="wa-name">Sivir Help · सहायता</div><div class="wa-status">● Online · उपलब्ध</div></div>
   </div>
-  <a href="https://wa.me/66943438424?text=Sivir+2026+Help" target="_blank" style="text-decoration:none;display:block">
-    <button class="wa-popup-btn">💬 Chat: +66 94 343 8424</button>
+  <div class="wa-msg">नमस्ते! 🙏 दर्तामा सहायता चाहिन्छ?<br>Hello! Need help with registration?<br>สวัสดี! ต้องการความช่วยเหลือ?</div>
+  <a href="https://wa.me/66943438424?text=Sivir+2026+Help" target="_blank" style="text-decoration:none">
+    <button style="width:100%;padding:9px;background:#25D366;color:#fff;border:none;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer">💬 Chat: +66 94 343 8424</button>
   </a>
 </div>
 
-<!-- Hidden YT player -->
-<div style="position:fixed;bottom:-300px;right:-300px;width:1px;height:1px;overflow:hidden">
-  <div id="ytPlayerDiv"></div>
-</div>
-
 <script>
-// =============================================
+document.addEventListener("DOMContentLoaded", function() {
+// =====================
 // CONFIG
-// =============================================
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbytVEhFZGja4xNwDJEgX4vOwnSBDcv7vix5ffkjaPA_8OY6zr1FdQdthPrwnnYSOcUj/exec';
+// =====================
+var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbytVEhFZGja4xNwDJEgX4vOwnSBDcv7vix5ffkjaPA_8OY6zr1FdQdthPrwnnYSOcUj/exec';
+var WA_NUMBER = '66943438424';
 
-// Pricing: 1 person = 500, 2 = 1500, each extra = +750
-function calcFee(n) {
-  if (n <= 0) return 0;
-  if (n === 1) return 500;
-  return 1500 + (n - 2) * 750;
-}
-
-// =============================================
-// YOUTUBE MUSIC
-// =============================================
-var ytPlayer, musicPlaying = false;
-function onYouTubeIframeAPIReady() {
-  ytPlayer = new YT.Player('ytPlayerDiv', {
-    height: '1', width: '1',
-    videoId: '0TPa2KvAdPc',
-    playerVars: { autoplay: 1, loop: 1, playlist: '0TPa2KvAdPc', controls: 0 },
-    events: { onReady: function(e) {
-      e.target.setVolume(40); e.target.playVideo();
-      musicPlaying = true;
-      document.getElementById('musicToggle').textContent = '⏸';
-    }}
-  });
-}
-(function() {
-  var t = document.createElement('script');
-  t.src = 'https://www.youtube.com/iframe_api';
-  document.head.appendChild(t);
-})();
-function toggleMusic() {
-  if (!ytPlayer) return;
-  if (musicPlaying) { ytPlayer.pauseVideo(); musicPlaying = false; document.getElementById('musicToggle').textContent = '▶'; document.getElementById('musicWave').classList.add('paused'); }
-  else { ytPlayer.playVideo(); musicPlaying = true; document.getElementById('musicToggle').textContent = '⏸'; document.getElementById('musicWave').classList.remove('paused'); }
-}
-
-// =============================================
-// SCREENS
-// =============================================
-var screens = ['screenVideo','screenType','screenParticipants','screenContact','screenReview','screenPayment','successScreen'];
-var stepMap = { screenVideo:0, screenType:1, screenParticipants:2, screenContact:3, screenReview:4, screenPayment:5, successScreen:6 };
-
-function goScreen(id) {
-  screens.forEach(function(s) { var el = document.getElementById(s); if(el) el.style.display='none'; });
-  var el = document.getElementById(id); if(el) el.style.display='block';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-  setStepUI(stepMap[id] || 0);
-}
-
-function setStepUI(n) {
-  for (var i = 1; i <= 6; i++) {
-    var sc = document.getElementById('s'+i); var cc = document.getElementById('c'+i);
-    if (!sc) continue;
-    sc.classList.remove('active','done');
-    if (i < n) sc.classList.add('done');
-    if (i === n) sc.classList.add('active');
-    if (cc) { cc.classList.remove('done'); if (i < n) cc.classList.add('done'); }
-  }
-}
-
-// =============================================
+// =====================
 // STATE
-// =============================================
+// =====================
 var participants = [];
-var editingIndex = -1;
-var currentPassportData = null; // base64 data URL
-var currentIdPhotoData = null;
-var idCameraStream = null;
-var passportCameraStream = null;
+var editIdx = -1;
+var mIdData = null;   // ID photo base64 data URL
+var mPpData = null;   // Passport photo base64 data URL
+var slipData = null;  // Slip base64
+var slipFile = null;  // Slip file object
+var idStream = null, ppStream = null, slipStream = null;
+var waUrl = '';
 
-// =============================================
-// STEP 1: WHO TYPE
-// =============================================
-function proceedFromType() {
-  var who = document.querySelector('input[name="whoType"]:checked');
-  if (!who) { alert('कृपया सहभागी प्रकार छान्नुहोस्! / Please select participant type!'); return; }
-  if (who.value === 'sakha' && !document.getElementById('sakhaName').value) {
-    document.getElementById('sakhaName').classList.add('error');
-    alert('कृपया शाखा छान्नुहोस्! / Please select Sakha!'); return;
+// =====================
+// SCREENS
+// =====================
+function showScreen(n) {
+  for (var i=1;i<=6;i++) {
+    var el = document.getElementById('s'+i);
+    if (el) el.style.display = (i===n ? 'block' : 'none');
   }
-  goScreen('screenParticipants');
+  // Update steps
+  for (var i=1;i<=6;i++) {
+    var si = document.getElementById('si'+i);
+    var sc = document.getElementById('sc'+i);
+    if (!si) continue;
+    si.classList.remove('active','done');
+    if (i < n) si.classList.add('done');
+    if (i === n) si.classList.add('active');
+    if (sc) { sc.classList.remove('done'); if(i<n) sc.classList.add('done'); }
+  }
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 
-document.querySelectorAll('input[name="whoType"]').forEach(function(r) {
-  r.addEventListener('change', function() {
-    document.getElementById('sakhaSelectBox').style.display = this.value === 'sakha' ? 'block' : 'none';
-  });
-});
+// =====================
+// STEP 1: SAKHA
+// =====================
+function onSakhaChange() {
+  var v = document.getElementById('sakha').value;
+  document.getElementById('upaBox').style.display = (v==='Bangkok') ? 'block' : 'none';
+  document.getElementById('e-sakha').classList.remove('on');
+}
+function goStep2() {
+  var s = document.getElementById('sakha').value;
+  if (!s) { document.getElementById('e-sakha').classList.add('on'); return; }
+  if (s==='Bangkok') {
+    var u = document.getElementById('upa').value;
+    if (!u) { document.getElementById('e-upa').classList.add('on'); return; }
+  }
+  showScreen(2);
+}
 
-// =============================================
-// PRICING
-// =============================================
-function updatePricing() {
+// =====================
+// STEP 2: PARTICIPANTS
+// =====================
+function calcFee(n) { return n * 1500; }
+
+function updateList() {
+  var list = document.getElementById('pList');
+  list.innerHTML = '';
+  participants.forEach(function(p,i) {
+    var d = document.createElement('div');
+    d.className = 'pcard';
+    var img = p.ppData
+      ? '<img src="'+p.ppData+'" style="width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid var(--pink);flex-shrink:0">'
+      : '<div class="pthumb">👤</div>';
+    d.innerHTML = img +
+      '<div class="pinfo"><div class="pname">'+(i+1)+'. '+p.name+'</div><div class="pmeta">Age: '+p.age+' | ID: '+p.idNo+(p.sakha?' | '+p.sakha:'')+'</div></div>' +
+      '<button class="pbtn" onclick="editP('+i+')" title="Edit">✏️</button>' +
+      '<button class="pbtn" onclick="removeP('+i+')" title="Remove">🗑️</button>';
+    list.appendChild(d);
+  });
   var n = participants.length;
   var fee = calcFee(n);
-  document.getElementById('currentFee').textContent = n > 0 ? '฿' + fee.toLocaleString() : '฿0';
+  document.getElementById('totalFee').textContent = n>0 ? '฿'+fee.toLocaleString() : '฿0';
+  var note = document.getElementById('pCountNote');
+  note.textContent = n===0
+    ? 'कम्तिमा १ सहभागी थप्नुहोस् · Add at least 1 participant'
+    : '✅ '+n+' सहभागी थपिएको · '+n+' participant'+(n>1?'s':'')+' added';
+  note.style.color = n===0 ? 'var(--muted)' : 'var(--green)';
+}
+function removeP(i) {
+  if (confirm('Remove this participant?')) { participants.splice(i,1); updateList(); }
+}
+function editP(i) { editIdx=i; openModal(i); }
+function goStep3() {
+  if (participants.length===0) { alert('कम्तिमा १ सहभागी थप्नुहोस्!
+Add at least 1 participant!'); return; }
+  showScreen(3);
 }
 
-// =============================================
-// STEP 2: PARTICIPANTS
-// =============================================
-function proceedFromParticipants() {
-  if (participants.length === 0) { alert('कम्तिमा एक सहभागी थप्नुहोस्! / Add at least one participant!'); return; }
-  goScreen('screenContact');
-}
-
-function renderParticipants() {
-  var list = document.getElementById('participantsList');
-  list.innerHTML = '';
-  participants.forEach(function(p, i) {
-    var div = document.createElement('div');
-    div.className = 'participant-card';
-    var imgSrc = p.passportPhoto || '';
-    div.innerHTML =
-      (imgSrc ? '<img class="participant-thumb" src="'+imgSrc+'">' : '<div class="participant-thumb" style="background:var(--pink-light);display:flex;align-items:center;justify-content:center;font-size:20px">👤</div>') +
-      '<div class="participant-card-info">' +
-        '<div class="participant-card-name">'+(i+1)+'. '+p.name+'</div>' +
-        '<div class="participant-card-meta">Age: '+p.age+(p.sakha?' · '+p.sakha:'')+(p.idNo?' · ID: '+p.idNo:'')+'</div>' +
-      '</div>' +
-      '<button class="participant-card-remove" onclick="openParticipantModal('+i+')">✏️</button>' +
-      '<button class="participant-card-remove" onclick="removeParticipant('+i+')">🗑️</button>';
-    list.appendChild(div);
-  });
-  updatePricing();
-}
-
-function removeParticipant(i) {
-  if (confirm('यो सहभागी हटाउनुहोस्? / Remove this participant?')) {
-    participants.splice(i, 1);
-    renderParticipants();
-  }
-}
-
-// =============================================
+// =====================
 // PARTICIPANT MODAL
-// =============================================
-function openParticipantModal(idx) {
-  editingIndex = idx;
-  var isEdit = idx >= 0 && participants[idx];
-  document.getElementById('modalTitle').textContent = isEdit ? '✏️ सम्पादन · Edit Participant' : '👤 सहभागी थप्नुहोस् · Add Participant';
-
+// =====================
+function openModal(idx) {
+  editIdx = (idx===undefined) ? -1 : idx;
+  var isEdit = editIdx>=0;
+  document.getElementById('modalTitle').textContent = isEdit ? '✏️ Edit Participant' : '👤 सहभागी थप्नुहोस्';
   // Reset
-  document.getElementById('pName').value = '';
-  document.getElementById('pAge').value = '';
-  document.getElementById('pIdNo').value = '';
-  document.getElementById('pSakha').value = '';
-  document.getElementById('pPhotoPreview').style.display = 'none';
-  document.getElementById('pPhotoPreview').src = '';
-  document.getElementById('pIdPhotoText').textContent = 'Click to upload / Take photo';
-  document.getElementById('pIdPhotoArea').classList.remove('has-file','required-error');
-  document.getElementById('ageWarn').classList.remove('show');
-  document.getElementById('idReq').style.display = 'none';
-  document.getElementById('idPhotoReq').style.display = 'none';
-  currentPassportData = null;
-  currentIdPhotoData = null;
-
+  ['mName','mAge','mIdNo','mNote'].forEach(function(id){ document.getElementById(id).value=''; });
+  ['e-mName','e-mAge','e-mIdNo','e-mId','e-mPp'].forEach(function(id){ document.getElementById(id).classList.remove('on'); });
+  ['mName','mAge','mIdNo'].forEach(function(id){ document.getElementById(id).classList.remove('err-field'); });
+  mIdData=null; mPpData=null;
+  document.getElementById('mIdPrev').style.display='none';
+  document.getElementById('mPpPrev').style.display='none';
+  document.getElementById('mIdFile').value='';
+  document.getElementById('mPpFile').value='';
+  // Upasakha in modal
+  var mainSakha = document.getElementById('sakha').value;
+  // If editing, fill
   if (isEdit) {
-    var p = participants[idx];
-    document.getElementById('pName').value = p.name || '';
-    document.getElementById('pAge').value = p.age || '';
-    document.getElementById('pIdNo').value = p.idNo || '';
-    document.getElementById('pSakha').value = p.sakha || '';
-    if (p.passportPhoto) {
-      document.getElementById('pPhotoPreview').src = p.passportPhoto;
-      document.getElementById('pPhotoPreview').style.display = 'block';
-      currentPassportData = p.passportPhoto;
-    }
-    if (p.idPhotoData) {
-      currentIdPhotoData = p.idPhotoData;
-      document.getElementById('pIdPhotoText').textContent = '✓ ID Photo saved';
-      document.getElementById('pIdPhotoArea').classList.add('has-file');
-    }
-    if (parseInt(p.age) >= 12) {
-      document.getElementById('ageWarn').classList.add('show');
-      document.getElementById('idReq').style.display = 'inline';
-      document.getElementById('idPhotoReq').style.display = 'inline';
-    }
+    var p = participants[editIdx];
+    document.getElementById('mName').value = p.name||'';
+    document.getElementById('mAge').value = p.age||'';
+    document.getElementById('mIdNo').value = p.idNo||'';
+    document.getElementById('mNote').value = p.note||'';
+    if (p.idData) { mIdData=p.idData; showIdPrev(p.idData); }
+    if (p.ppData) { mPpData=p.ppData; showPpPrev(p.ppData); }
   }
-
-  document.getElementById('participantModal').classList.add('active');
-  document.body.style.overflow = 'hidden';
+  document.getElementById('modalBg').classList.add('on');
+  document.body.style.overflow='hidden';
 }
-
-function closeParticipantModal() {
-  document.getElementById('participantModal').classList.remove('active');
-  document.body.style.overflow = '';
-  closeIdCamera(); closePassportCamera();
+function closeModal() {
+  document.getElementById('modalBg').classList.remove('on');
+  document.body.style.overflow='';
+  closeIdCam(); closePpCam();
 }
-
-function checkAgeWarning() {
-  var age = parseInt(document.getElementById('pAge').value);
-  var warn = document.getElementById('ageWarn');
-  var idReq = document.getElementById('idReq');
-  var idPhotoReq = document.getElementById('idPhotoReq');
-  if (age >= 12) {
-    warn.classList.add('show');
-    idReq.style.display = 'inline';
-    idPhotoReq.style.display = 'inline';
+function onAgeInput() {
+  var v = parseInt(document.getElementById('mAge').value);
+  if (v>0 && v<12) {
+    document.getElementById('mAge').value='';
+    document.getElementById('e-mAge').classList.add('on');
   } else {
-    warn.classList.remove('show');
-    idReq.style.display = 'none';
-    idPhotoReq.style.display = 'none';
+    document.getElementById('e-mAge').classList.remove('on');
   }
 }
-
-function saveParticipant() {
-  var name = document.getElementById('pName').value.trim();
-  var age = document.getElementById('pAge').value.trim();
-  var idNo = document.getElementById('pIdNo').value.trim();
-  var sakha = document.getElementById('pSakha').value;
-
-  if (!name) { document.getElementById('pName').classList.add('error'); alert('नाम अनिवार्य छ! / Name required!'); return; }
-  if (!age) { document.getElementById('pAge').classList.add('error'); alert('उमेर अनिवार्य छ! / Age required!'); return; }
-
-  // Age 12+ validation
-  if (parseInt(age) >= 12) {
-    if (!idNo) { document.getElementById('pIdNo').classList.add('error'); alert('उमेर १२+ भएकाले ID/Passport नम्बर अनिवार्य!\nAge 12+: ID/Passport number required!'); return; }
-    if (!currentIdPhotoData) { document.getElementById('pIdPhotoArea').classList.add('required-error'); alert('उमेर १२+ भएकाले ID/Passport photo अनिवार्य!\nAge 12+: ID/Passport photo required!'); return; }
-  }
-
-  if (!currentPassportData) { alert('Passport size photo अनिवार्य! / Passport photo required!'); return; }
-
-  var participant = { name: name, age: parseInt(age), idNo: idNo, sakha: sakha, passportPhoto: currentPassportData, idPhotoData: currentIdPhotoData };
-
-  if (editingIndex >= 0 && participants[editingIndex]) {
-    participants[editingIndex] = participant;
-  } else {
-    participants.push(participant);
-  }
-
-  renderParticipants();
-  closeParticipantModal();
+function saveP() {
+  var name = document.getElementById('mName').value.trim();
+  var age = parseInt(document.getElementById('mAge').value);
+  var idNo = document.getElementById('mIdNo').value.trim();
+  var ok = true;
+  if (!name) { document.getElementById('mName').classList.add('err-field'); document.getElementById('e-mName').classList.add('on'); ok=false; }
+  if (!age||age<12) { document.getElementById('mAge').classList.add('err-field'); document.getElementById('e-mAge').classList.add('on'); ok=false; }
+  if (!idNo) { document.getElementById('mIdNo').classList.add('err-field'); document.getElementById('e-mIdNo').classList.add('on'); ok=false; }
+  if (!mIdData) { document.getElementById('e-mId').classList.add('on'); ok=false; }
+  if (!mPpData) { document.getElementById('e-mPp').classList.add('on'); ok=false; }
+  if (!ok) return;
+  var p = {
+    name:name, age:age, idNo:idNo,
+    note:document.getElementById('mNote').value.trim(),
+    idData:mIdData, ppData:mPpData
+  };
+  if (editIdx>=0) participants[editIdx]=p;
+  else participants.push(p);
+  updateList();
+  closeModal();
 }
 
-// =============================================
-// PASSPORT PHOTO
-// =============================================
-function handlePassportPhotoUpload(input) {
-  if (input.files && input.files[0]) {
-    var r = new FileReader();
-    r.onload = function(e) {
-      currentPassportData = e.target.result;
-      document.getElementById('pPhotoPreview').src = currentPassportData;
-      document.getElementById('pPhotoPreview').style.display = 'block';
-    };
-    r.readAsDataURL(input.files[0]);
-  }
-}
-function openPassportCamera() {
-  navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' }, audio: false })
-    .then(function(stream) {
-      passportCameraStream = stream;
-      document.getElementById('passportCameraVideo').srcObject = stream;
-      document.getElementById('passportCameraContainer').style.display = 'block';
-    }).catch(function() { alert('Camera access denied / कैमेरा अनुमति दिनुहोस्'); });
-}
-function capturePassportPhoto() {
-  var v = document.getElementById('passportCameraVideo');
-  var c = document.getElementById('passportCameraCanvas');
-  c.width = v.videoWidth; c.height = v.videoHeight;
-  c.getContext('2d').drawImage(v, 0, 0);
-  currentPassportData = c.toDataURL('image/jpeg', 0.85);
-  document.getElementById('pPhotoPreview').src = currentPassportData;
-  document.getElementById('pPhotoPreview').style.display = 'block';
-  closePassportCamera();
-}
-function closePassportCamera() {
-  if (passportCameraStream) { passportCameraStream.getTracks().forEach(function(t){t.stop()}); passportCameraStream = null; }
-  document.getElementById('passportCameraContainer').style.display = 'none';
-}
-
-// =============================================
+// =====================
 // ID PHOTO
-// =============================================
-function handleIdPhotoChange(input) {
-  if (input.files && input.files[0]) {
-    var r = new FileReader();
-    r.onload = function(e) {
-      currentIdPhotoData = e.target.result;
-      document.getElementById('pIdPhotoText').textContent = '✓ ' + input.files[0].name.substring(0,28);
-      document.getElementById('pIdPhotoArea').classList.add('has-file');
-      document.getElementById('pIdPhotoArea').classList.remove('required-error');
-    };
-    r.readAsDataURL(input.files[0]);
-  }
+// =====================
+function showIdPrev(src) {
+  var img = document.getElementById('mIdPrev');
+  img.src = src; img.style.display='block';
 }
-function openIdCamera() {
-  navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' }, audio: false })
-    .then(function(stream) {
-      idCameraStream = stream;
-      document.getElementById('idCameraVideo').srcObject = stream;
-      document.getElementById('idCameraContainer').style.display = 'block';
-    }).catch(function() { alert('Camera access denied / कैमेरा अनुमति दिनुहोस्'); });
+function onIdFile(input) {
+  if (!input.files[0]) return;
+  var r=new FileReader();
+  r.onload=function(e){ mIdData=e.target.result; showIdPrev(e.target.result); document.getElementById('e-mId').classList.remove('on'); };
+  r.readAsDataURL(input.files[0]);
 }
-function captureIdPhoto() {
-  var v = document.getElementById('idCameraVideo');
-  var c = document.getElementById('idCameraCanvas');
-  c.width = v.videoWidth; c.height = v.videoHeight;
-  c.getContext('2d').drawImage(v, 0, 0);
-  currentIdPhotoData = c.toDataURL('image/jpeg', 0.9);
-  document.getElementById('pIdPhotoText').textContent = '✓ Photo taken';
-  document.getElementById('pIdPhotoArea').classList.add('has-file');
-  document.getElementById('pIdPhotoArea').classList.remove('required-error');
-  closeIdCamera();
+function openIdCam() {
+  navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'},audio:false})
+    .then(function(s){ idStream=s; document.getElementById('idVid').srcObject=s; document.getElementById('idCam').style.display='block'; })
+    .catch(function(){ alert('Camera access denied'); });
 }
-function closeIdCamera() {
-  if (idCameraStream) { idCameraStream.getTracks().forEach(function(t){t.stop()}); idCameraStream = null; }
-  document.getElementById('idCameraContainer').style.display = 'none';
+function captureId() {
+  var v=document.getElementById('idVid'), c=document.getElementById('idCanvas');
+  c.width=v.videoWidth; c.height=v.videoHeight;
+  c.getContext('2d').drawImage(v,0,0);
+  mIdData=c.toDataURL('image/jpeg',.9);
+  showIdPrev(mIdData); document.getElementById('e-mId').classList.remove('on');
+  closeIdCam();
+}
+function closeIdCam() {
+  if(idStream){idStream.getTracks().forEach(function(t){t.stop()});idStream=null;}
+  document.getElementById('idCam').style.display='none';
 }
 
-// =============================================
-// FILE UPLOAD (payment slip)
-// =============================================
-function handleFileChange(input, areaId, textId) {
-  if (input.files && input.files[0]) {
-    var name = input.files[0].name;
-    document.getElementById(textId).textContent = '✓ ' + (name.length > 28 ? name.substring(0,25)+'...' : name);
-    document.getElementById(areaId).classList.add('has-file');
-    document.getElementById(areaId).classList.remove('required-error');
-    document.getElementById('slipRequired').classList.remove('show');
-  }
+// =====================
+// PASSPORT PHOTO
+// =====================
+function showPpPrev(src) {
+  var img=document.getElementById('mPpPrev');
+  img.src=src; img.style.display='block';
+}
+function onPpFile(input) {
+  if (!input.files[0]) return;
+  var r=new FileReader();
+  r.onload=function(e){ mPpData=e.target.result; showPpPrev(e.target.result); document.getElementById('e-mPp').classList.remove('on'); };
+  r.readAsDataURL(input.files[0]);
+}
+function openPpCam() {
+  navigator.mediaDevices.getUserMedia({video:{facingMode:'user'},audio:false})
+    .then(function(s){ ppStream=s; document.getElementById('ppVid').srcObject=s; document.getElementById('ppCam').style.display='block'; })
+    .catch(function(){ alert('Camera access denied'); });
+}
+function capturePp() {
+  var v=document.getElementById('ppVid'), c=document.getElementById('ppCanvas');
+  c.width=v.videoWidth; c.height=v.videoHeight;
+  c.getContext('2d').drawImage(v,0,0);
+  mPpData=c.toDataURL('image/jpeg',.85);
+  showPpPrev(mPpData); document.getElementById('e-mPp').classList.remove('on');
+  closePpCam();
+}
+function closePpCam() {
+  if(ppStream){ppStream.getTracks().forEach(function(t){t.stop()});ppStream=null;}
+  document.getElementById('ppCam').style.display='none';
 }
 
-// =============================================
+// =====================
 // STEP 3: CONTACT
-// =============================================
-function proceedFromContact() {
-  var pn = document.getElementById('parentName').value.trim();
-  var ph = document.getElementById('phone').value.trim();
-  var ad = document.getElementById('address').value.trim();
-  if (!pn) { document.getElementById('parentName').classList.add('error'); alert('अभिभावकको नाम अनिवार्य! / Parent name required!'); return; }
-  if (!ph) { document.getElementById('phone').classList.add('error'); alert('फोन नम्बर अनिवार्य! / Phone required!'); return; }
-  if (!ad) { document.getElementById('address').classList.add('error'); alert('ठेगाना अनिवार्य! / Address required!'); return; }
-  buildReview();
-  goScreen('screenReview');
+// =====================
+function goStep4() {
+  var pn=document.getElementById('parentName').value.trim();
+  var ph=document.getElementById('phone').value.trim();
+  var ad=document.getElementById('address').value.trim();
+  var ok=true;
+  if(!pn){document.getElementById('parentName').classList.add('err-field');document.getElementById('e-parent').classList.add('on');ok=false;}else{document.getElementById('parentName').classList.remove('err-field');document.getElementById('e-parent').classList.remove('on');}
+  if(!ph){document.getElementById('phone').classList.add('err-field');document.getElementById('e-phone').classList.add('on');ok=false;}else{document.getElementById('phone').classList.remove('err-field');document.getElementById('e-phone').classList.remove('on');}
+  if(!ad){document.getElementById('address').classList.add('err-field');document.getElementById('e-addr').classList.add('on');ok=false;}else{document.getElementById('address').classList.remove('err-field');document.getElementById('e-addr').classList.remove('on');}
+  if(!ok)return;
+  buildReview(); showScreen(4);
 }
 
-// =============================================
-// REVIEW
-// =============================================
+// =====================
+// STEP 4: REVIEW
+// =====================
 function buildReview() {
-  var html = '';
-  var who = document.querySelector('input[name="whoType"]:checked');
-  var whoVal = who ? who.value : '';
-  var sakhaGlobal = document.getElementById('sakhaName').value;
-
-  html += '<div class="review-card"><h3>ℹ️ सहभागी प्रकार · Registration Type</h3>';
-  html += '<div class="review-row"><span class="lbl">Type</span><span class="val">'+(whoVal==='sakha'?'Sakha/Upasakha — '+sakhaGlobal:'Myself (आफैं)')+' </span></div>';
-  html += '</div>';
-
-  participants.forEach(function(p, i) {
-    html += '<div class="review-card"><h3>👤 सहभागी '+(i+1)+' · Participant '+(i+1)+'</h3>';
-    if (p.passportPhoto) html += '<div class="review-row"><span class="lbl">Photo</span><span class="val"><img src="'+p.passportPhoto+'" style="width:50px;height:50px;border-radius:50%;object-fit:cover;border:2px solid var(--pink)"></span></div>';
-    html += '<div class="review-row"><span class="lbl">नाम / Name</span><span class="val">'+p.name+'</span></div>';
-    html += '<div class="review-row"><span class="lbl">उमेर / Age</span><span class="val">'+p.age+'</span></div>';
-    if (p.idNo) html += '<div class="review-row"><span class="lbl">ID/Passport</span><span class="val">'+p.idNo+'</span></div>';
-    if (p.sakha) html += '<div class="review-row"><span class="lbl">Sakha</span><span class="val">'+p.sakha+'</span></div>';
-    html += '</div>';
+  var sakha=document.getElementById('sakha').value;
+  var upa=document.getElementById('upa').value;
+  var sakhaDisp=sakha==='Bangkok'&&upa?'Bangkok — '+upa:sakha;
+  var n=participants.length, fee=calcFee(n);
+  var h='';
+  h+='<div class="rcard"><h3>🏫 शाखा · Sakha</h3>';
+  h+='<div class="rrow"><span class="rlbl">Sakha</span><span class="rval">'+sakhaDisp+'</span></div></div>';
+  participants.forEach(function(p,i){
+    h+='<div class="rcard"><h3>👤 Participant '+(i+1)+'</h3>';
+    if(p.ppData) h+='<div class="rrow"><span class="rlbl">Photo</span><span class="rval"><img src="'+p.ppData+'" style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--pink)"></span></div>';
+    h+='<div class="rrow"><span class="rlbl">नाम</span><span class="rval">'+p.name+'</span></div>';
+    h+='<div class="rrow"><span class="rlbl">Age</span><span class="rval">'+p.age+'</span></div>';
+    h+='<div class="rrow"><span class="rlbl">ID/Passport</span><span class="rval">'+p.idNo+'</span></div>';
+    if(p.note) h+='<div class="rrow"><span class="rlbl">Health</span><span class="rval">'+p.note+'</span></div>';
+    h+='</div>';
   });
-
-  var n = participants.length, fee = calcFee(n);
-  html += '<div class="review-card"><h3>💰 शुल्क · Fee</h3>';
-  html += '<div class="review-row"><span class="lbl">सहभागी / Count</span><span class="val">'+n+' जना</span></div>';
-  html += '<div class="review-row"><span class="lbl">जम्मा / Total</span><span class="val" style="color:var(--gold);font-size:16px">฿'+fee.toLocaleString()+'</span></div>';
-  html += '</div>';
-
-  html += '<div class="review-card"><h3>📞 सम्पर्क · Contact</h3>';
-  html += '<div class="review-row"><span class="lbl">अभिभावक</span><span class="val">'+document.getElementById('parentName').value+'</span></div>';
-  html += '<div class="review-row"><span class="lbl">Phone</span><span class="val">'+document.getElementById('phone').value+'</span></div>';
-  html += '<div class="review-row"><span class="lbl">Address</span><span class="val">'+document.getElementById('address').value+'</span></div>';
-  var note = document.getElementById('note').value;
-  if (note) html += '<div class="review-row"><span class="lbl">Note</span><span class="val">'+note+'</span></div>';
-  html += '</div>';
-
-  document.getElementById('reviewContent').innerHTML = html;
+  h+='<div class="rcard"><h3>💰 शुल्क · Fee</h3>';
+  h+='<div class="rrow"><span class="rlbl">Participants</span><span class="rval">'+n+'</span></div>';
+  h+='<div class="rrow"><span class="rlbl">Total</span><span class="rval" style="color:var(--gold);font-size:15px">฿'+fee.toLocaleString()+'</span></div></div>';
+  h+='<div class="rcard"><h3>📞 सम्पर्क</h3>';
+  h+='<div class="rrow"><span class="rlbl">अभिभावक</span><span class="rval">'+document.getElementById('parentName').value+'</span></div>';
+  h+='<div class="rrow"><span class="rlbl">Phone</span><span class="rval">'+document.getElementById('phone').value+'</span></div>';
+  h+='<div class="rrow"><span class="rlbl">Address</span><span class="rval">'+document.getElementById('address').value+'</span></div></div>';
+  document.getElementById('reviewContent').innerHTML=h;
 }
 
 function buildPayment() {
-  var n = participants.length, fee = calcFee(n);
-  document.getElementById('payAmount').textContent = '฿ ' + fee.toLocaleString();
-  var breakdown = n === 1 ? '1 × ฿500' : n === 2 ? '฿1,500 (2 participants)' : '฿1,500 + '+(n-2)+' × ฿750 = ฿'+fee.toLocaleString();
-  document.getElementById('payBreakdown').textContent = breakdown;
+  var n=participants.length, fee=calcFee(n);
+  document.getElementById('payAmt').textContent='฿'+fee.toLocaleString();
+  document.getElementById('payBreak').textContent=n+' × ฿1,500 = ฿'+fee.toLocaleString();
 }
 
-// =============================================
-// SUBMIT to Google Sheets
-// =============================================
-function fileToBase64(file) {
-  return new Promise(function(resolve, reject) {
-    if (!file) { resolve(null); return; }
-    var r = new FileReader();
-    r.onload = function() { resolve(r.result.split(',')[1]); };
-    r.onerror = reject;
+// =====================
+// STEP 5: PAYMENT / SLIP
+// =====================
+function onSlipFile(input) {
+  if (!input.files[0]) return;
+  slipFile=input.files[0];
+  if (slipFile.type.startsWith('image/')) {
+    var r=new FileReader();
+    r.onload=function(e){
+      slipData=e.target.result;
+      var img=document.getElementById('slipPreview');
+      img.src=slipData; img.style.display='block';
+    };
+    r.readAsDataURL(slipFile);
+  } else {
+    slipData='pdf';
+    document.getElementById('slipPreview').style.display='none';
+  }
+  document.getElementById('slipErr').classList.remove('on');
+}
+function openSlipCam() {
+  navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'},audio:false})
+    .then(function(s){ slipStream=s; document.getElementById('slipVid').srcObject=s; document.getElementById('slipCam').style.display='block'; })
+    .catch(function(){ alert('Camera access denied'); });
+}
+function captureSlip() {
+  var v=document.getElementById('slipVid'), c=document.getElementById('slipCanvas');
+  c.width=v.videoWidth; c.height=v.videoHeight;
+  c.getContext('2d').drawImage(v,0,0);
+  slipData=c.toDataURL('image/jpeg',.9);
+  var img=document.getElementById('slipPreview');
+  img.src=slipData; img.style.display='block';
+  document.getElementById('slipErr').classList.remove('on');
+  c.toBlob(function(blob){
+    slipFile=new File([blob],'slip.jpg',{type:'image/jpeg'});
+  },'image/jpeg',.9);
+  closeSlipCam();
+}
+function closeSlipCam() {
+  if(slipStream){slipStream.getTracks().forEach(function(t){t.stop()});slipStream=null;}
+  document.getElementById('slipCam').style.display='none';
+}
+
+// =====================
+// SUBMIT
+// =====================
+function toB64(dataUrl) {
+  if (!dataUrl || dataUrl==='pdf') return '';
+  return dataUrl.split(',')[1]||'';
+}
+function fileToB64(file) {
+  return new Promise(function(res,rej){
+    if(!file){res('');return;}
+    var r=new FileReader();
+    r.onload=function(){res(r.result.split(',')[1]||'');};
+    r.onerror=rej;
     r.readAsDataURL(file);
   });
 }
 
 async function submitForm() {
-  // Require payment slip
-  var slipFile = document.getElementById('paymentSlip').files[0];
-  if (!slipFile) {
-    document.getElementById('slipRequired').classList.add('show');
-    document.getElementById('paymentArea').classList.add('required-error');
-    document.getElementById('paymentArea').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  if (!slipData) {
+    document.getElementById('slipErr').classList.add('on');
+    document.getElementById('slipErr').scrollIntoView({behavior:'smooth',block:'center'});
     return;
   }
-
-  var btn = document.getElementById('submitBtn');
-  var overlay = document.getElementById('loadingOverlay');
-  btn.disabled = true;
-  overlay.classList.add('active');
+  var btn=document.getElementById('submitBtn');
+  btn.disabled=true;
+  document.getElementById('overlay').classList.add('on');
 
   try {
-    var paymentBase64 = await fileToBase64(slipFile);
-    var who = document.querySelector('input[name="whoType"]:checked');
-    var whoVal = who ? who.value : 'self';
-    var sakhaGlobal = document.getElementById('sakhaName').value;
-    var n = participants.length;
-    var fee = calcFee(n);
+    var sakha=document.getElementById('sakha').value;
+    var upa=document.getElementById('upa').value||'';
+    var sheetTab=sakha==='Bangkok'&&upa?upa:sakha;
+    var n=participants.length, fee=calcFee(n);
 
-    // Build payload — sheetTab tells Apps Script which tab to write to
-    var payload = {
-      sheetTab: whoVal === 'sakha' ? (sakhaGlobal || 'Sakha') : 'Individual',
-      whoType: whoVal,
-      sakha: sakhaGlobal,
-      parentName: document.getElementById('parentName').value,
-      phone: document.getElementById('phone').value,
-      address: document.getElementById('address').value,
-      note: document.getElementById('note').value || '',
-      totalParticipants: n,
-      totalFee: fee,
-      submittedAt: new Date().toLocaleString('th-TH'),
-      paymentSlipName: slipFile.name,
-      paymentSlipData: paymentBase64,
-      participants: participants.map(function(p) {
+    var slipB64 = slipFile ? await fileToB64(slipFile) : toB64(slipData);
+
+    var payload={
+      sheetTab:sheetTab, sakha:sakha, upasakha:upa,
+      parentName:document.getElementById('parentName').value,
+      phone:document.getElementById('phone').value,
+      address:document.getElementById('address').value,
+      totalParticipants:n, totalFee:fee,
+      submittedAt:new Date().toLocaleString('th-TH'),
+      paymentSlipName:'slip.jpg', paymentSlipData:slipB64,
+      participants:participants.map(function(p){
         return {
-          name: p.name,
-          age: p.age,
-          idNo: p.idNo || '',
-          sakha: p.sakha || '',
-          passportPhotoData: p.passportPhoto ? p.passportPhoto.split(',')[1] : '',
-          idPhotoData: p.idPhotoData ? p.idPhotoData.split(',')[1] : ''
+          name:p.name, age:p.age, idNo:p.idNo, note:p.note||'',
+          passportPhotoData:toB64(p.ppData),
+          idPhotoData:toB64(p.idData)
         };
       })
     };
 
-    await fetch(SCRIPT_URL, {
-      method: 'POST', mode: 'no-cors',
-      headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify(payload)
+    await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(payload)});
+
+    // Build WA message
+    var sakhaDisp=sakha==='Bangkok'&&upa?'Bangkok — '+upa:sakha;
+    var lines=[
+      '🎉 *8th Sivir 2026 — दर्ता*',
+      '━━━━━━━━━━━━━━━━',
+      '📍 *Sakha:* '+sakhaDisp,
+      '👤 *Contact:* '+document.getElementById('parentName').value,
+      '📞 *Phone:* '+document.getElementById('phone').value,
+      '🏠 *Address:* '+document.getElementById('address').value,
+      '💰 *Total:* ฿'+fee.toLocaleString()+' ('+n+' person'+(n>1?'s':'')+')',
+      '━━━━━━━━━━━━━━━━'
+    ];
+    participants.forEach(function(p,i){
+      lines.push('👤 *P'+(i+1)+':* '+p.name+' | Age: '+p.age+' | ID: '+p.idNo+(p.note?' | '+p.note:''));
     });
+    lines.push('━━━━━━━━━━━━━━━━');
+    lines.push('✅ Bank slip uploaded | '+new Date().toLocaleDateString('th-TH'));
+    waUrl='https://wa.me/'+WA_NUMBER+'?text='+lines.join('%0A');
 
     // Show success
-    screens.forEach(function(s) { var el = document.getElementById(s); if(el) el.style.display='none'; });
-    document.getElementById('successScreen').style.display = 'block';
-    setStepUI(6);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    for(var i=1;i<=5;i++){var el=document.getElementById('s'+i);if(el)el.style.display='none';}
+    document.getElementById('s6').style.display='block';
+    // Update step UI
+    for(var i=1;i<=6;i++){
+      var si=document.getElementById('si'+i);
+      var sc=document.getElementById('sc'+i);
+      if(si){si.classList.remove('active','done');if(i<6)si.classList.add('done');if(i===6)si.classList.add('active');}
+      if(sc){sc.classList.remove('done');sc.classList.add('done');}
+    }
+    window.scrollTo({top:0,behavior:'smooth'});
+    // Auto open WA after 1.5s
+    setTimeout(function(){window.open(waUrl,'_blank');},1500);
 
   } catch(err) {
-    alert('❌ दर्ता हुन सकेन। फेरि प्रयास गर्नुहोस्।\nError: ' + err.message);
-    btn.disabled = false;
+    alert('❌ दर्ता हुन सकेन। फेरि प्रयास गर्नुहोस्।
+Error: '+err.message);
+    btn.disabled=false;
   } finally {
-    overlay.classList.remove('active');
+    document.getElementById('overlay').classList.remove('on');
   }
 }
 
-// =============================================
-// WHATSAPP POPUP
-// =============================================
-function toggleWaPopup() {
-  document.getElementById('waPopup').classList.toggle('active');
+function sendWA() {
+  if (waUrl) window.open(waUrl,'_blank');
+  else window.open('https://wa.me/'+WA_NUMBER,'_blank');
 }
-setTimeout(function() { document.getElementById('waPopup').classList.add('active'); }, 10000);
 
-// =============================================
-// MODAL CLOSE ON BG CLICK
-// =============================================
-document.getElementById('participantModal').addEventListener('click', function(e) {
-  if (e.target === this) closeParticipantModal();
+// =====================
+// WHATSAPP POPUP
+// =====================
+function toggleWA() {
+  var p=document.getElementById('waPopup');
+  p.classList.toggle('on');
+}
+setTimeout(function(){document.getElementById('waPopup').classList.add('on');},10000);
+
+// Modal close on bg click
+document.getElementById('modalBg').addEventListener('click',function(e){if(e.target===this)closeModal();});
+
+// Clear errors on input
+document.querySelectorAll('input,select,textarea').forEach(function(el){
+  el.addEventListener('input',function(){this.classList.remove('err-field');});
 });
 
-// Clear error on input
-document.querySelectorAll('input, select').forEach(function(el) {
-  el.addEventListener('input', function() { this.classList.remove('error'); });
-  el.addEventListener('change', function() { this.classList.remove('error'); });
-});
-
-// Camera containers styling
-document.getElementById('idCameraContainer').style.cssText = 'display:none;margin-top:10px;text-align:center';
-document.getElementById('passportCameraContainer').style.cssText = 'display:none;margin-top:10px;text-align:center';
+}); // end DOMContentLoaded
 </script>
-
-<!-- Google Sheets Apps Script Reference
-===========================================
-The payload.sheetTab field tells your Apps Script which sheet tab to write to:
-- whoType = 'self'   → sheetTab = 'Individual'
-- whoType = 'sakha'  → sheetTab = sakhaGlobal (e.g. 'Bangkok Central', 'Chiang Mai', etc.)
-
-Apps Script should do:
-  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(data.sheetTab);
-  if (!sheet) sheet = SpreadsheetApp.getActiveSpreadsheet().insertSheet(data.sheetTab);
-  // then append row with all data
-
-Columns to write per participant row:
-Timestamp | WhoType | Sakha | ParentName | Phone | Address | Note | TotalFee |
-ParticipantName | Age | IDNo | ParticipantSakha | (photos as Drive URLs)
-===========================================
--->
 </body>
 </html>
