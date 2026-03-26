@@ -4,401 +4,240 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>८औं शिक्षण शिविर २०२६ — दर्ता</title>
-<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Nepali:ital@0;1&family=Noto+Sans+Devanagari:wght@400;500;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --pink: #D4537E;
-    --pink-light: #FBEAF0;
-    --pink-dark: #993556;
-    --green: #3B6D11;
-    --green-light: #EAF3DE;
-    --gold: #BA7517;
-    --gold-light: #FAEEDA;
-    --bg: #FDF6F9;
-    --white: #ffffff;
-    --text: #1a1a1a;
-    --text-muted: #6b6b6b;
-    --border: rgba(212, 83, 126, 0.2);
-    --radius: 12px;
-    --shadow: 0 2px 20px rgba(212, 83, 126, 0.08);
-  }
+:root {
+  --pink:#E05C8A; --pink-light:#FCE8F1; --pink-dark:#B03567;
+  --green:#3A8C4A; --green-light:#E6F5EA;
+  --gold:#D4900A; --gold-light:#FDF3DC;
+  --blue:#2B7BB9; --blue-light:#E5F2FC;
+  --orange:#E07020; --orange-light:#FDF0E3;
+  --bg:#FEF6FA; --white:#fff; --text:#1C1C2E; --text-muted:#7B7B9A;
+  --border:rgba(224,92,138,0.22); --radius:18px; --radius-sm:10px;
+  --shadow:0 4px 28px rgba(224,92,138,0.10); --shadow-lg:0 8px 40px rgba(176,53,103,0.18);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+/* LOADING */
+.loading-overlay{position:fixed;inset:0;background:rgba(254,246,250,0.94);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;opacity:0;pointer-events:none;transition:opacity .3s}
+.loading-overlay.active{opacity:1;pointer-events:all}
+.spinner{width:52px;height:52px;border:4px solid var(--pink-light);border-top-color:var(--pink);border-radius:50%;animation:spin .8s linear infinite;margin-bottom:16px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-text{font-family:'Noto Sans Devanagari',sans-serif;color:var(--pink-dark);font-size:15px;font-weight:600;text-align:center;padding:0 20px}
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-  }
+/* HEADER */
+.header{background:linear-gradient(150deg,#E05C8A 0%,#B03567 55%,#7A1E47 100%);color:white;padding:2.5rem 1.5rem 4.5rem;text-align:center;position:relative;overflow:hidden}
+.header::before{content:'';position:absolute;top:-60px;right:-60px;width:250px;height:250px;border-radius:50%;background:rgba(255,255,255,.07)}
+.header::after{content:'';position:absolute;bottom:-80px;left:-40px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.05)}
+.header-flags{font-size:22px;letter-spacing:6px;margin-bottom:10px}
+.header-org{font-size:11px;letter-spacing:.15em;opacity:.85;margin-bottom:10px;text-transform:uppercase}
+.header h1{font-family:'Noto Sans Devanagari',sans-serif;font-size:clamp(24px,6vw,38px);font-weight:700;line-height:1.2;margin-bottom:6px}
+.header-sub{font-size:15px;opacity:.88;margin-bottom:14px;font-weight:600}
+.header-multilang{font-size:11px;opacity:.72;margin-bottom:16px;line-height:2}
+.header-badges{display:flex;justify-content:center;flex-wrap:wrap;gap:8px}
+.header-badge{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);border-radius:20px;padding:5px 16px;font-size:12px;font-weight:600}
 
-  /* Header */
-  .header {
-    background: linear-gradient(135deg, var(--pink) 0%, var(--pink-dark) 100%);
-    color: white;
-    padding: 2rem 1.5rem 3rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .header::before {
-    content: '';
-    position: absolute;
-    top: -40px; right: -40px;
-    width: 200px; height: 200px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.06);
-  }
-  .header::after {
-    content: '';
-    position: absolute;
-    bottom: -60px; left: -30px;
-    width: 160px; height: 160px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.05);
-  }
-  .header-org {
-    font-size: 12px;
-    letter-spacing: 0.12em;
-    opacity: 0.85;
-    margin-bottom: 8px;
-    font-family: 'DM Sans', sans-serif;
-  }
-  .header h1 {
-    font-family: 'Noto Sans Devanagari', sans-serif;
-    font-size: clamp(22px, 5vw, 32px);
-    font-weight: 600;
-    line-height: 1.3;
-    margin-bottom: 6px;
-  }
-  .header-sub {
-    font-size: 14px;
-    opacity: 0.9;
-    margin-bottom: 1rem;
-  }
-  .header-badges {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 0.75rem;
-  }
-  .header-badge {
-    background: rgba(255,255,255,0.18);
-    border: 1px solid rgba(255,255,255,0.3);
-    border-radius: 20px;
-    padding: 4px 14px;
-    font-size: 12px;
-  }
+/* MUSIC BAR */
+.music-bar{background:linear-gradient(90deg,#7A1E47,#B03567);color:white;display:flex;align-items:center;gap:12px;padding:10px 16px;position:relative;overflow:hidden}
+.music-bar::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 4px,rgba(255,255,255,.04) 4px,rgba(255,255,255,.04) 5px)}
+.music-icon{font-size:18px;animation:mbounce 1s infinite alternate}
+@keyframes mbounce{from{transform:scale(1)}to{transform:scale(1.2)}}
+.music-info{flex:1}
+.music-info .music-name{font-size:13px;font-weight:700}
+.music-info .music-title{font-size:11px;opacity:.8}
+.music-btn{background:rgba(255,255,255,.2);border:none;border-radius:50%;width:34px;height:34px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;color:white;transition:background .2s;flex-shrink:0}
+.music-btn:hover{background:rgba(255,255,255,.35)}
+.music-wave{display:flex;align-items:center;gap:2px;flex-shrink:0}
+.music-wave span{display:block;width:3px;background:rgba(255,255,255,.7);border-radius:2px;animation:mwave .8s ease-in-out infinite alternate}
+.music-wave span:nth-child(1){height:6px;animation-delay:0s}
+.music-wave span:nth-child(2){height:12px;animation-delay:.1s}
+.music-wave span:nth-child(3){height:8px;animation-delay:.2s}
+.music-wave span:nth-child(4){height:16px;animation-delay:.15s}
+.music-wave span:nth-child(5){height:10px;animation-delay:.3s}
+.music-wave.paused span{animation:none;height:3px!important}
+@keyframes mwave{from{transform:scaleY(.5)}to{transform:scaleY(1)}}
 
-  /* Wave */
-  .wave {
-    background: var(--pink-dark);
-    height: 40px;
-    position: relative;
-    margin-bottom: -1px;
-  }
-  .wave svg {
-    position: absolute;
-    bottom: 0; left: 0;
-    width: 100%; height: 40px;
-  }
+/* WAVE */
+.wave-divider{background:#7A1E47;position:relative;height:50px}
+.wave-divider svg{position:absolute;bottom:0;left:0;width:100%;height:100%}
 
-  /* Form container */
-  .container {
-    max-width: 640px;
-    margin: 0 auto;
-    padding: 1.5rem 1rem 3rem;
-  }
+/* CONTAINER */
+.container{max-width:660px;margin:0 auto;padding:1.5rem 1rem 5rem}
 
-  /* Section */
-  .section {
-    background: var(--white);
-    border-radius: var(--radius);
-    border: 0.5px solid var(--border);
-    box-shadow: var(--shadow);
-    padding: 1.5rem;
-    margin-bottom: 1.25rem;
-    animation: fadeUp 0.4s ease both;
-  }
-  .section:nth-child(2) { animation-delay: 0.05s; }
-  .section:nth-child(3) { animation-delay: 0.1s; }
-  .section:nth-child(4) { animation-delay: 0.15s; }
-  .section:nth-child(5) { animation-delay: 0.2s; }
+/* NOTICE */
+.notice{background:var(--gold-light);border:1px solid rgba(212,144,10,.3);border-radius:var(--radius-sm);padding:12px 16px;display:flex;gap:10px;margin-bottom:1.25rem;font-size:12px;color:#6B4700;font-family:'Noto Sans Devanagari',sans-serif;line-height:1.7}
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+/* VIDEO CARD */
+.video-card{background:var(--text);border-radius:var(--radius);overflow:hidden;margin-bottom:1.25rem;box-shadow:var(--shadow-lg)}
+.video-card-header{padding:14px 18px;display:flex;align-items:center;gap:10px;color:white}
+.video-card-header.pink{background:linear-gradient(90deg,var(--pink-dark),var(--pink))}
+.video-card-header.orange{background:linear-gradient(90deg,#7A3500,var(--orange))}
+.video-card-header h3{font-size:15px;font-weight:700}
+.video-card-header .sub{font-size:11px;opacity:.8;margin-top:2px}
+.video-embed{position:relative;padding-bottom:56.25%;height:0;overflow:hidden}
+.video-embed iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+.video-note{padding:12px 18px;font-size:12px;color:#aaa;text-align:center;font-family:'Noto Sans Devanagari',sans-serif;line-height:1.8}
 
-  .section-title {
-    font-family: 'Noto Sans Devanagari', sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--pink-dark);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 1.25rem;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--pink-light);
-  }
-  .section-title .icon {
-    width: 28px; height: 28px;
-    background: var(--pink-light);
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 14px;
-  }
+/* SECTIONS */
+.section{background:var(--white);border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);padding:1.5rem;margin-bottom:1.25rem;animation:fadeUp .4s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.section-title{font-family:'Noto Sans Devanagari',sans-serif;font-size:15px;font-weight:700;color:var(--pink-dark);display:flex;align-items:center;gap:10px;margin-bottom:1.25rem;padding-bottom:12px;border-bottom:2px solid var(--pink-light)}
+.section-title .icon{width:34px;height:34px;background:var(--pink-light);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.section-title .t-sub{font-size:11px;color:var(--text-muted);font-weight:400;font-family:'Nunito',sans-serif;margin-top:2px}
 
-  /* Fields */
-  .field { margin-bottom: 1.1rem; }
-  .field:last-child { margin-bottom: 0; }
+/* FIELDS */
+.field{margin-bottom:1.1rem}
+.field:last-child{margin-bottom:0}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+label{display:block;font-family:'Noto Sans Devanagari',sans-serif;font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px}
+label .req{color:var(--pink);margin-left:2px}
+label .sub{font-size:10px;color:var(--text-muted);font-weight:400;margin-left:4px;font-family:'Nunito',sans-serif}
+.lang-row{display:flex;gap:4px;flex-wrap:wrap;margin-top:3px}
+.lang-badge{font-size:9px;padding:1px 6px;border-radius:5px;background:var(--blue-light);color:var(--blue);font-weight:700;font-family:'Nunito',sans-serif}
 
-  label {
-    display: block;
-    font-family: 'Noto Sans Devanagari', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--text);
-    margin-bottom: 6px;
-  }
-  label .req { color: var(--pink); margin-left: 2px; }
-  label .sub {
-    font-size: 11px;
-    color: var(--text-muted);
-    font-weight: 400;
-    margin-left: 4px;
-    font-family: 'DM Sans', sans-serif;
-  }
+input[type=text],input[type=tel],input[type=number],textarea,select{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;font-family:'Nunito',sans-serif;color:var(--text);background:var(--white);transition:border-color .2s,box-shadow .2s;outline:none;appearance:none}
+input:focus,textarea:focus,select:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgba(224,92,138,.12)}
+input.error,select.error{border-color:#e74c3c!important;box-shadow:0 0 0 3px rgba(231,76,60,.12)!important}
+textarea{resize:vertical;min-height:80px}
 
-  input[type="text"],
-  input[type="tel"],
-  input[type="number"],
-  textarea,
-  select {
-    width: 100%;
-    padding: 10px 14px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    font-size: 14px;
-    font-family: 'DM Sans', sans-serif;
-    color: var(--text);
-    background: var(--white);
-    transition: border-color 0.2s, box-shadow 0.2s;
-    outline: none;
-    appearance: none;
-  }
-  input:focus, textarea:focus, select:focus {
-    border-color: var(--pink);
-    box-shadow: 0 0 0 3px rgba(212, 83, 126, 0.1);
-  }
-  textarea { resize: vertical; min-height: 80px; }
+/* TYPE CARDS */
+.type-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.type-option{position:relative}
+.type-option input[type=radio]{position:absolute;opacity:0;width:0;height:0}
+.type-option label{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px 10px;border:2px solid var(--border);border-radius:var(--radius);cursor:pointer;text-align:center;transition:all .2s;background:var(--white);gap:6px;min-height:100px}
+.type-option label .emoji{font-size:28px;transition:transform .2s}
+.type-option label .ne{font-family:'Noto Sans Devanagari',sans-serif;font-size:13px;font-weight:700;color:var(--text);line-height:1.3}
+.type-option label .en{font-size:11px;color:var(--text-muted);font-weight:600}
+.type-option label .ml{font-size:10px;color:var(--text-muted);line-height:1.6}
+.type-option input:checked+label{border-color:var(--pink);background:var(--pink-light);box-shadow:0 0 0 3px rgba(224,92,138,.15)}
+.type-option input:checked+label .ne{color:var(--pink-dark)}
+.type-option input:checked+label .emoji{transform:scale(1.15)}
 
-  /* Participant type */
-  .type-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 8px;
-  }
-  .type-option {
-    position: relative;
-  }
-  .type-option input[type="radio"] {
-    position: absolute;
-    opacity: 0;
-    width: 0; height: 0;
-  }
-  .type-option label {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 12px 8px;
-    border: 1.5px solid var(--border);
-    border-radius: 10px;
-    cursor: pointer;
-    text-align: center;
-    transition: all 0.2s;
-    background: var(--white);
-    min-height: 80px;
-    gap: 4px;
-  }
-  .type-option label .ne {
-    font-family: 'Noto Sans Devanagari', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--text);
-    line-height: 1.3;
-  }
-  .type-option label .other-lang {
-    font-size: 10px;
-    color: var(--text-muted);
-    line-height: 1.4;
-  }
-  .type-option input:checked + label {
-    border-color: var(--pink);
-    background: var(--pink-light);
-    box-shadow: 0 0 0 3px rgba(212, 83, 126, 0.1);
-  }
-  .type-option input:checked + label .ne { color: var(--pink-dark); }
+/* AGE WARNING */
+.age-warn{background:#FFF3CD;border:1px solid #FFCA2C;border-radius:8px;padding:10px 14px;font-size:12px;color:#664D00;margin-top:8px;display:none;font-family:'Noto Sans Devanagari',sans-serif;line-height:1.7}
+.age-warn.show{display:block}
 
-  /* File upload */
-  .file-upload {
-    border: 1.5px dashed var(--border);
-    border-radius: 10px;
-    padding: 1.25rem;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.2s;
-    background: #fdfafe;
-    position: relative;
-  }
-  .file-upload:hover {
-    border-color: var(--pink);
-    background: var(--pink-light);
-  }
-  .file-upload input[type="file"] {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    cursor: pointer;
-    width: 100%;
-    height: 100%;
-  }
-  .file-upload .upload-icon { font-size: 24px; margin-bottom: 6px; }
-  .file-upload .upload-text {
-    font-family: 'Noto Sans Devanagari', sans-serif;
-    font-size: 13px;
-    color: var(--text-muted);
-    font-weight: 500;
-  }
-  .file-upload .upload-hint {
-    font-size: 11px;
-    color: var(--text-muted);
-    margin-top: 3px;
-    font-family: 'DM Sans', sans-serif;
-  }
-  .file-upload.has-file {
-    border-color: var(--green);
-    background: var(--green-light);
-  }
-  .file-upload.has-file .upload-text { color: var(--green); }
+/* FILE UPLOAD */
+.file-upload{border:2px dashed var(--border);border-radius:var(--radius);padding:1.2rem;text-align:center;cursor:pointer;transition:all .2s;background:#FDFAFE;position:relative}
+.file-upload:hover{border-color:var(--pink);background:var(--pink-light)}
+.file-upload.has-file{border-color:var(--green);background:var(--green-light);border-style:solid}
+.file-upload.required-error{border-color:#e74c3c!important;background:#FFF5F5!important}
+.file-upload input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.file-upload .u-icon{font-size:28px;margin-bottom:6px;display:block}
+.file-upload .u-text{font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px}
+.file-upload .u-ne{font-family:'Noto Sans Devanagari',sans-serif;font-size:11px;color:var(--text-muted);line-height:1.6}
+.file-upload .u-hint{font-size:10px;color:var(--text-muted);margin-top:4px}
 
-  /* Notice box */
-  .notice {
-    background: var(--gold-light);
-    border: 1px solid rgba(186, 117, 23, 0.25);
-    border-radius: 10px;
-    padding: 12px 14px;
-    margin-bottom: 1.25rem;
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-  }
-  .notice .notice-icon { font-size: 16px; margin-top: 1px; }
-  .notice p {
-    font-family: 'Noto Sans Devanagari', sans-serif;
-    font-size: 12px;
-    color: var(--gold);
-    line-height: 1.6;
-  }
+.upload-options{display:flex;gap:8px;margin-top:8px;position:relative;z-index:2}
+.upload-opt-btn{flex:1;padding:8px 6px;border:1.5px solid var(--border);border-radius:8px;background:white;cursor:pointer;font-size:11px;font-weight:700;color:var(--pink-dark);transition:all .2s;display:flex;align-items:center;justify-content:center;gap:4px;font-family:'Nunito',sans-serif}
+.upload-opt-btn:hover{background:var(--pink-light);border-color:var(--pink)}
 
-  /* Submit */
-  .submit-btn {
-    width: 100%;
-    padding: 16px;
-    background: linear-gradient(135deg, var(--pink) 0%, var(--pink-dark) 100%);
-    color: white;
-    border: none;
-    border-radius: var(--radius);
-    font-size: 16px;
-    font-family: 'Noto Sans Devanagari', sans-serif;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
-    letter-spacing: 0.02em;
-    box-shadow: 0 4px 16px rgba(212, 83, 126, 0.3);
-  }
-  .submit-btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 6px 24px rgba(212, 83, 126, 0.4);
-  }
-  .submit-btn:active { transform: translateY(0); }
-  .submit-btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    transform: none;
-  }
+.photo-preview{width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid var(--pink);margin:8px auto;display:none}
 
-  /* Success */
-  .success-screen {
-    display: none;
-    text-align: center;
-    padding: 3rem 1.5rem;
-    background: var(--white);
-    border-radius: var(--radius);
-    border: 0.5px solid var(--border);
-    box-shadow: var(--shadow);
-  }
-  .success-screen .success-icon {
-    font-size: 56px;
-    margin-bottom: 1rem;
-  }
-  .success-screen h2 {
-    font-family: 'Noto Sans Devanagari', sans-serif;
-    font-size: 22px;
-    color: var(--green);
-    margin-bottom: 8px;
-  }
-  .success-screen p {
-    font-family: 'Noto Sans Devanagari', sans-serif;
-    font-size: 14px;
-    color: var(--text-muted);
-    line-height: 1.7;
-  }
+/* PARTICIPANT CARDS */
+.participant-card{background:var(--pink-light);border:1.5px solid var(--border);border-radius:12px;padding:12px 14px;display:flex;align-items:center;gap:10px;margin-bottom:8px;animation:fadeUp .3s ease both}
+.participant-thumb{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--pink);flex-shrink:0}
+.participant-card-info{flex:1}
+.participant-card-name{font-weight:700;font-size:14px;color:var(--pink-dark);font-family:'Noto Sans Devanagari',sans-serif}
+.participant-card-meta{font-size:11px;color:var(--text-muted);margin-top:2px}
+.participant-card-remove{background:none;border:none;cursor:pointer;color:var(--pink);font-size:18px;padding:4px;border-radius:50%;transition:background .2s;flex-shrink:0}
+.participant-card-remove:hover{background:rgba(224,92,138,.1)}
 
-  /* Loading overlay */
-  .loading-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(255,255,255,0.85);
-    z-index: 999;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-  }
-  .loading-overlay.active { display: flex; }
-  .spinner {
-    width: 44px; height: 44px;
-    border: 3px solid var(--pink-light);
-    border-top-color: var(--pink);
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-  }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  .loading-text {
-    font-family: 'Noto Sans Devanagari', sans-serif;
-    font-size: 14px;
-    color: var(--pink-dark);
-  }
+.add-participant-btn{width:100%;padding:13px;background:white;border:2px dashed var(--pink);border-radius:12px;color:var(--pink-dark);font-weight:700;font-size:13px;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px;font-family:'Noto Sans Devanagari',sans-serif}
+.add-participant-btn:hover{background:var(--pink-light)}
 
-  /* Footer */
-  .footer {
-    text-align: center;
-    padding: 1.5rem;
-    font-size: 12px;
-    color: var(--text-muted);
-    font-family: 'Noto Sans Devanagari', sans-serif;
-    line-height: 1.7;
-  }
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(28,28,46,.65);z-index:1000;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+.modal-overlay.active{opacity:1;pointer-events:all}
+.modal-sheet{background:var(--white);border-radius:24px 24px 0 0;padding:20px;width:100%;max-width:660px;max-height:92vh;overflow-y:auto;transform:translateY(50px);transition:transform .3s}
+.modal-overlay.active .modal-sheet{transform:translateY(0)}
+.modal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;padding-bottom:12px;border-bottom:2px solid var(--pink-light)}
+.modal-header h3{font-family:'Noto Sans Devanagari',sans-serif;font-size:16px;font-weight:700;color:var(--pink-dark)}
+.modal-close{background:var(--pink-light);border:none;border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:18px;color:var(--pink-dark);display:flex;align-items:center;justify-content:center}
 
-  @media (max-width: 400px) {
-    .type-grid { grid-template-columns: 1fr; }
-    .type-option label { flex-direction: row; min-height: auto; padding: 10px 12px; text-align: left; gap: 8px; }
-  }
+/* STEPS */
+.steps-bar{display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;overflow-x:auto;padding:4px}
+.step-item{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:50px}
+.step-circle{width:32px;height:32px;border-radius:50%;border:2px solid var(--border);background:white;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--text-muted);transition:all .3s}
+.step-item.active .step-circle{border-color:var(--pink);background:var(--pink);color:white}
+.step-item.done .step-circle{border-color:var(--green);background:var(--green);color:white}
+.step-label{font-size:9px;color:var(--text-muted);font-weight:600;text-align:center;max-width:52px;line-height:1.2}
+.step-item.active .step-label{color:var(--pink-dark)}
+.step-connector{width:22px;height:2px;background:var(--border);margin-bottom:16px;flex-shrink:0}
+.step-connector.done{background:var(--green)}
+
+/* REVIEW */
+.review-card{background:var(--white);border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);padding:1.25rem;margin-bottom:1rem}
+.review-card h3{font-family:'Noto Sans Devanagari',sans-serif;font-size:14px;font-weight:700;color:var(--pink-dark);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--pink-light);display:flex;gap:8px;align-items:center}
+.review-row{display:flex;gap:8px;margin-bottom:8px;font-size:13px}
+.review-row .lbl{font-family:'Noto Sans Devanagari',sans-serif;color:var(--text-muted);min-width:110px;font-size:12px}
+.review-row .val{font-weight:600;flex:1}
+
+/* QR / PAYMENT */
+.qr-section{background:var(--white);border-radius:var(--radius);border:2px solid var(--gold);box-shadow:var(--shadow);padding:1.5rem;margin-bottom:1.25rem;text-align:center}
+.qr-title{font-family:'Noto Sans Devanagari',sans-serif;font-size:16px;font-weight:700;color:var(--gold);margin-bottom:6px}
+.qr-sub{font-size:12px;color:var(--text-muted);margin-bottom:1rem}
+.qr-placeholder{width:180px;height:180px;margin:0 auto 1rem;background:linear-gradient(135deg,#f0f0f0,#e0e0e0);border-radius:12px;border:2px dashed #ccc;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:40px;gap:6px}
+.qr-amount{font-size:26px;font-weight:800;color:var(--gold);margin:8px 0}
+.qr-breakdown{font-size:12px;color:var(--text-muted);margin-bottom:12px}
+.qr-note{font-family:'Noto Sans Devanagari',sans-serif;font-size:12px;color:var(--text);line-height:1.8;background:var(--gold-light);border-radius:8px;padding:10px 14px;text-align:left}
+
+/* SLIP REQUIRED NOTICE */
+.slip-required{background:#FFF0F0;border:1.5px solid #FFAAAA;border-radius:10px;padding:10px 14px;font-size:12px;color:#8B0000;margin-bottom:10px;font-family:'Noto Sans Devanagari',sans-serif;line-height:1.7;display:none}
+.slip-required.show{display:block}
+
+/* BUTTONS */
+.btn-primary{width:100%;padding:15px;background:linear-gradient(135deg,var(--pink),var(--pink-dark));color:white;border:none;border-radius:var(--radius);font-size:16px;font-weight:800;cursor:pointer;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 20px rgba(224,92,138,.4);font-family:'Noto Sans Devanagari',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(224,92,138,.5)}
+.btn-primary:disabled{opacity:.6;transform:none;cursor:not-allowed}
+.btn-secondary{width:100%;padding:13px;background:white;color:var(--pink-dark);border:2px solid var(--pink);border-radius:var(--radius);font-size:14px;font-weight:700;cursor:pointer;transition:background .2s;font-family:'Noto Sans Devanagari',sans-serif;margin-top:10px}
+.btn-secondary:hover{background:var(--pink-light)}
+.btn-green{width:100%;padding:15px;background:linear-gradient(135deg,#25D366,#1EB859);color:white;border:none;border-radius:var(--radius);font-size:15px;font-weight:800;cursor:pointer;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 20px rgba(37,211,102,.35);font-family:'Nunito',sans-serif;display:flex;align-items:center;justify-content:center;gap:10px;margin-top:10px;text-decoration:none}
+.btn-green:hover{transform:translateY(-2px)}
+
+/* SUCCESS */
+.success-screen{display:none;text-align:center;padding:3rem 1.5rem;background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-lg)}
+.success-icon{font-size:72px;margin-bottom:16px;animation:pop .5s ease}
+@keyframes pop{0%{transform:scale(0)}80%{transform:scale(1.15)}100%{transform:scale(1)}}
+.success-screen h2{font-family:'Noto Sans Devanagari',sans-serif;font-size:24px;font-weight:700;color:var(--green);margin-bottom:12px}
+.success-screen p{font-family:'Noto Sans Devanagari',sans-serif;font-size:14px;color:var(--text-muted);line-height:1.8;margin-bottom:16px}
+
+/* WA FLOATING */
+.wa-fab{position:fixed;bottom:80px;right:18px;z-index:900}
+.wa-fab-btn{width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#25D366,#128C7E);border:none;cursor:pointer;box-shadow:0 4px 20px rgba(37,211,102,.45);display:flex;align-items:center;justify-content:center;font-size:28px;animation:pulse-wa 2s infinite;transition:transform .2s}
+.wa-fab-btn:hover{transform:scale(1.1)}
+@keyframes pulse-wa{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.45)}50%{box-shadow:0 4px 30px rgba(37,211,102,.7)}}
+.wa-tooltip{position:absolute;bottom:68px;right:0;background:var(--text);color:white;border-radius:10px;padding:8px 12px;font-size:12px;font-weight:600;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;transform:translateY(6px)}
+.wa-fab:hover .wa-tooltip{opacity:1;transform:translateY(0)}
+.wa-popup{position:fixed;bottom:148px;right:18px;z-index:950;background:white;border-radius:18px 18px 4px 18px;box-shadow:0 8px 40px rgba(0,0,0,.18);width:290px;padding:16px;display:none;animation:slideUp .3s ease}
+.wa-popup.active{display:block}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.wa-popup-header{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.wa-popup-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#25D366,#128C7E);display:flex;align-items:center;justify-content:center;font-size:22px}
+.wa-popup-name{font-weight:800;font-size:14px}
+.wa-popup-status{font-size:11px;color:var(--green);font-weight:600}
+.wa-popup-msg{background:#DCF8C6;border-radius:12px 12px 12px 4px;padding:10px 12px;font-size:12px;line-height:1.6;margin-bottom:10px;font-family:'Noto Sans Devanagari',sans-serif}
+.wa-popup-close{position:absolute;top:10px;right:12px;background:none;border:none;cursor:pointer;font-size:18px;color:var(--text-muted)}
+.wa-popup-btn{width:100%;padding:9px;background:#25D366;color:white;border:none;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif}
+.wa-popup-btn:hover{background:#1EB859}
+
+/* PRICING BANNER */
+.pricing-banner{background:linear-gradient(135deg,var(--gold-light),#FFF8E1);border:1.5px solid var(--gold);border-radius:var(--radius-sm);padding:12px 16px;margin-bottom:12px}
+.pricing-banner h4{font-size:13px;font-weight:700;color:var(--gold);margin-bottom:6px;font-family:'Noto Sans Devanagari',sans-serif}
+.pricing-row{display:flex;justify-content:space-between;font-size:12px;padding:3px 0;border-bottom:1px dashed rgba(212,144,10,.2);color:var(--text)}
+.pricing-row:last-child{border-bottom:none;font-weight:700;color:var(--gold)}
+
+/* FOOTER */
+.footer{background:var(--text);color:rgba(255,255,255,.6);text-align:center;padding:20px;font-size:12px;line-height:2;font-family:'Noto Sans Devanagari',sans-serif}
+
+/* CAMERA */
+#cameraContainer video{width:100%;max-width:300px;border-radius:12px}
+#cameraContainer{display:none;margin-top:10px;text-align:center}
+#cameraActions{display:flex;gap:8px;justify-content:center;margin-top:8px}
+
+@media(max-width:480px){.field-row{grid-template-columns:1fr}}
+@media(max-width:380px){.type-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -406,256 +245,979 @@
 <!-- Loading -->
 <div class="loading-overlay" id="loadingOverlay">
   <div class="spinner"></div>
-  <div class="loading-text">दर्ता हुँदैछ... कृपया प्रतीक्षा गर्नुहोस्</div>
+  <div class="loading-text">दर्ता हुँदैछ... कृपया प्रतीक्षा गर्नुहोस्<br>Submitting registration...</div>
 </div>
 
 <!-- Header -->
 <div class="header">
+  <div class="header-flags">🇳🇵 🙏 🇹🇭</div>
   <div class="header-org">THAI NEPALI ASSOCIATION · थाई नेपाली संघ</div>
   <h1>आठौं शिक्षण शिविर २०२६</h1>
   <div class="header-sub">8th Educational Camp (Sivir) 2026</div>
+  <div class="header-multilang">
+    ၈ ကြိမ်မြောက် ပညာရေးစခန်း ၂၀၂၆ &nbsp;|&nbsp; ค่ายการศึกษาครั้งที่ ๘ ปี ๒๕๖๙
+  </div>
   <div class="header-badges">
     <span class="header-badge">📅 ९–१५ अप्रिल २०२६</span>
     <span class="header-badge">📍 Banse Camp, Ratchaburi</span>
+    <span class="header-badge">👧 Ages 5–18</span>
   </div>
 </div>
-<div class="wave">
-  <svg viewBox="0 0 1440 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M0,40 C360,0 1080,0 1440,40 L1440,40 L0,40 Z" fill="#FDF6F9"/>
+
+<!-- Music Bar -->
+<div class="music-bar">
+  <span class="music-icon">🎵</span>
+  <div class="music-info">
+    <div class="music-name">शिविर गीत · Sivir Song 2026</div>
+    <div class="music-title">Thai Nepali Association</div>
+  </div>
+  <div class="music-wave" id="musicWave"><span></span><span></span><span></span><span></span><span></span></div>
+  <button class="music-btn" id="musicToggle" onclick="toggleMusic()">⏸</button>
+</div>
+
+<div class="wave-divider">
+  <svg viewBox="0 0 1440 50" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,50 C360,0 1080,0 1440,50 L1440,50 L0,50 Z" fill="#FEF6FA"/>
   </svg>
 </div>
 
+<!-- Main container -->
 <div class="container">
 
-  <div class="notice">
-    <span class="notice-icon">ℹ️</span>
-    <p>सबै (*) चिह्न भएका fields अनिवार्य छन्। File upload गर्दा JPG, PNG वा PDF format मा गर्नुहोस्।</p>
+  <!-- Steps -->
+  <div class="steps-bar">
+    <div class="step-item active" id="s1"><div class="step-circle">1</div><div class="step-label">प्रकार</div></div>
+    <div class="step-connector" id="c1"></div>
+    <div class="step-item" id="s2"><div class="step-circle">2</div><div class="step-label">सहभागी</div></div>
+    <div class="step-connector" id="c2"></div>
+    <div class="step-item" id="s3"><div class="step-circle">3</div><div class="step-label">सम्पर्क</div></div>
+    <div class="step-connector" id="c3"></div>
+    <div class="step-item" id="s4"><div class="step-circle">4</div><div class="step-label">समीक्षा</div></div>
+    <div class="step-connector" id="c4"></div>
+    <div class="step-item" id="s5"><div class="step-circle">5</div><div class="step-label">भुक्तानी</div></div>
+    <div class="step-connector" id="c5"></div>
+    <div class="step-item" id="s6"><div class="step-circle">✓</div><div class="step-label">सम्पन्न</div></div>
   </div>
 
-  <form id="registrationForm">
+  <!-- Notice -->
+  <div class="notice">
+    <span>ℹ️</span>
+    <div>(*) अनिवार्य · Required · (*) ဖြည့်ရမည် · ต้องกรอก<br>
+    🔞 उमेर १२ वा माथि — ID/Passport अनिवार्य · Age 12+ must provide ID/Passport</div>
+  </div>
 
-    <!-- Personal Info -->
-    <div class="section">
-      <div class="section-title">
-        <span class="icon">👤</span>
-        व्यक्तिगत जानकारी
+  <!-- ======= SCREEN 0: HOW TO REGISTER VIDEO ======= -->
+  <div id="screenVideo">
+    <div class="video-card">
+      <div class="video-card-header pink">
+        <span style="font-size:24px">🎬</span>
+        <div>
+          <h3>दर्ता कसरी गर्ने? · How to Register?</h3>
+          <div class="sub">မည်သို့မှတ်ပုံတင်မည်? · วิธีการสมัคร</div>
+        </div>
       </div>
-
-      <div class="field">
-        <label>पूरा नाम <span class="req">*</span> <span class="sub">Full Name</span></label>
-        <input type="text" name="fullName" placeholder="आफ्नो पूरा नाम लेख्नुहोस्" required>
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/0TPa2KvAdPc?rel=0" title="How to Register" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
-
-      <div class="field">
-        <label>उमेर <span class="req">*</span> <span class="sub">Age</span></label>
-        <input type="number" name="age" placeholder="उमेर" min="1" max="99" required>
-      </div>
-
-      <div class="field">
-        <label>सम्पर्क नम्बर <span class="req">*</span> <span class="sub">Phone Number</span></label>
-        <input type="tel" name="phone" placeholder="उदाहरण: 0812345678" required>
-      </div>
-
-      <div class="field">
-        <label>छोटो ठेगाना <span class="req">*</span> <span class="sub">Short Address</span></label>
-        <input type="text" name="address" placeholder="उदाहरण: Sukhumvit, Bangkok" required>
+      <div class="video-note">
+        📌 दर्ता गर्नु अघि यो भिडियो हेर्नुहोस् 🙏 · Watch this before registering<br>
+        မှတ်ပုံတင်မတိုင်မီ ဤဗီဒီယိုကြည့်ပါ · กรุณาดูวิดีโอก่อนสมัคร
       </div>
     </div>
+    <button class="btn-primary" onclick="goScreen('screenType')">
+      ✅ भिडियो हेरिसकें — दर्ता सुरु गरौं! · I watched — Start Registration!
+    </button>
+  </div>
 
-    <!-- Participant Type -->
+  <!-- ======= SCREEN 1: WHO TYPE ======= -->
+  <div id="screenType" style="display:none">
     <div class="section">
       <div class="section-title">
         <span class="icon">👥</span>
-        सहभागी प्रकार
-      </div>
-
-      <div class="field">
-        <label>सहभागी को प्रकार छान्नुहोस् <span class="req">*</span></label>
-        <div class="type-grid">
-
-          <div class="type-option">
-            <input type="radio" name="participantType" id="type-child" value="बालबालिका" required>
-            <label for="type-child">
-              <span class="ne">बालबालिका</span>
-              <span class="other-lang">ကလေး<br>เด็ก</span>
-            </label>
-          </div>
-
-          <div class="type-option">
-            <input type="radio" name="participantType" id="type-parent" value="अभिभावक">
-            <label for="type-parent">
-              <span class="ne">अभिभावक</span>
-              <span class="other-lang">မိဘ<br>ผู้ปกครอง</span>
-            </label>
-          </div>
-
-          <div class="type-option">
-            <input type="radio" name="participantType" id="type-both" value="दुवै">
-            <label for="type-both">
-              <span class="ne">दुवै</span>
-              <span class="other-lang">နှစ်ဦးစလုံး<br>ทั้งคู่</span>
-            </label>
-          </div>
-
+        <div>
+          <div>सहभागी प्रकार छान्नुहोस्</div>
+          <div class="t-sub">Who is registering? · မည်သူမှတ်ပုံတင်မည်? · ใครที่จะสมัคร?</div>
         </div>
       </div>
-    </div>
+      <div class="type-grid">
+        <div class="type-option">
+          <input type="radio" name="whoType" id="who-self" value="self">
+          <label for="who-self">
+            <span class="emoji">🧒</span>
+            <span class="ne">म आफैं</span>
+            <span class="en">Myself</span>
+            <span class="ml">ကိုယ်တိုင် · ตัวเอง</span>
+          </label>
+        </div>
+        <div class="type-option">
+          <input type="radio" name="whoType" id="who-sakha" value="sakha">
+          <label for="who-sakha">
+            <span class="emoji">🏫</span>
+            <span class="ne">शाखा/उपशाखा</span>
+            <span class="en">Sakha/Upasakha</span>
+            <span class="ml">သာခ/ဥပသာခ · สาขา/อุปสาขา</span>
+          </label>
+        </div>
+      </div>
 
-    <!-- File Uploads -->
+      <!-- Sakha selector (hidden until sakha chosen) -->
+      <div id="sakhaSelectBox" style="display:none;margin-top:16px">
+        <div class="field">
+          <label>शाखा छान्नुहोस् <span class="req">*</span>
+            <div class="lang-row"><span class="lang-badge">Select Sakha</span><span class="lang-badge">သာခရွေးပါ</span><span class="lang-badge">เลือกสาขา</span></div>
+          </label>
+          <select id="sakhaName">
+            <option value="">— छान्नुहोस् / Select —</option>
+            <option value="Bangkok Central">Bangkok Central</option>
+            <option value="Sukhumvit">Sukhumvit</option>
+            <option value="Silom">Silom</option>
+            <option value="Lat Krabang">Lat Krabang</option>
+            <option value="Nonthaburi">Nonthaburi</option>
+            <option value="Chiang Mai">Chiang Mai</option>
+            <option value="Phuket">Phuket</option>
+            <option value="Pattaya">Pattaya</option>
+            <option value="Hat Yai">Hat Yai</option>
+            <option value="Other">Other / अन्य</option>
+          </select>
+        </div>
+      </div>
+
+      <button class="btn-primary" style="margin-top:20px" onclick="proceedFromType()">
+        ➡️ अगाडि बढ्नुहोस् · Continue
+      </button>
+    </div>
+  </div>
+
+  <!-- ======= SCREEN 2: ADD PARTICIPANTS ======= -->
+  <div id="screenParticipants" style="display:none">
     <div class="section">
       <div class="section-title">
-        <span class="icon">📎</span>
-        कागजात अपलोड
-      </div>
-
-      <div class="field">
-        <label>Document / ID Photo <span class="req">*</span></label>
-        <div class="file-upload" id="docUploadArea">
-          <input type="file" name="docFile" id="docFile" accept=".jpg,.jpeg,.png,.pdf" required onchange="handleFileChange(this, 'docUploadArea', 'docUploadText')">
-          <div class="upload-icon">🪪</div>
-          <div class="upload-text" id="docUploadText">यहाँ click गरेर file छान्नुहोस्</div>
-          <div class="upload-hint">JPG, PNG, PDF · Max 10MB</div>
+        <span class="icon">📋</span>
+        <div>
+          <div>सहभागीहरू थप्नुहोस्</div>
+          <div class="t-sub">Add Participants · ပါ၀င်သူများထည့်ပါ · เพิ่มผู้เข้าร่วม</div>
         </div>
       </div>
 
-      <div class="field">
-        <label>Photo ID <span class="req">*</span> <span class="sub">Passport / National ID</span></label>
-        <div class="file-upload" id="photoIdArea">
-          <input type="file" name="photoId" id="photoId" accept=".jpg,.jpeg,.png,.pdf" required onchange="handleFileChange(this, 'photoIdArea', 'photoIdText')">
-          <div class="upload-icon">📷</div>
-          <div class="upload-text" id="photoIdText">यहाँ click गरेर file छान्नुहोस्</div>
-          <div class="upload-hint">JPG, PNG, PDF · Max 5MB</div>
-        </div>
+      <div class="pricing-banner">
+        <h4>💰 दर्ता शुल्क · Registration Fee</h4>
+        <div class="pricing-row"><span>1 सहभागी / 1 Participant</span><span>฿500</span></div>
+        <div class="pricing-row"><span>2 सहभागी / 2 Participants</span><span>฿1,500 (2×฿750)</span></div>
+        <div class="pricing-row"><span>3+ सहभागी / 3+ Participants</span><span>฿1,500 + (n-2)×฿750</span></div>
+        <div class="pricing-row" id="currentFeeRow"><span>हालको जम्मा · Current Total</span><span id="currentFee">฿0</span></div>
       </div>
 
-      <div class="field">
-        <label>Payment Slip <span class="req">*</span></label>
-        <div class="file-upload" id="paymentArea">
-          <input type="file" name="paymentSlip" id="paymentSlip" accept=".jpg,.jpeg,.png,.pdf" required onchange="handleFileChange(this, 'paymentArea', 'paymentText')">
-          <div class="upload-icon">🧾</div>
-          <div class="upload-text" id="paymentText">यहाँ click गरेर file छान्नुहोस्</div>
-          <div class="upload-hint">JPG, PNG, PDF · Max 5MB</div>
-        </div>
-      </div>
+      <div id="participantsList"></div>
+
+      <button type="button" class="add-participant-btn" onclick="openParticipantModal(-1)">
+        ➕ सहभागी थप्नुहोस् · Add Participant · ထပ်ထည့်မည် · เพิ่มผู้เข้าร่วม
+      </button>
     </div>
 
-    <!-- Message -->
-    <div class="section">
-      <div class="section-title">
-        <span class="icon">💬</span>
-        थप जानकारी
-      </div>
-      <div class="field">
-        <label>कुनै सन्देश वा थप जानकारी <span class="sub">Optional message</span></label>
-        <textarea name="message" placeholder="यहाँ लेख्नुहोस्..."></textarea>
-      </div>
-    </div>
-
-    <button type="submit" class="submit-btn" id="submitBtn">
-      दर्ता गर्नुहोस् — Register Now
+    <button class="btn-primary" onclick="proceedFromParticipants()">
+      ➡️ अगाडि · Continue
     </button>
+    <button class="btn-secondary" onclick="goScreen('screenType')">← पछाडि · Back</button>
+  </div>
 
-  </form>
+  <!-- ======= SCREEN 3: CONTACT INFO ======= -->
+  <div id="screenContact" style="display:none">
+    <div class="section">
+      <div class="section-title">
+        <span class="icon">📞</span>
+        <div>
+          <div>सम्पर्क जानकारी</div>
+          <div class="t-sub">Contact Info · ဆက်သွယ်ရေး · ข้อมูลติดต่อ</div>
+        </div>
+      </div>
 
-  <!-- Success -->
+      <div class="field-row">
+        <div class="field">
+          <label>अभिभावकको नाम <span class="req">*</span>
+            <div class="lang-row"><span class="lang-badge">Parent's Name</span><span class="lang-badge">မိဘနာမည်</span><span class="lang-badge">ชื่อผู้ปกครอง</span></div>
+          </label>
+          <input type="text" id="parentName" placeholder="पूरा नाम">
+        </div>
+        <div class="field">
+          <label>फोन <span class="req">*</span>
+            <div class="lang-row"><span class="lang-badge">Phone</span><span class="lang-badge">ဖုန်းနံပါတ်</span><span class="lang-badge">เบอร์โทร</span></div>
+          </label>
+          <input type="tel" id="phone" placeholder="0812345678">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>ठेगाना <span class="req">*</span>
+          <div class="lang-row"><span class="lang-badge">Address</span><span class="lang-badge">လိပ်စာ</span><span class="lang-badge">ที่อยู่</span></div>
+        </label>
+        <input type="text" id="address" placeholder="e.g. Sukhumvit, Bangkok">
+      </div>
+
+      <div class="field">
+        <label>विशेष नोट <span class="sub">(स्वास्थ्य / Health / ကျန်းမာရေး / สุขภาพ)</span></label>
+        <textarea id="note" placeholder="Health condition, medicine, allergy etc... / स्वास्थ्य, औषधि, एलर्जी आदि"></textarea>
+      </div>
+    </div>
+
+    <button class="btn-primary" onclick="proceedFromContact()">
+      👁️ समीक्षा गर्नुहोस् · Review
+    </button>
+    <button class="btn-secondary" onclick="goScreen('screenParticipants')">← पछाडि · Back</button>
+  </div>
+
+  <!-- ======= SCREEN 4: REVIEW ======= -->
+  <div id="screenReview" style="display:none">
+    <div id="reviewContent"></div>
+    <button class="btn-primary" onclick="goScreen('screenPayment');buildPayment()">
+      💳 भुक्तानी गर्नुहोस् · Proceed to Payment
+    </button>
+    <button class="btn-secondary" onclick="goScreen('screenContact')">← सम्पादन · Edit</button>
+  </div>
+
+  <!-- ======= SCREEN 5: PAYMENT ======= -->
+  <div id="screenPayment" style="display:none">
+    <div class="qr-section">
+      <div class="qr-title">💳 भुक्तानी QR Code · Payment</div>
+      <div class="qr-sub">PromptPay / Bank Transfer · PromptPay · PromptPay/โอนเงิน</div>
+      <div class="qr-placeholder">📱<div style="font-size:11px;color:#888;margin-top:4px;text-align:center">QR Code<br>here</div></div>
+      <div class="qr-amount" id="payAmount">฿ —</div>
+      <div class="qr-breakdown" id="payBreakdown"></div>
+      <div class="qr-note">
+        🏦 Account Name: Thai Nepali Association<br>
+        📌 PromptPay: 0XX-XXX-XXXX<br>
+        🏛 Bank: KBANK / SCB<br><br>
+        भुक्तानी गरेपछि slip अपलोड गर्नुहोस् 🙏<br>
+        After payment upload your slip below · ငွေပေးပြီးနောက် ပြေစာတင်ပါ · หลังโอนอัปโหลดสลิปด้านล่าง
+      </div>
+    </div>
+
+    <!-- Payment Slip Upload — REQUIRED -->
+    <div class="section">
+      <div class="section-title">
+        <span class="icon">🧾</span>
+        <div>
+          <div>भुक्तानी स्लिप अपलोड <span style="color:var(--pink)">*</span></div>
+          <div class="t-sub">Upload Payment Slip (Required) · ငွေပေးချေမှုပြေစာ (လိုအပ်သည်) · อัปโหลดสลิป (จำเป็น)</div>
+        </div>
+      </div>
+      <div class="slip-required" id="slipRequired">
+        ⚠️ भुक्तानी स्लिप अपलोड गर्नु अनिवार्य छ! Payment slip is required before submitting!<br>
+        ငွေပေးချေမှုပြေစာ တင်ရန်လိုသည်! · ต้องอัปโหลดสลิปก่อนส่ง!
+      </div>
+      <div class="file-upload" id="paymentArea">
+        <input type="file" id="paymentSlip" accept=".jpg,.jpeg,.png,.pdf" onchange="handleFileChange(this,'paymentArea','paymentText')">
+        <span class="u-icon">📲</span>
+        <div class="u-text" id="paymentText">Click to upload Payment Slip</div>
+        <div class="u-ne">भुक्तानी प्रमाण अपलोड गर्नुहोस् · ငွေပေးချေမှုဓာတ်ပုံ · อัปโหลดสลิปโอนเงิน</div>
+        <div class="u-hint">JPG, PNG, PDF · Max 10MB</div>
+      </div>
+    </div>
+
+    <button class="btn-primary" onclick="submitForm()" id="submitBtn">
+      🚀 दर्ता पेश गर्नुहोस् · Submit Registration · မှတ်ပုံတင်မည် · ส่งใบสมัคร
+    </button>
+    <button class="btn-secondary" onclick="goScreen('screenReview')">← पछाडि · Back</button>
+  </div>
+
+  <!-- ======= SUCCESS ======= -->
   <div class="success-screen" id="successScreen">
     <div class="success-icon">🎉</div>
-    <h2>दर्ता सफल भयो!</h2>
-    <p>तपाईंको दर्ता प्राप्त भएको छ।<br>हामी चाँडै सम्पर्क गर्नेछौं।<br><br>धन्यवाद — थाई नेपाली संघ 🙏</p>
+    <h2>दर्ता सफल भयो! · Registration Successful!</h2>
+    <p>
+      तपाईंको दर्ता प्राप्त भएको छ।<br>
+      हामी चाँडै WhatsApp मा सम्पर्क गर्नेछौं।<br>
+      ——<br>
+      မှတ်ပုံတင်မှုအောင်မြင်သည် · ลงทะเบียนสำเร็จแล้ว ขอบคุณ 🙏
+    </p>
+
+    <!-- What to bring video -->
+    <div class="video-card" style="margin-top:1.5rem;text-align:left">
+      <div class="video-card-header orange">
+        <span style="font-size:24px">🎒</span>
+        <div>
+          <h3>शिविरमा के ल्याउने? · What to Bring?</h3>
+          <div class="sub">Rules & Packing Guide · ဘာတွေယူလာရမလဲ? · สิ่งที่ต้องนำมา</div>
+        </div>
+      </div>
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/6XmtFY-8Q7M?rel=0" title="What to Bring" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="video-note">
+        🎒 शिविरको नियम र आवश्यक सामान · Camp rules, packing list & what to bring<br>
+         စခန်းစည်းကမ်းများနှင့် ယူလာရမည့်ပစ္စည်းများ · กฎระเบียบและของที่ต้องนำมา
+      </div>
+    </div>
+
+    <a href="https://wa.me/66943438424?text=Sivir+2026+Registration+Done+✓" target="_blank" style="text-decoration:none;display:block">
+      <button class="btn-green" style="width:100%">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp Group Join गर्नुहोस् · Join Our WhatsApp Group
+      </button>
+    </a>
   </div>
 
 </div>
 
+<!-- Footer -->
 <div class="footer">
-  थाई नेपाली संघ · शिक्षण शिविर विभाग<br>
-  Thai Nepali Association · Sivir Department · 2026
+  थाई नेपाली संघ · Thai Nepali Association<br>
+  Sivir (शिविर) Department · 8th Educational Camp 2026<br>
+  📍 Banse Camp, Ratchaburi, Thailand
+</div>
+
+<!-- ======= PARTICIPANT MODAL ======= -->
+<div class="modal-overlay" id="participantModal">
+  <div class="modal-sheet">
+    <div class="modal-header">
+      <h3 id="modalTitle">👤 सहभागी थप्नुहोस् · Add Participant</h3>
+      <button class="modal-close" onclick="closeParticipantModal()">✕</button>
+    </div>
+
+    <div class="field">
+      <label>पूरा नाम <span class="req">*</span>
+        <div class="lang-row"><span class="lang-badge">Full Name</span><span class="lang-badge">နာမည်အပြည့်</span><span class="lang-badge">ชื่อ-นามสกุล</span></div>
+      </label>
+      <input type="text" id="pName" placeholder="पूरा नाम">
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label>उमेर <span class="req">*</span> <span class="sub">Age · အသက် · อายุ</span></label>
+        <input type="number" id="pAge" placeholder="Age" min="1" max="99" oninput="checkAgeWarning()">
+        <div class="age-warn" id="ageWarn">
+          🔞 उमेर १२ वा माथि भएकाले ID/Passport अनिवार्य छ!<br>
+          Age 12+ must provide ID/Passport document<br>
+          အသက် ၁၂ နှင့်အထက် ID/Passport လိုအပ်သည် · อายุ 12 ขึ้นไปต้องมี ID/Passport
+        </div>
+      </div>
+      <div class="field">
+        <label>Sakha/Upasakha
+          <div class="lang-row"><span class="lang-badge">Branch</span><span class="lang-badge">သာခ</span></div>
+        </label>
+        <select id="pSakha">
+          <option value="">— Select —</option>
+          <option value="Bangkok Central">Bangkok Central</option>
+          <option value="Sukhumvit">Sukhumvit</option>
+          <option value="Silom">Silom</option>
+          <option value="Lat Krabang">Lat Krabang</option>
+          <option value="Nonthaburi">Nonthaburi</option>
+          <option value="Chiang Mai">Chiang Mai</option>
+          <option value="Phuket">Phuket</option>
+          <option value="Pattaya">Pattaya</option>
+          <option value="Hat Yai">Hat Yai</option>
+          <option value="Other">Other / अन्य</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- ID REQUIRED for 12+ -->
+    <div id="idSection">
+      <div class="field">
+        <label>ID / Passport Number <span id="idReq" class="req" style="display:none">*</span>
+          <div class="lang-row"><span class="lang-badge">ID/Passport No</span><span class="lang-badge">ID/ပတ်စပိုနံပါတ်</span><span class="lang-badge">หมายเลขพาสปอร์ต</span></div>
+        </label>
+        <input type="text" id="pIdNo" placeholder="Passport / ID Number">
+      </div>
+
+      <div class="field">
+        <label>ID / Passport Photo <span id="idPhotoReq" class="req" style="display:none">*</span>
+          <div class="lang-row"><span class="lang-badge">ID Photo</span><span class="lang-badge">ID ဓာတ်ပုံ</span><span class="lang-badge">ภาพถ่าย ID</span></div>
+        </label>
+        <div class="file-upload" id="pIdPhotoArea">
+          <input type="file" id="pIdPhotoFile" accept=".jpg,.jpeg,.png,.pdf" onchange="handleIdPhotoChange(this)">
+          <span class="u-icon">🪪</span>
+          <div class="u-text" id="pIdPhotoText">Click to upload / Take photo</div>
+          <div class="u-ne">ID/Passport ফোটো अपलोड गर्नुहोस् · ဓာတ်ပုံတင်ပါ · อัปโหลดภาพ ID</div>
+          <div class="u-hint">JPG, PNG, PDF · Max 10MB</div>
+        </div>
+        <div class="upload-options" style="margin-top:8px">
+          <label class="upload-opt-btn" for="pIdPhotoFile">📁 Upload</label>
+          <button type="button" class="upload-opt-btn" onclick="openIdCamera()">📷 Take Photo</button>
+        </div>
+        <div id="idCameraContainer">
+          <video id="idCameraVideo" autoplay playsinline></video>
+          <canvas id="idCameraCanvas" style="display:none"></canvas>
+          <div id="cameraActions">
+            <button type="button" onclick="captureIdPhoto()" class="upload-opt-btn" style="padding:10px 20px">📸 Capture</button>
+            <button type="button" onclick="closeIdCamera()" class="upload-opt-btn" style="padding:10px 20px">✕ Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASSPORT PHOTO -->
+    <div class="field">
+      <label>Passport Size Photo <span class="req">*</span>
+        <div class="lang-row"><span class="lang-badge">Face Photo</span><span class="lang-badge">မျက်နှာဓာတ်ပုံ</span><span class="lang-badge">รูปหน้าตรง</span></div>
+      </label>
+      <div style="text-align:center;margin-bottom:8px">
+        <img id="pPhotoPreview" class="photo-preview" alt="preview">
+      </div>
+      <div class="upload-options">
+        <label class="upload-opt-btn" for="pPhotoUpload">📁 Upload Photo</label>
+        <input type="file" id="pPhotoUpload" accept="image/*" style="display:none" onchange="handlePassportPhotoUpload(this)">
+        <button type="button" class="upload-opt-btn" onclick="openPassportCamera()">📷 Take Photo</button>
+      </div>
+      <div id="passportCameraContainer">
+        <video id="passportCameraVideo" autoplay playsinline></video>
+        <canvas id="passportCameraCanvas" style="display:none"></canvas>
+        <div style="display:flex;gap:8px;justify-content:center;margin-top:8px">
+          <button type="button" onclick="capturePassportPhoto()" class="upload-opt-btn" style="padding:10px 20px">📸 Capture</button>
+          <button type="button" onclick="closePassportCamera()" class="upload-opt-btn" style="padding:10px 20px">✕ Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <button type="button" class="btn-primary" onclick="saveParticipant()" style="margin-top:12px">
+      ✅ थप्नुहोस् · Save Participant
+    </button>
+  </div>
+</div>
+
+<!-- WA Floating -->
+<div class="wa-fab">
+  <div class="wa-tooltip">Help: +66 94 343 8424</div>
+  <button class="wa-fab-btn" onclick="toggleWaPopup()">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </button>
+</div>
+
+<div class="wa-popup" id="waPopup">
+  <button class="wa-popup-close" onclick="toggleWaPopup()">✕</button>
+  <div class="wa-popup-header">
+    <div class="wa-popup-avatar">🙏</div>
+    <div>
+      <div class="wa-popup-name">Sivir Help · सहायता</div>
+      <div class="wa-popup-status">● Online · उपलब्ध</div>
+    </div>
+  </div>
+  <div class="wa-popup-msg">
+    नमस्ते! 🙏 दर्तामा कुनै सहायता चाहिन्छ?<br>
+    Hello! Need help with registration?<br>
+    မင်္ဂလာပါ! ကူညီပါမည်<br>
+    สวัสดี! ต้องการความช่วยเหลือไหม?
+  </div>
+  <a href="https://wa.me/66943438424?text=Sivir+2026+Help" target="_blank" style="text-decoration:none;display:block">
+    <button class="wa-popup-btn">💬 Chat: +66 94 343 8424</button>
+  </a>
+</div>
+
+<!-- Hidden YT player -->
+<div style="position:fixed;bottom:-300px;right:-300px;width:1px;height:1px;overflow:hidden">
+  <div id="ytPlayerDiv"></div>
 </div>
 
 <script>
-  // File change handler
-  function handleFileChange(input, areaId, textId) {
-    const area = document.getElementById(areaId);
-    const textEl = document.getElementById(textId);
-    if (input.files && input.files[0]) {
-      const fileName = input.files[0].name;
-      const shortName = fileName.length > 28 ? fileName.substring(0, 25) + '...' : fileName;
-      textEl.textContent = '✓ ' + shortName;
-      area.classList.add('has-file');
-    }
-  }
+// =============================================
+// CONFIG
+// =============================================
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbytVEhFZGja4xNwDJEgX4vOwnSBDcv7vix5ffkjaPA_8OY6zr1FdQdthPrwnnYSOcUj/exec';
 
-  // Convert file to Base64
-  function fileToBase64(file) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result.split(',')[1]);
-      reader.onerror = reject;
-      reader.readAsDataURL(file);
-    });
-  }
+// Pricing: 1 person = 500, 2 = 1500, each extra = +750
+function calcFee(n) {
+  if (n <= 0) return 0;
+  if (n === 1) return 500;
+  return 1500 + (n - 2) * 750;
+}
 
-  // Submit form
-  document.getElementById('registrationForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-
-    const btn = document.getElementById('submitBtn');
-    const overlay = document.getElementById('loadingOverlay');
-    btn.disabled = true;
-    overlay.classList.add('active');
-
-    try {
-      const formData = new FormData(this);
-
-      // Convert files to base64
-      const docFile = document.getElementById('docFile').files[0];
-      const photoId = document.getElementById('photoId').files[0];
-      const paymentSlip = document.getElementById('paymentSlip').files[0];
-
-      const [docBase64, photoBase64, paymentBase64] = await Promise.all([
-        fileToBase64(docFile),
-        fileToBase64(photoId),
-        fileToBase64(paymentSlip)
-      ]);
-
-      const payload = {
-        fullName: formData.get('fullName'),
-        age: formData.get('age'),
-        phone: formData.get('phone'),
-        address: formData.get('address'),
-        participantType: formData.get('participantType'),
-        message: formData.get('message') || '',
-        docFileName: docFile.name,
-        docFileData: docBase64,
-        photoIdFileName: photoId.name,
-        photoIdData: photoBase64,
-        paymentFileName: paymentSlip.name,
-        paymentData: paymentBase64,
-        submittedAt: new Date().toLocaleString('th-TH')
-      };
-
-      // POST to Google Apps Script — no-cors to avoid CORS block from GitHub Pages
-      const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzCnmiqkDoBFpgXHLIAN50DYpnkGYwJ_iscC4UM7aRogXp2P1FXscSfaDzSkMiEB5pm/exec';
-
-      await fetch(SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'text/plain' },
-        body: JSON.stringify(payload)
-      });
-
-      // no-cors returns opaque response — if no exception thrown, treat as success
-      document.getElementById('registrationForm').style.display = 'none';
-      document.getElementById('successScreen').style.display = 'block';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    } catch (err) {
-      alert('❌ दर्ता हुन सकेन। कृपया फेरि प्रयास गर्नुहोस्।\nError: ' + err.message);
-      btn.disabled = false;
-    } finally {
-      overlay.classList.remove('active');
-    }
+// =============================================
+// YOUTUBE MUSIC
+// =============================================
+var ytPlayer, musicPlaying = false;
+function onYouTubeIframeAPIReady() {
+  ytPlayer = new YT.Player('ytPlayerDiv', {
+    height: '1', width: '1',
+    videoId: '0TPa2KvAdPc',
+    playerVars: { autoplay: 1, loop: 1, playlist: '0TPa2KvAdPc', controls: 0 },
+    events: { onReady: function(e) {
+      e.target.setVolume(40); e.target.playVideo();
+      musicPlaying = true;
+      document.getElementById('musicToggle').textContent = '⏸';
+    }}
   });
+}
+(function() {
+  var t = document.createElement('script');
+  t.src = 'https://www.youtube.com/iframe_api';
+  document.head.appendChild(t);
+})();
+function toggleMusic() {
+  if (!ytPlayer) return;
+  if (musicPlaying) { ytPlayer.pauseVideo(); musicPlaying = false; document.getElementById('musicToggle').textContent = '▶'; document.getElementById('musicWave').classList.add('paused'); }
+  else { ytPlayer.playVideo(); musicPlaying = true; document.getElementById('musicToggle').textContent = '⏸'; document.getElementById('musicWave').classList.remove('paused'); }
+}
+
+// =============================================
+// SCREENS
+// =============================================
+var screens = ['screenVideo','screenType','screenParticipants','screenContact','screenReview','screenPayment','successScreen'];
+var stepMap = { screenVideo:0, screenType:1, screenParticipants:2, screenContact:3, screenReview:4, screenPayment:5, successScreen:6 };
+
+function goScreen(id) {
+  screens.forEach(function(s) { var el = document.getElementById(s); if(el) el.style.display='none'; });
+  var el = document.getElementById(id); if(el) el.style.display='block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  setStepUI(stepMap[id] || 0);
+}
+
+function setStepUI(n) {
+  for (var i = 1; i <= 6; i++) {
+    var sc = document.getElementById('s'+i); var cc = document.getElementById('c'+i);
+    if (!sc) continue;
+    sc.classList.remove('active','done');
+    if (i < n) sc.classList.add('done');
+    if (i === n) sc.classList.add('active');
+    if (cc) { cc.classList.remove('done'); if (i < n) cc.classList.add('done'); }
+  }
+}
+
+// =============================================
+// STATE
+// =============================================
+var participants = [];
+var editingIndex = -1;
+var currentPassportData = null; // base64 data URL
+var currentIdPhotoData = null;
+var idCameraStream = null;
+var passportCameraStream = null;
+
+// =============================================
+// STEP 1: WHO TYPE
+// =============================================
+function proceedFromType() {
+  var who = document.querySelector('input[name="whoType"]:checked');
+  if (!who) { alert('कृपया सहभागी प्रकार छान्नुहोस्! / Please select participant type!'); return; }
+  if (who.value === 'sakha' && !document.getElementById('sakhaName').value) {
+    document.getElementById('sakhaName').classList.add('error');
+    alert('कृपया शाखा छान्नुहोस्! / Please select Sakha!'); return;
+  }
+  goScreen('screenParticipants');
+}
+
+document.querySelectorAll('input[name="whoType"]').forEach(function(r) {
+  r.addEventListener('change', function() {
+    document.getElementById('sakhaSelectBox').style.display = this.value === 'sakha' ? 'block' : 'none';
+  });
+});
+
+// =============================================
+// PRICING
+// =============================================
+function updatePricing() {
+  var n = participants.length;
+  var fee = calcFee(n);
+  document.getElementById('currentFee').textContent = n > 0 ? '฿' + fee.toLocaleString() : '฿0';
+}
+
+// =============================================
+// STEP 2: PARTICIPANTS
+// =============================================
+function proceedFromParticipants() {
+  if (participants.length === 0) { alert('कम्तिमा एक सहभागी थप्नुहोस्! / Add at least one participant!'); return; }
+  goScreen('screenContact');
+}
+
+function renderParticipants() {
+  var list = document.getElementById('participantsList');
+  list.innerHTML = '';
+  participants.forEach(function(p, i) {
+    var div = document.createElement('div');
+    div.className = 'participant-card';
+    var imgSrc = p.passportPhoto || '';
+    div.innerHTML =
+      (imgSrc ? '<img class="participant-thumb" src="'+imgSrc+'">' : '<div class="participant-thumb" style="background:var(--pink-light);display:flex;align-items:center;justify-content:center;font-size:20px">👤</div>') +
+      '<div class="participant-card-info">' +
+        '<div class="participant-card-name">'+(i+1)+'. '+p.name+'</div>' +
+        '<div class="participant-card-meta">Age: '+p.age+(p.sakha?' · '+p.sakha:'')+(p.idNo?' · ID: '+p.idNo:'')+'</div>' +
+      '</div>' +
+      '<button class="participant-card-remove" onclick="openParticipantModal('+i+')">✏️</button>' +
+      '<button class="participant-card-remove" onclick="removeParticipant('+i+')">🗑️</button>';
+    list.appendChild(div);
+  });
+  updatePricing();
+}
+
+function removeParticipant(i) {
+  if (confirm('यो सहभागी हटाउनुहोस्? / Remove this participant?')) {
+    participants.splice(i, 1);
+    renderParticipants();
+  }
+}
+
+// =============================================
+// PARTICIPANT MODAL
+// =============================================
+function openParticipantModal(idx) {
+  editingIndex = idx;
+  var isEdit = idx >= 0 && participants[idx];
+  document.getElementById('modalTitle').textContent = isEdit ? '✏️ सम्पादन · Edit Participant' : '👤 सहभागी थप्नुहोस् · Add Participant';
+
+  // Reset
+  document.getElementById('pName').value = '';
+  document.getElementById('pAge').value = '';
+  document.getElementById('pIdNo').value = '';
+  document.getElementById('pSakha').value = '';
+  document.getElementById('pPhotoPreview').style.display = 'none';
+  document.getElementById('pPhotoPreview').src = '';
+  document.getElementById('pIdPhotoText').textContent = 'Click to upload / Take photo';
+  document.getElementById('pIdPhotoArea').classList.remove('has-file','required-error');
+  document.getElementById('ageWarn').classList.remove('show');
+  document.getElementById('idReq').style.display = 'none';
+  document.getElementById('idPhotoReq').style.display = 'none';
+  currentPassportData = null;
+  currentIdPhotoData = null;
+
+  if (isEdit) {
+    var p = participants[idx];
+    document.getElementById('pName').value = p.name || '';
+    document.getElementById('pAge').value = p.age || '';
+    document.getElementById('pIdNo').value = p.idNo || '';
+    document.getElementById('pSakha').value = p.sakha || '';
+    if (p.passportPhoto) {
+      document.getElementById('pPhotoPreview').src = p.passportPhoto;
+      document.getElementById('pPhotoPreview').style.display = 'block';
+      currentPassportData = p.passportPhoto;
+    }
+    if (p.idPhotoData) {
+      currentIdPhotoData = p.idPhotoData;
+      document.getElementById('pIdPhotoText').textContent = '✓ ID Photo saved';
+      document.getElementById('pIdPhotoArea').classList.add('has-file');
+    }
+    if (parseInt(p.age) >= 12) {
+      document.getElementById('ageWarn').classList.add('show');
+      document.getElementById('idReq').style.display = 'inline';
+      document.getElementById('idPhotoReq').style.display = 'inline';
+    }
+  }
+
+  document.getElementById('participantModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeParticipantModal() {
+  document.getElementById('participantModal').classList.remove('active');
+  document.body.style.overflow = '';
+  closeIdCamera(); closePassportCamera();
+}
+
+function checkAgeWarning() {
+  var age = parseInt(document.getElementById('pAge').value);
+  var warn = document.getElementById('ageWarn');
+  var idReq = document.getElementById('idReq');
+  var idPhotoReq = document.getElementById('idPhotoReq');
+  if (age >= 12) {
+    warn.classList.add('show');
+    idReq.style.display = 'inline';
+    idPhotoReq.style.display = 'inline';
+  } else {
+    warn.classList.remove('show');
+    idReq.style.display = 'none';
+    idPhotoReq.style.display = 'none';
+  }
+}
+
+function saveParticipant() {
+  var name = document.getElementById('pName').value.trim();
+  var age = document.getElementById('pAge').value.trim();
+  var idNo = document.getElementById('pIdNo').value.trim();
+  var sakha = document.getElementById('pSakha').value;
+
+  if (!name) { document.getElementById('pName').classList.add('error'); alert('नाम अनिवार्य छ! / Name required!'); return; }
+  if (!age) { document.getElementById('pAge').classList.add('error'); alert('उमेर अनिवार्य छ! / Age required!'); return; }
+
+  // Age 12+ validation
+  if (parseInt(age) >= 12) {
+    if (!idNo) { document.getElementById('pIdNo').classList.add('error'); alert('उमेर १२+ भएकाले ID/Passport नम्बर अनिवार्य!\nAge 12+: ID/Passport number required!'); return; }
+    if (!currentIdPhotoData) { document.getElementById('pIdPhotoArea').classList.add('required-error'); alert('उमेर १२+ भएकाले ID/Passport photo अनिवार्य!\nAge 12+: ID/Passport photo required!'); return; }
+  }
+
+  if (!currentPassportData) { alert('Passport size photo अनिवार्य! / Passport photo required!'); return; }
+
+  var participant = { name: name, age: parseInt(age), idNo: idNo, sakha: sakha, passportPhoto: currentPassportData, idPhotoData: currentIdPhotoData };
+
+  if (editingIndex >= 0 && participants[editingIndex]) {
+    participants[editingIndex] = participant;
+  } else {
+    participants.push(participant);
+  }
+
+  renderParticipants();
+  closeParticipantModal();
+}
+
+// =============================================
+// PASSPORT PHOTO
+// =============================================
+function handlePassportPhotoUpload(input) {
+  if (input.files && input.files[0]) {
+    var r = new FileReader();
+    r.onload = function(e) {
+      currentPassportData = e.target.result;
+      document.getElementById('pPhotoPreview').src = currentPassportData;
+      document.getElementById('pPhotoPreview').style.display = 'block';
+    };
+    r.readAsDataURL(input.files[0]);
+  }
+}
+function openPassportCamera() {
+  navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' }, audio: false })
+    .then(function(stream) {
+      passportCameraStream = stream;
+      document.getElementById('passportCameraVideo').srcObject = stream;
+      document.getElementById('passportCameraContainer').style.display = 'block';
+    }).catch(function() { alert('Camera access denied / कैमेरा अनुमति दिनुहोस्'); });
+}
+function capturePassportPhoto() {
+  var v = document.getElementById('passportCameraVideo');
+  var c = document.getElementById('passportCameraCanvas');
+  c.width = v.videoWidth; c.height = v.videoHeight;
+  c.getContext('2d').drawImage(v, 0, 0);
+  currentPassportData = c.toDataURL('image/jpeg', 0.85);
+  document.getElementById('pPhotoPreview').src = currentPassportData;
+  document.getElementById('pPhotoPreview').style.display = 'block';
+  closePassportCamera();
+}
+function closePassportCamera() {
+  if (passportCameraStream) { passportCameraStream.getTracks().forEach(function(t){t.stop()}); passportCameraStream = null; }
+  document.getElementById('passportCameraContainer').style.display = 'none';
+}
+
+// =============================================
+// ID PHOTO
+// =============================================
+function handleIdPhotoChange(input) {
+  if (input.files && input.files[0]) {
+    var r = new FileReader();
+    r.onload = function(e) {
+      currentIdPhotoData = e.target.result;
+      document.getElementById('pIdPhotoText').textContent = '✓ ' + input.files[0].name.substring(0,28);
+      document.getElementById('pIdPhotoArea').classList.add('has-file');
+      document.getElementById('pIdPhotoArea').classList.remove('required-error');
+    };
+    r.readAsDataURL(input.files[0]);
+  }
+}
+function openIdCamera() {
+  navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' }, audio: false })
+    .then(function(stream) {
+      idCameraStream = stream;
+      document.getElementById('idCameraVideo').srcObject = stream;
+      document.getElementById('idCameraContainer').style.display = 'block';
+    }).catch(function() { alert('Camera access denied / कैमेरा अनुमति दिनुहोस्'); });
+}
+function captureIdPhoto() {
+  var v = document.getElementById('idCameraVideo');
+  var c = document.getElementById('idCameraCanvas');
+  c.width = v.videoWidth; c.height = v.videoHeight;
+  c.getContext('2d').drawImage(v, 0, 0);
+  currentIdPhotoData = c.toDataURL('image/jpeg', 0.9);
+  document.getElementById('pIdPhotoText').textContent = '✓ Photo taken';
+  document.getElementById('pIdPhotoArea').classList.add('has-file');
+  document.getElementById('pIdPhotoArea').classList.remove('required-error');
+  closeIdCamera();
+}
+function closeIdCamera() {
+  if (idCameraStream) { idCameraStream.getTracks().forEach(function(t){t.stop()}); idCameraStream = null; }
+  document.getElementById('idCameraContainer').style.display = 'none';
+}
+
+// =============================================
+// FILE UPLOAD (payment slip)
+// =============================================
+function handleFileChange(input, areaId, textId) {
+  if (input.files && input.files[0]) {
+    var name = input.files[0].name;
+    document.getElementById(textId).textContent = '✓ ' + (name.length > 28 ? name.substring(0,25)+'...' : name);
+    document.getElementById(areaId).classList.add('has-file');
+    document.getElementById(areaId).classList.remove('required-error');
+    document.getElementById('slipRequired').classList.remove('show');
+  }
+}
+
+// =============================================
+// STEP 3: CONTACT
+// =============================================
+function proceedFromContact() {
+  var pn = document.getElementById('parentName').value.trim();
+  var ph = document.getElementById('phone').value.trim();
+  var ad = document.getElementById('address').value.trim();
+  if (!pn) { document.getElementById('parentName').classList.add('error'); alert('अभिभावकको नाम अनिवार्य! / Parent name required!'); return; }
+  if (!ph) { document.getElementById('phone').classList.add('error'); alert('फोन नम्बर अनिवार्य! / Phone required!'); return; }
+  if (!ad) { document.getElementById('address').classList.add('error'); alert('ठेगाना अनिवार्य! / Address required!'); return; }
+  buildReview();
+  goScreen('screenReview');
+}
+
+// =============================================
+// REVIEW
+// =============================================
+function buildReview() {
+  var html = '';
+  var who = document.querySelector('input[name="whoType"]:checked');
+  var whoVal = who ? who.value : '';
+  var sakhaGlobal = document.getElementById('sakhaName').value;
+
+  html += '<div class="review-card"><h3>ℹ️ सहभागी प्रकार · Registration Type</h3>';
+  html += '<div class="review-row"><span class="lbl">Type</span><span class="val">'+(whoVal==='sakha'?'Sakha/Upasakha — '+sakhaGlobal:'Myself (आफैं)')+' </span></div>';
+  html += '</div>';
+
+  participants.forEach(function(p, i) {
+    html += '<div class="review-card"><h3>👤 सहभागी '+(i+1)+' · Participant '+(i+1)+'</h3>';
+    if (p.passportPhoto) html += '<div class="review-row"><span class="lbl">Photo</span><span class="val"><img src="'+p.passportPhoto+'" style="width:50px;height:50px;border-radius:50%;object-fit:cover;border:2px solid var(--pink)"></span></div>';
+    html += '<div class="review-row"><span class="lbl">नाम / Name</span><span class="val">'+p.name+'</span></div>';
+    html += '<div class="review-row"><span class="lbl">उमेर / Age</span><span class="val">'+p.age+'</span></div>';
+    if (p.idNo) html += '<div class="review-row"><span class="lbl">ID/Passport</span><span class="val">'+p.idNo+'</span></div>';
+    if (p.sakha) html += '<div class="review-row"><span class="lbl">Sakha</span><span class="val">'+p.sakha+'</span></div>';
+    html += '</div>';
+  });
+
+  var n = participants.length, fee = calcFee(n);
+  html += '<div class="review-card"><h3>💰 शुल्क · Fee</h3>';
+  html += '<div class="review-row"><span class="lbl">सहभागी / Count</span><span class="val">'+n+' जना</span></div>';
+  html += '<div class="review-row"><span class="lbl">जम्मा / Total</span><span class="val" style="color:var(--gold);font-size:16px">฿'+fee.toLocaleString()+'</span></div>';
+  html += '</div>';
+
+  html += '<div class="review-card"><h3>📞 सम्पर्क · Contact</h3>';
+  html += '<div class="review-row"><span class="lbl">अभिभावक</span><span class="val">'+document.getElementById('parentName').value+'</span></div>';
+  html += '<div class="review-row"><span class="lbl">Phone</span><span class="val">'+document.getElementById('phone').value+'</span></div>';
+  html += '<div class="review-row"><span class="lbl">Address</span><span class="val">'+document.getElementById('address').value+'</span></div>';
+  var note = document.getElementById('note').value;
+  if (note) html += '<div class="review-row"><span class="lbl">Note</span><span class="val">'+note+'</span></div>';
+  html += '</div>';
+
+  document.getElementById('reviewContent').innerHTML = html;
+}
+
+function buildPayment() {
+  var n = participants.length, fee = calcFee(n);
+  document.getElementById('payAmount').textContent = '฿ ' + fee.toLocaleString();
+  var breakdown = n === 1 ? '1 × ฿500' : n === 2 ? '฿1,500 (2 participants)' : '฿1,500 + '+(n-2)+' × ฿750 = ฿'+fee.toLocaleString();
+  document.getElementById('payBreakdown').textContent = breakdown;
+}
+
+// =============================================
+// SUBMIT to Google Sheets
+// =============================================
+function fileToBase64(file) {
+  return new Promise(function(resolve, reject) {
+    if (!file) { resolve(null); return; }
+    var r = new FileReader();
+    r.onload = function() { resolve(r.result.split(',')[1]); };
+    r.onerror = reject;
+    r.readAsDataURL(file);
+  });
+}
+
+async function submitForm() {
+  // Require payment slip
+  var slipFile = document.getElementById('paymentSlip').files[0];
+  if (!slipFile) {
+    document.getElementById('slipRequired').classList.add('show');
+    document.getElementById('paymentArea').classList.add('required-error');
+    document.getElementById('paymentArea').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+
+  var btn = document.getElementById('submitBtn');
+  var overlay = document.getElementById('loadingOverlay');
+  btn.disabled = true;
+  overlay.classList.add('active');
+
+  try {
+    var paymentBase64 = await fileToBase64(slipFile);
+    var who = document.querySelector('input[name="whoType"]:checked');
+    var whoVal = who ? who.value : 'self';
+    var sakhaGlobal = document.getElementById('sakhaName').value;
+    var n = participants.length;
+    var fee = calcFee(n);
+
+    // Build payload — sheetTab tells Apps Script which tab to write to
+    var payload = {
+      sheetTab: whoVal === 'sakha' ? (sakhaGlobal || 'Sakha') : 'Individual',
+      whoType: whoVal,
+      sakha: sakhaGlobal,
+      parentName: document.getElementById('parentName').value,
+      phone: document.getElementById('phone').value,
+      address: document.getElementById('address').value,
+      note: document.getElementById('note').value || '',
+      totalParticipants: n,
+      totalFee: fee,
+      submittedAt: new Date().toLocaleString('th-TH'),
+      paymentSlipName: slipFile.name,
+      paymentSlipData: paymentBase64,
+      participants: participants.map(function(p) {
+        return {
+          name: p.name,
+          age: p.age,
+          idNo: p.idNo || '',
+          sakha: p.sakha || '',
+          passportPhotoData: p.passportPhoto ? p.passportPhoto.split(',')[1] : '',
+          idPhotoData: p.idPhotoData ? p.idPhotoData.split(',')[1] : ''
+        };
+      })
+    };
+
+    await fetch(SCRIPT_URL, {
+      method: 'POST', mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify(payload)
+    });
+
+    // Show success
+    screens.forEach(function(s) { var el = document.getElementById(s); if(el) el.style.display='none'; });
+    document.getElementById('successScreen').style.display = 'block';
+    setStepUI(6);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  } catch(err) {
+    alert('❌ दर्ता हुन सकेन। फेरि प्रयास गर्नुहोस्।\nError: ' + err.message);
+    btn.disabled = false;
+  } finally {
+    overlay.classList.remove('active');
+  }
+}
+
+// =============================================
+// WHATSAPP POPUP
+// =============================================
+function toggleWaPopup() {
+  document.getElementById('waPopup').classList.toggle('active');
+}
+setTimeout(function() { document.getElementById('waPopup').classList.add('active'); }, 10000);
+
+// =============================================
+// MODAL CLOSE ON BG CLICK
+// =============================================
+document.getElementById('participantModal').addEventListener('click', function(e) {
+  if (e.target === this) closeParticipantModal();
+});
+
+// Clear error on input
+document.querySelectorAll('input, select').forEach(function(el) {
+  el.addEventListener('input', function() { this.classList.remove('error'); });
+  el.addEventListener('change', function() { this.classList.remove('error'); });
+});
+
+// Camera containers styling
+document.getElementById('idCameraContainer').style.cssText = 'display:none;margin-top:10px;text-align:center';
+document.getElementById('passportCameraContainer').style.cssText = 'display:none;margin-top:10px;text-align:center';
 </script>
 
+<!-- Google Sheets Apps Script Reference
+===========================================
+The payload.sheetTab field tells your Apps Script which sheet tab to write to:
+- whoType = 'self'   → sheetTab = 'Individual'
+- whoType = 'sakha'  → sheetTab = sakhaGlobal (e.g. 'Bangkok Central', 'Chiang Mai', etc.)
+
+Apps Script should do:
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(data.sheetTab);
+  if (!sheet) sheet = SpreadsheetApp.getActiveSpreadsheet().insertSheet(data.sheetTab);
+  // then append row with all data
+
+Columns to write per participant row:
+Timestamp | WhoType | Sakha | ParentName | Phone | Address | Note | TotalFee |
+ParticipantName | Age | IDNo | ParticipantSakha | (photos as Drive URLs)
+===========================================
+-->
 </body>
 </html>
