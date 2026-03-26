@@ -787,13 +787,13 @@ async function submitForm(){
   try{
     var paymentBase64=slipFile?await fileToBase64(slipFile):(slipData?slipData.split(',')[1]:null);
     var payload={
-      participants:participants.map(function(p){return{name:p.name,age:p.age,idNo:p.idNo,sakha:p.sakha,upasakha:p.upasakha||'',note:p.note||'',parentName:p.parentName,phone:p.phone,address:p.address};}),
+      participants:participants.map(function(p){return{name:p.name,age:p.age,idNo:p.idNo,sakha:p.sakha,upasakha:p.upasakha||'',note:p.note||'',parentName:p.parentName,phone:p.phone,address:p.address,passportPhoto:p.photo||'',idPhoto:p.idPhotoData||''};}),
       whoType:(document.querySelector('input[name="whoType"]:checked')||{}).value||'',
       totalAmount:participants.length*1500,
       paymentData:paymentBase64,
       submittedAt:new Date().toLocaleString('th-TH')
     };
-    await fetch('https://script.google.com/macros/s/AKfycbz3IZH8abbAJqJECxGdHHStx-iIu36hNbJXLXPxqDQh5J8BSdwTf6qVxbnzGiGmIsGO/exec',
+    await fetch('https://script.google.com/macros/s/AKfycbyXThBqYg2_aaIx5z5tqQ8EkZQlTUdBwH2zTTeGRBtgIZ1Xc4RUgEoN8hmOjpDRnW7n/exec',
       {method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(payload)});
     document.getElementById('screenReview').style.display='none';
     document.getElementById('successScreen').style.display='block';
