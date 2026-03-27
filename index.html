@@ -780,24 +780,90 @@ function joinWhatsApp(){
 }
 
 // SUBMIT
+function dataUrlToB64(dataUrl){
+  if(!dataUrl)return '';
+  return dataUrl.indexOf(',')>-1?dataUrl.split(',')[1]:dataUrl;
+}
 function fileToBase64(file){return new Promise(function(resolve,reject){if(!file){resolve(null);return;}var r=new FileReader();r.onload=function(){resolve(r.result.split(',')[1]);};r.onerror=reject;r.readAsDataURL(file);});}
+
 async function submitForm(){
   var btn=document.getElementById('submitBtn'),overlay=document.getElementById('loadingOverlay');
   btn.disabled=true;overlay.classList.add('active');
   try{
-    var paymentBase64=slipFile?await fileToBase64(slipFile):(slipData?slipData.split(',')[1]:null);
-    var payload={
-      participants:participants.map(function(p){return{name:p.name,age:p.age,idNo:p.idNo,sakha:p.sakha,upasakha:p.upasakha||'',note:p.note||'',parentName:p.parentName,phone:p.phone,address:p.address,passportPhoto:p.photo||'',idPhoto:p.idPhotoData||''};}),
-      whoType:(document.querySelector('input[name="whoType"]:checked')||{}).value||'',
-      totalAmount:participants.length*1500,
-      paymentData:paymentBase64,
-      submittedAt:new Date().toLocaleString('th-TH')
+    var SCRIPT_URL='https://script.google.com/macros/s/AKfycbyXThBqYg2_aaIx5z5tqQ8EkZQlTUdBwH2zTTeGRBtgIZ1Xc4RUgEoN8hmOjpDRnW7n/exec';
+
+    // Determine sheetTab from first participant's sakha
+    var firstP = participants[0];
+    var sakha = firstP.sakha || 'Other';
+    var upa = firstP.upasakha || '';
+    var sheetTabMap = {
+      'Bangkok':'Bangkok Sakha','Pattaya':'Pattaya Sakha','Hua Hin':'Hua Hin Sakha',
+      'Phuket':'Phuket Sakha','Khaolak':'Khaolak Sakha','Krabi':'Krabi Sakha',
+      'Koh Samui':'Koh Samui Sakha','Chiang Mai':'Chiang Mai Sakha',
+      'Mae Sai':'Mae Sai Sakha','Mae Sot':'Mae Sot Sakha','Other':'Other Sakha'
     };
-    await fetch('https://script.google.com/macros/s/AKfycbyXThBqYg2_aaIx5z5tqQ8EkZQlTUdBwH2zTTeGRBtgIZ1Xc4RUgEoN8hmOjpDRnW7n/exec',
-      {method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(payload)});
+    var sheetTab = sheetTabMap[sakha] || 'Other Sakha';
+    var whoType = (document.querySelector('input[name="whoType"]:checked')||{}).value||'';
+    var fee = participants.length * 1500;
+    var submittedAt = new Date().toLocaleString('th-TH');
+
+    // STEP A: Text data
+    var textPayload = {
+      type: 'text_data',
+      sheetTab: sheetTab,
+      sakha: sakha,
+      upasakha: upa,
+      parentName: firstP.parentName || '',
+      phone: firstP.phone || '',
+      address: firstP.address || '',
+      totalParticipants: participants.length,
+      totalFee: fee,
+      whoType: whoType,
+      submittedAt: submittedAt,
+      participants: participants.map(function(p){
+        return { name:p.name, age:p.age, idNo:p.idNo, note:p.note||'' };
+      })
+    };
+    await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(textPayload)});
+
+    // STEP B: Payment slip
+    var slipB64 = slipFile ? await fileToBase64(slipFile) : dataUrlToB64(slipData);
+    if(slipB64){
+      await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},
+        body:JSON.stringify({
+          type:'payment_slip',
+          sheetTab:sheetTab,
+          parentName:firstP.parentName||'',
+          paymentSlipName:'slip.jpg',
+          paymentSlipData:slipB64
+        })
+      });
+    }
+
+    // STEP C: Participant photos
+    for(var pi=0;pi<participants.length;pi++){
+      var p=participants[pi];
+      var ppB64=dataUrlToB64(p.photo||'');
+      var idB64=dataUrlToB64(p.idPhotoData||'');
+      if(ppB64||idB64){
+        await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},
+          body:JSON.stringify({
+            type:'participant_photos',
+            sheetTab:sheetTab,
+            parentName:firstP.parentName||'',
+            participantIndex:pi,
+            participantName:p.name||'',
+            passportPhotoData:ppB64,
+            idPhotoData:idB64
+          })
+        });
+      }
+    }
+
     document.getElementById('screenReview').style.display='none';
     document.getElementById('successScreen').style.display='block';
     setStep(5);window.scrollTo({top:0,behavior:'smooth'});
+
   }catch(err){alert('Registration failed. Please try again.\nError: '+err.message);btn.disabled=false;}
   finally{overlay.classList.remove('active');}
 }
