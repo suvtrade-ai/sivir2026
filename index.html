@@ -833,6 +833,7 @@ async function submitForm(){
         body:JSON.stringify({
           type:'payment_slip',
           sheetTab:sheetTab,
+          whoType:whoType,
           parentName:firstP.parentName||'',
           paymentSlipName:'slip.jpg',
           paymentSlipData:slipB64
@@ -850,6 +851,7 @@ async function submitForm(){
           body:JSON.stringify({
             type:'participant_photos',
             sheetTab:sheetTab,
+            whoType:whoType,
             parentName:firstP.parentName||'',
             participantIndex:pi,
             participantName:p.name||'',
